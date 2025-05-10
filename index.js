@@ -267,6 +267,94 @@ app.post('/admin/decision', async (req, res) => {
         return res.status(500).json({ message: 'Server error' });
     }
 });
+const subscriberSchema = new mongoose.Schema({
+    email: { type: String, required: true, unique: true },
+    subscribedAt: { type: Date, default: Date.now }
+});
+const Subscriber = mongoose.model('Subscriber', subscriberSchema);
+
+app.post('/subscribe', async (req, res) => {
+    const { email } = req.body;
+
+    if (!email || !email.includes('@')) {
+        return res.status(400).json({ message: 'Invalid email address' });
+    }
+
+    try {
+        const exists = await Subscriber.findOne({ email });
+        if (exists) {
+            return res.status(200).json({ message: 'You are already subscribed!' });
+        }
+
+        const newSub = new Subscriber({ email });
+        await newSub.save();
+
+        const unsubscribeLink = `https://yourdomain.com/unsubscribe?email=${encodeURIComponent(email)}`;
+
+        await transporter.sendMail({
+            from: `"Ekhaya Smart Scholars" <${process.env.EMAIL_USER}>`,
+            to: email,
+            subject: 'Welcome to Ekhaya Smart Scholars!',
+            html: `
+                <div style="font-family: Arial, sans-serif; padding: 20px;">
+                    <h2>Thank you for subscribing!</h2>
+                    <p>You’ll now receive updates about new courses, promotions, and more.</p>
+                    <p>If you ever want to unsubscribe, just <a href="${unsubscribeLink}" style="color:red;">click here</a>.</p>
+                </div>
+            `
+        });
+
+        return res.status(200).json({ message: 'Subscribed and email sent.' });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Server error' });
+    }
+});
+app.post('/contact', async (req, res) => {
+    const { name, email, message } = req.body;
+
+    try {
+        // 1. Email to the website admin
+        await transporter.sendMail({
+            from: `"Contact Form" <${process.env.EMAIL_USER}>`,
+            to: process.env.EMAIL_USER, // site receives its own message
+            subject: '📩 New Contact Message from Website',
+            html: `
+                <div style="font-family: Arial, sans-serif; padding: 20px;">
+                    <h3>New Message from Contact Form</h3>
+                    <p><strong>Name:</strong> ${name}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Message:</strong></p>
+                    <p>${message}</p>
+                </div>
+            `
+        });
+
+        // 2. Acknowledgement email to the user
+        await transporter.sendMail({
+            from: `"Ekhaya Smart Scholars" <${process.env.EMAIL_USER}>`,
+            to: email,
+            subject: '✅ We Received Your Message',
+            html: `
+                <div style="font-family: Arial, sans-serif; padding: 20px;">
+                    <h2>Thanks for reaching out, ${name}!</h2>
+                    <p>We've received your message and our team will respond as soon as possible.</p>
+                    <p style="margin-top: 20px;">Here's a copy of what you sent:</p>
+                    <blockquote style="margin: 10px 0; padding-left: 15px; border-left: 3px solid #ccc;">
+                        ${message}
+                    </blockquote>
+                    <p style="margin-top: 20px;">Best regards,<br><strong>Ekhaya Smart Scholars Team</strong></p>
+                </div>
+            `
+        });
+
+        res.status(200).send('<script>alert("Message sent successfully!"); window.location.href="/";</script>');
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('<script>alert("Failed to send message. Please try again."); window.location.href="/";</script>');
+    }
+});
 
 app.use((req, res, next) => {
     res.status(404).sendFile(__dirname +'/views/error.html');
