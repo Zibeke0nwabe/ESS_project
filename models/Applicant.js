@@ -1,0 +1,37 @@
+const mongoose = require('mongoose');
+
+const applicantSchema = new mongoose.Schema({
+    title: { type: String, required: true },
+    name: { type: String, required: true },
+    surname: { type: String },
+    password: { type: String, required: true },
+    studentNumber: { type: String, unique: true },
+    idNumber: { type: String, required: true, unique: true },
+    DOB: { type: String, required: true },
+    marital: { type: String, required: true },
+    language: { type: String },
+    gender: { type: String },
+    email: { type: String, required: true, unique: true },
+    mobile: { type: String, required: true },
+    altmobile: { type: String },
+    province: { type: String },
+    town: { type: String },
+    Suburb: { type: String },
+    addressCode: { type: String, required: true },
+    education: { type: String, required: true },
+    eduYear: { type: String },
+    school: { type: String },
+    Courses: { type: String },
+    idCopy: { type: String },
+    certificateCopy: { type: String },
+    parentID: { type: String },
+    mathsType: { type: String },
+    mathsLevel: { type: String },
+    scienceLevel: { type: String },
+    tertiary: { type: String },
+    qLevel: { type: String },
+    qName: { type: String },
+    status: { type: String, default: 'Pending' },
+});
+
+module.exports = mongoose.model('Applicant', applicantSchema, 'ekhayaApplicants');
