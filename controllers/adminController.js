@@ -30,14 +30,14 @@ exports.makeDecision = async (req, res) => {
         await applicant.save();
 
         const subject = decision === 'accept'
-            ? '🎉 You’ve Been Accepted to Ekhaya Smart Scholars'
-            : '❌ Application Update – Ekhaya Smart Scholars';
+            ? ' You’ve Been Accepted to Ekhaya Smart Scholars'
+            : ' Application Update – Ekhaya Smart Scholars';
 
         const htmlContent = decision === 'accept'
-            ? `<div style="font-family: Arial, sans-serif; background-color: #000026; padding: 40px 0;">
+            ? `<div>
             <div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 10px; padding: 30px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
-              <p style="color: #000026; text-align: center; font-size: 26px; margin-bottom: 10px;">
-                🎉 Dear  ${applicant.name}, You're Accepted!
+              <p style=" margin-bottom: 10px;">
+                🎉 Dear  ${applicant.name} ${applicant.surname}, You're Accepted!
               </p>
               <p style="font-size: 16px; line-height: 1.6; color: #000026;">
                 We are thrilled to inform you that your application to the <strong>Ekhaya Smart Scholars</strong> program has been <strong>Accepted</strong>. Congratulations on this significant achievement!
@@ -47,9 +47,9 @@ exports.makeDecision = async (req, res) => {
               <ul style="font-size: 16px; line-height: 1.6; color: #000026; padding-left: 20px;">
                     <li><strong>Student Number:</strong> ${applicant.studentNumber}</li>
                     <li><strong>Email:</strong> ${applicant.studentNumber}@ess.co.za</li>
-                    <li><strong>Phone:</strong> ${applicant.phone}</li>
+                    <li><strong>Phone:</strong> ${applicant.mobile}</li>
                     <li><strong>ID Number:</strong> ${applicant.idNumber}</li>
-                    <li><strong>Password:</strong> ${applicant.password}</li>
+
               </ul>          
               <div style="margin: 30px 0; text-align: center;">
                 <a href="https://ess.co.za/login" style="background-color: #4B0082; color: #ffffff; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: bold;">
@@ -84,13 +84,12 @@ exports.makeDecision = async (req, res) => {
           </div>
           `
             : `<div style="padding: 20px;">
-            <h2>Dear ${applicant.name},</h2>
+            <p>Dear ${applicant.name} ${applicant.surname},</p>
             <p>We regret to inform you that your application has not been successful. Below are your application details:</p>
             <ul>
                 <li><strong>Student Number:</strong> ${applicant.studentNumber}</li>
-                <li><strong>Phone:</strong> ${applicant.phone}</li>
+                <li><strong>Phone:</strong> ${applicant.mobile}</li>
                 <li><strong>ID Number:</strong> ${applicant.idNumber}</li>
-                <li><strong>Password:</strong> ${applicant.password}</li>
             </ul>
             <p>This decision was based on the highly competitive nature of the selection process. We encourage you to continue pursuing your academic aspirations and to apply again in the future.</p>
             <p>If you would like feedback on your application or have any questions, please feel free to contact us.</p>
