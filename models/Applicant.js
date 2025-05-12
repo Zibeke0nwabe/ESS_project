@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const applicantSchema = new mongoose.Schema({
     title: { type: String, required: true },
@@ -25,13 +26,29 @@ const applicantSchema = new mongoose.Schema({
     idCopy: { type: String },
     certificateCopy: { type: String },
     parentID: { type: String },
-    mathsType: { type: String },
     mathsLevel: { type: String },
     scienceLevel: { type: String },
-    tertiary: { type: String },
-    qLevel: { type: String },
-    qName: { type: String },
+    accountingLevel: { type: String },
+    geographyLevel: { type: String },
+    lifeScienceLevel: { type: String },
+    businessStudiesLevel: { type: String },
+    economicsLevel: { type: String },
+    agriculturalScienceLevel: { type: String },
+    selectedSubjects: [{ type: String }],         
+
     status: { type: String, default: 'Pending' },
 });
+    // Trying to hash passwords
+    applicantSchema.pre('save', async function (next) {
+        if (!this.isModified('password')) return next();
+
+        try {
+            const salt = await bcrypt.genSalt(10);
+            this.password = await bcrypt.hash(this.password, salt);
+            next();
+        } catch (err) {
+            next(err);
+        }
+    });
 
 module.exports = mongoose.model('Applicant', applicantSchema, 'ekhayaApplicants');

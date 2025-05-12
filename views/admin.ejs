@@ -27,155 +27,190 @@
 
 <main class="pr-8 pl-8 pb-8 md:mb-24 md:mt-16">
     <% if (applicants && applicants.length > 0) { %>
-        <h2 class="text-2xl font-bold mb-6">Student Applications</h2>
-
-        <!-- Filter/Search Controls -->
-        <div class="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div class="flex gap-2">
-                <select id="statusFilter" onchange="applyFilters()" class="border px-2 py-1 rounded">
-                    <option value="">All Status</option>
-                    <option value="Accepted">Accepted</option>
-                    <option value="Rejected">Rejected</option>
-                    <option value="Pending Review">Pending Review</option>
-                </select>
-                <select id="mathsFilter" onchange="applyFilters()" class="border px-2 py-1 rounded">
-                    <option value="">Mathematics Scores</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                </select>
-                <select id="physicsFilter" onchange="applyFilters()" class="border px-2 py-1 rounded">
-                    <option value="">Physics Scores</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                </select>
-                <select id="physicsFilter" onchange="applyFilters()" class="border px-2 py-1 rounded">
-                    <option value="">Accounting Scores</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                </select>
-                <select id="physicsFilter" onchange="applyFilters()" class="border px-2 py-1 rounded">
-                    <option value="">Geography Scores</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                </select>
+      <h2 class="text-2xl font-bold mb-6">Student Applications</h2>
+  
+      <!-- Filter/Search Controls -->
+      <div class="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div class="flex gap-2">
+          <!-- Status Filter -->
+          <div class="relative">
+            <select id="statusFilter" onchange="applyFilters()" class="border px-2 py-1 rounded w-full md:w-48">
+              <option value="">All Status</option>
+              <option value="Accepted">Accepted</option>
+              <option value="Rejected">Rejected</option>
+              <option value="Pending Review">Pending Review</option>
+            </select>
+          </div>
+  
+          <!-- Subject Filters -->
+          <div class="relative">
+            <select id="mathsFilter" onchange="applyFilters()" class="border px-2 py-1 rounded w-full md:w-48">
+              <option value="">Maths Scores</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select>
+          </div>
+  
+          <div class="relative">
+            <select id="physicsFilter" onchange="applyFilters()" class="border px-2 py-1 rounded w-full md:w-48">
+              <option value="">Physics Scores</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select>
+          </div>
+  
+          <div class="relative">
+            <select id="accountingFilter" onchange="applyFilters()" class="border px-2 py-1 rounded w-full md:w-48">
+              <option value="">Accounting Scores</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select>
+          </div>
+  
+          <div class="relative">
+            <select id="geographyFilter" onchange="applyFilters()" class="border px-2 py-1 rounded w-full md:w-48">
+              <option value="">Geography Scores</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select>
+          </div>
+        </div>
+  
+        <!-- Search Input -->
+        <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Search here..." class="border px-4 py-2 rounded w-full md:w-64" />
+      </div>
+  
+      <!-- Student Details Section -->
+      <div class="space-y-8">
+        <% applicants.forEach(applicant => { %>
+          <hr />
+          <div data-applicant
+               data-name="<%= applicant.name + ' ' + applicant.surname %>"
+               data-studentnumber="<%= applicant.studentNumber %>"
+               data-status="<%= applicant.status %>"
+               data-maths="<%= applicant.maths %>"
+               data-physics="<%= applicant.physics %>"
+               data-accounting="<%= applicant.accounting %>"
+               data-geography="<%= applicant.geography %>"
+               class="p-6 pt-2 bg-white border rounded shadow">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+              <div>
+                <h3 class="text-xl font-semibold"><%= applicant.name %> <%= applicant.surname %></h3>
+                <p class="text-sm text-gray-600">Student #: <%= applicant.studentNumber %> | ID: <%= applicant.idNumber %></p>
+                <p class="text-sm text-gray-600">Email: <%= applicant.email %></p>
+                <p class="text-sm text-gray-600">Phone: <%= applicant.phone %></p>
+              </div>
+              <div class="mt-2 md:mt-0 space-x-2">
+                <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded text-sm"
+                        onclick="handleDecision('<%= applicant._id %>', 'accept')">Accept</button>
+                <button class="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded text-sm"
+                        onclick="handleDecision('<%= applicant._id %>', 'reject')">Reject</button>
+              </div>
             </div>
-            <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Search by name or student number..." class="border px-4 py-2 rounded w-full md:w-64" />
-        </div>
+          <!-- Details -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700">
+            <p><span class="font-medium">Previous School:</span> <%= applicant.school %></p>
+            <p><span class="font-medium">Grade Level:</span> <%= applicant.gradeLevel %></p>
+            <p><span class="font-medium">Tertiary Level Completed:</span> <%= applicant.tertiary === 'Yes' ? 'Yes' : 'No' %></p>
+            <p><span class="font-medium">Status:</span>
+              <% if (applicant.status === 'Accepted') { %>
+                <span class="text-green-600 font-semibold">Accepted</span>
+              <% } else if (applicant.status === 'Rejected') { %>
+                <span class="text-red-600 font-semibold">Rejected</span>
+              <% } else { %>
+                <span class="text-yellow-600 font-semibold">Pending Review</span>
+              <% } %>
+            </p>
+          </div>
 
-        <!-- STUDENT DETAILS SECTION -->
-        <div class="space-y-8">
-            <% applicants.forEach(applicant => { %>
-                <hr/>
-                <div 
-                    data-applicant 
-                    data-name="<%= applicant.name + ' ' + applicant.surname %>" 
-                    data-studentnumber="<%= applicant.studentNumber %>" 
-                    data-status="<%= applicant.status %>" 
-                    data-tertiary="<%= applicant.tertiary %>" 
-                    data-maths="<%= applicant.maths %>"
-                    data-physics="<%= applicant.physics %>"
-                    class="p-6 pt-2 bg-white border rounded shadow"
-                >
-                    <!-- Header -->
-                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                        <div>
-                            <h3 class="text-xl font-semibold"><%= applicant.name %> <%= applicant.surname %></h3>
-                            <p class="text-sm text-gray-600">Student : <%= applicant.studentNumber %> | ID: <%= applicant.idNumber %></p>
-                            <p class="text-sm text-gray-600">Email: <%= applicant.email %></p>
-                            <p class="text-sm text-gray-600">Phone: <%= applicant.phone %></p>
-                        </div>
-                        <div class="mt-2 md:mt-0 space-x-2">
-                            <button 
-                                class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded text-sm"
-                                onclick="handleDecision('<%= applicant._id %>', 'accept')"
-                            >Accept</button>
-                            <button 
-                                class="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded text-sm"
-                                onclick="handleDecision('<%= applicant._id %>', 'reject')"
-                            >Reject</button>
-                        </div>
-                    </div>
+          <!-- Selected Subjects -->
+          <div class="mt-4">
+            <h4 class="font-semibold text-gray-800 mb-2">Selected Subjects:</h4>
+            <% if (applicant.selectedSubjects && applicant.selectedSubjects.length > 0) { %>
+              <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                <% applicant.selectedSubjects.forEach(subject => { %>
+                  <li><%= subject %></li>
+                <% }) %>
+              </ul>
+            <% } else { %>
+              <p class="text-sm italic text-gray-500">No subjects selected.</p>
+            <% } %>
+          </div>
 
-                    <!-- Details -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700">
-                        <p><span class="font-medium">Previous School:</span> <%= applicant.school %></p>
-                        <p><span class="font-medium">Maths Score:</span> <%= applicant.maths %></p>
-                        <p><span class="font-medium">Physics Score:</span> <%= applicant.physics %></p>
-                        <p><span class="font-medium">Tertiary Level Completed:</span> <%= applicant.tertiary === 'Yes' ? 'Yes' : 'No' %></p>
-                        <p><span class="font-medium">Status:</span>
-                            <% if (applicant.status === 'Accepted') { %>
-                                <span class="text-green-600 font-semibold">Accepted</span>
-                            <% } else if (applicant.status === 'Rejected') { %>
-                                <span class="text-red-600 font-semibold">Rejected</span>
-                            <% } else { %>
-                                <span class="text-yellow-600 font-semibold">Pending Review</span>
-                            <% } %>
-                        </p>
-                    </div>
+          <!-- Passed Subjects with Scores -->
+          <div class="mt-4">
+            <h4 class="font-semibold text-gray-800 mb-2">Passed Subjects & Scores:</h4>
+            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+              <% if (applicant.mathsLevel) { %><li>Mathematics: <%= applicant.mathsLevel %></li><% } %>
+              <% if (applicant.scienceLevel) { %><li>Physical Science: <%= applicant.scienceLevel %></li><% } %>
+              <% if (applicant.accountingLevel) { %><li>Accounting: <%= applicant.accountingLevel %></li><% } %>
+              <% if (applicant.geographyLevel) { %><li>Geography: <%= applicant.geographyLevel %></li><% } %>
+            </ul>
+          </div>
 
-                    <!-- Supportive Documents -->
-                    <div class="mt-4">
-                        <h4 class="font-semibold text-gray-800 mb-2">Supportive Documents:</h4>
-                        <% if (applicant.idCopy || applicant.certificateCopy || applicant.parentID) { %>
-                            <ul class="list-disc list-inside text-sm text-blue-600 space-y-1">
-                                <% if (applicant.idCopy) { %>
-                                    <li>
-                                        <a href="<%= applicant.idCopy %>" target="_blank" class="hover:underline">ID Copy</a>
-                                        <a href="<%= applicant.idCopy %>" download class="ml-2 text-green-600 hover:underline">(Download)</a>
-                                    </li>
-                                <% } %>
-                                <% if (applicant.certificateCopy) { %>
-                                    <li>
-                                        <a href="<%= applicant.certificateCopy %>" target="_blank" class="hover:underline">Certificate</a>
-                                        <a href="<%= applicant.certificateCopy %>" download class="ml-2 text-green-600 hover:underline">(Download)</a>
-                                    </li>
-                                <% } %>
-                                <% if (applicant.parentID) { %>
-                                    <li>
-                                        <a href="<%= applicant.parentID %>" target="_blank" class="hover:underline">Parent ID</a>
-                                        <a href="<%= applicant.parentID %>" download class="ml-2 text-green-600 hover:underline">(Download)</a>
-                                    </li>
-                                <% } %>
-                            </ul>
-                        <% } else { %>
-                            <p class="text-gray-500 text-sm italic">No documents uploaded.</p>
-                        <% } %>
-                    </div>
-                </div>
-            <% }) %>
+          <!-- Supportive Documents -->
+          <div class="mt-4">
+            <h4 class="font-semibold text-gray-800 mb-2">Supportive Documents:</h4>
+            <% if (applicant.idCopy || applicant.certificateCopy || applicant.parentID) { %>
+              <ul class="list-disc list-inside text-sm text-blue-600 space-y-1">
+                <% if (applicant.idCopy) { %>
+                  <li>
+                    <a href="<%= applicant.idCopy %>" target="_blank" class="hover:underline">ID Copy</a>
+                    <a href="<%= applicant.idCopy %>" download class="ml-2 text-green-600 hover:underline">(Download)</a>
+                  </li>
+                <% } %>
+                <% if (applicant.certificateCopy) { %>
+                  <li>
+                    <a href="<%= applicant.certificateCopy %>" target="_blank" class="hover:underline">Certificate</a>
+                    <a href="<%= applicant.certificateCopy %>" download class="ml-2 text-green-600 hover:underline">(Download)</a>
+                  </li>
+                <% } %>
+                <% if (applicant.parentID) { %>
+                  <li>
+                    <a href="<%= applicant.parentID %>" target="_blank" class="hover:underline">Parent ID</a>
+                    <a href="<%= applicant.parentID %>" download class="ml-2 text-green-600 hover:underline">(Download)</a>
+                  </li>
+                <% } %>
+              </ul>
+            <% } else { %>
+              <p class="text-gray-500 text-sm italic">No documents uploaded.</p>
+            <% } %>
+          </div>
         </div>
-    <% } else { %>
-        <div class="p-8">
-            <p class="text-xl font-bold mb-4">No students available.</p>
-            <p class="text-gray-600">Please check back later for updated student information.</p>
-        </div>
-    <% } %>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <div class="p-8">
+      <p class="text-xl font-bold mb-4">No students available.</p>
+      <p class="text-gray-600">Please check back later for updated student information.</p>
+    </div>
+  <% } %>
 </main>
-
 <!-- Footer -->
 <footer style="background: #000026;" class=" text-white py-8">
     <div class="container mx-auto px-4">
@@ -228,12 +263,12 @@
             })
             .then(res => res.json())
             .then(data => {
-                alert(data.message);
+                alert(`✅ ${data.message}`);
                 window.location.reload();
             })
             .catch(err => {
                 console.error(err);
-                alert('Something went wrong. Please try again.');
+                alert('❌ Something went wrong. Please try again.');
             });
         }
     }
@@ -241,26 +276,44 @@
     function applyFilters() {
         const searchValue = document.getElementById('searchInput').value.toLowerCase();
         const statusValue = document.getElementById('statusFilter').value;
-        const tertiaryValue = document.getElementById('tertiaryFilter').value;
         const mathsValue = document.getElementById('mathsFilter').value;
         const physicsValue = document.getElementById('physicsFilter').value;
+        const accountingValue = document.getElementById('accountingFilter').value;
+        const geographyValue = document.getElementById('geographyFilter').value;
+
+        let noResults = true;
 
         document.querySelectorAll('[data-applicant]').forEach(card => {
             const name = card.dataset.name.toLowerCase();
             const studentNumber = card.dataset.studentnumber;
             const status = card.dataset.status;
-            const tertiary = card.dataset.tertiary;
             const maths = card.dataset.maths;
             const physics = card.dataset.physics;
+            const accounting = card.dataset.accounting;
+            const geography = card.dataset.geography;
 
             const matchesSearch = name.includes(searchValue) || studentNumber.includes(searchValue);
             const matchesStatus = !statusValue || status === statusValue;
-            const matchesTertiary = !tertiaryValue || tertiary === tertiaryValue;
             const matchesMaths = !mathsValue || maths === mathsValue;
             const matchesPhysics = !physicsValue || physics === physicsValue;
+            const matchesAccounting = !accountingValue || accounting === accountingValue;
+            const matchesGeography = !geographyValue || geography === geographyValue;
 
-            card.style.display = (matchesSearch && matchesStatus && matchesTertiary && matchesMaths && matchesPhysics) ? '' : 'none';
+            const showCard = matchesSearch && matchesStatus && matchesMaths && matchesPhysics && matchesAccounting && matchesGeography;
+
+            card.style.display = showCard ? '' : 'none';
+
+            if (showCard) {
+                noResults = false;
+            }
         });
+
+        const noResultsMessage = document.getElementById('noResultsMessage');
+        if (noResults) {
+            noResultsMessage.style.display = 'block';
+        } else {
+            noResultsMessage.style.display = 'none';
+        }
     }
 </script>
 </body>

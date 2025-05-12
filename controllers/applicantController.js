@@ -1,5 +1,5 @@
 const Applicant = require('../models/Applicant');
-const transporter = require('../config/email'); 
+const transporter = require('../config/email');
 const path = require('path');
 
 function generateStudentNumber() {
@@ -24,29 +24,51 @@ exports.submitApplication = async (req, res) => {
     const {
         title, name, surname, password, idNumber, DOB, marital, language, gender, mobile, altmobile, email,
         province, town, Suburb, addressCode, education, eduYear, school, Courses, idCopy, certificateCopy, parentID,
-        mathsType, mathsLevel, scienceLevel, qLevel, qName, tertiary
+        mathsLevel, scienceLevel, accountingLevel, geographyLevel, lifeScienceLevel, businessStudiesLevel,
+        economicsLevel, agriculturalScienceLevel, selectedSubjects
     } = req.body;
 
     try {
         const studentNumber = generateStudentNumber();
+
         const applicant = new Applicant({
             title, name, surname, password, studentNumber, idNumber, DOB, marital, language, gender, mobile, altmobile, email,
             province, town, Suburb, addressCode, education, eduYear, school, Courses, idCopy, certificateCopy, parentID,
-            mathsType, mathsLevel, scienceLevel, qLevel, qName, tertiary
+            mathsLevel, scienceLevel, accountingLevel, geographyLevel, lifeScienceLevel, businessStudiesLevel,
+            economicsLevel, agriculturalScienceLevel,
+        
+            selectedSubjects: Array.isArray(selectedSubjects) ? selectedSubjects : [selectedSubjects]
         });
 
-        await Applicant.create(applicant);
+        await applicant.save();
 
         await transporter.sendMail({
             from: `"Ekhaya Smart Scholars Admissions" <${process.env.EMAIL_USER}>`,
             to: applicant.email,
             subject: 'Application Confirmation - Submitted Successfully',
             html: `
-                <div style="font-family: Arial, sans-serif; padding: 20px;">
-                    <h2>Dear ${applicant.name} ${applicant.surname},</h2>
-                    <p>We’ve successfully received your application to <strong>Ekhaya Smart Scholars</strong>.</p>
-                    <p>Your student number is <strong>${applicant.studentNumber}</strong>.</p>
-                    <p>Please keep your login credentials safe. You’ll receive updates soon.</p>
+            <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9;">
+                    <p>Dear ${applicant.name} ${applicant.surname},</p>
+                    <p>Thank you for submitting your application. Your application has been successfully received.</p>
+                    
+                    <p><strong>Student Number:</strong> ${applicant.studentNumber}</p>
+                    <p><strong>Grade Level Applied For:</strong> ${applicant.gradeLevel}</p>
+                    
+                    <p><strong>Subjects Selected:</strong></p>
+                    <ul style="padding-left: 20px;">
+                        ${applicant.selectedSubjects.map(subject => `<li>${subject}</li>`).join('')}
+                    </ul>
+
+                    <hr style="margin: 20px 0;" />
+
+                    <p style="font-size: 14px; color: #333;">
+                        You will receive further communication regarding your admission shortly.
+                    </p>
+
+                    <p style="font-size: 13px; color: #666;">
+                        If you have any questions, feel free to contact us at 
+                        <a href="mailto:ekhayasmartscholars@gmail.com">ekhayasmartscholars@gmail.com</a>.
+                    </p>
                 </div>
             `
         });
@@ -79,6 +101,7 @@ exports.login = async (req, res) => {
             });
         }
     } catch (err) {
+        console.error(err);
         res.status(404).sendFile(path.join(__dirname, '../views/error.html'));
     }
 };
