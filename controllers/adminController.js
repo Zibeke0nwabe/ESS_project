@@ -37,7 +37,7 @@ exports.makeDecision = async (req, res) => {
             ? `<div>
             <div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 10px; padding: 30px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
               <p style=" margin-bottom: 10px;">
-                🎉 Dear  ${applicant.name} ${applicant.surname}, You're Accepted!
+                Dear  ${applicant.name} ${applicant.surname}
               </p>
               <p style="font-size: 16px; line-height: 1.6; color: #000026;">
                 We are thrilled to inform you that your application to the <strong>Ekhaya Smart Scholars</strong> program has been <strong>Accepted</strong>. Congratulations on this significant achievement!
