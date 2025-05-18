@@ -139,20 +139,20 @@
                             <input type="radio" id="female" name="gender" value="female" class="mr-2" required>
                             <label for="female">Female</label>
                             <input type="radio" id="other" name="gender" value="other" class="mr-2" required>
-                            <label for="other">Rather not say</label>
+                            <label for="other">Other</label>
                         </div>
                     </div>
                     <div class="flex flex-col">
                         <label for="mobile" class="mb-1 font-medium">Mobile Number</label>
-                        <input type="number" name="mobile" id="mobile" placeholder="Enter Your Mobile Number" class="border rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500">
+                        <input type="number" name="mobile" id="mobile" placeholder="Enter Your Mobile Number" class="border rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500" required>
                     </div>
                     <div class="flex flex-col">
                         <label for="altmobile" class="mb-1 font-medium">Alternative Number</label>
-                        <input type="number" name="altmobile" id="altmobile" placeholder="Enter Alternative Number" class="border rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500">
+                        <input type="number" name="altmobile" id="altmobile" placeholder="Enter Alternative Number" class="border rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500" required>
                     </div>
                     <div class="flex flex-col">
                         <label for="email" class="mb-1 font-medium">Email Address</label>
-                        <input type="email" name="email" id="email" placeholder="Enter Your Email Address" class="border rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500">
+                        <input type="email" name="email" id="email" placeholder="Enter Your Email Address" class="border rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500" required>
                     </div>
                     <div class="flex flex-col">
                         <label for="province" class="mb-1 font-medium">Province</label>
@@ -170,15 +170,15 @@
                     </div>
                     <div class="flex flex-col">
                         <label for="town" class="mb-1 font-medium">Town</label>
-                        <input type="text" name="town" id="town" placeholder="Enter Your Town Name" class="border rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500">
+                        <input type="text" name="town" id="town" placeholder="Enter Your Town Name" class="border rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500" required>
                     </div>
                     <div class="flex flex-col">
                         <label for="suburb" class="mb-1 font-medium">Suburb</label>
-                        <input type="text" name="suburb" id="suburb" placeholder="Enter Your Suburb Name" class="border rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500">
+                        <input type="text" name="suburb" id="suburb" placeholder="Enter Your Suburb Name" class="border rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500" required>
                     </div>
                     <div class="flex flex-col">
                         <label for="addressCode" class="mb-1 font-medium">Address Code</label>
-                        <input type="number" name="addressCode" id="addressCode" placeholder="Enter Your Address Code" class="border rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500">
+                        <input type="number" name="addressCode" id="addressCode" placeholder="Enter Your Address Code" class="border rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500" required>
                     </div>
                 </div>
             </div>
@@ -334,13 +334,6 @@
                             </ul>
                         </div>
                     </div>
-                
-                    <!-- Password Field -->
-                    <div class="mt-6">
-                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Create a Password:</label>
-                        <input type="password" id="password" name="password" placeholder="Create a Password"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600">
-                    </div>
                 </div>
                 
             <div class="form-section hidden">
@@ -358,6 +351,29 @@
                         <input type="file" name="parentID" id="certificate-document" class="appearance-none border border-gray-300 rounded-md py-2 px-4 w-full text-gray-700 leading-tight focus:outline-none focus:border-blue-500">
                     </div>
                 </div>
+                <div class="form-section hidden">
+                    <div class="mt-6">
+                      <h2 class="text-2xl font-bold mb-4">Create A Strong Password</h2>
+                  
+                      <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Enter a password:</label>
+                      <input type="password" id="password" name="password" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md mb-4" placeholder="Create a Password" />
+                  
+                      <label for="confirmPassword" class="block mb-2 text-sm font-medium text-gray-900">Confirm password:</label>
+                      <input type="password" id="confirmPassword" name="confirmPassword" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md mb-4" placeholder="Re-enter Password" />
+                  
+                        <ul id="passwordChecklist" class="text-sm space-y-1 mt-4">
+                            <li id="length" class="text-gray-500">At least 8 characters</li>
+                            <li id="uppercase" class="text-gray-500">At least one uppercase letter</li>
+                            <li id="lowercase" class="text-gray-500">At least one lowercase letter</li>
+                            <li id="number" class="text-gray-500">At least one number</li>
+                            <li id="special" class="text-gray-500">At least one special character</li>
+                            <li id="match" class="text-gray-500">Passwords match</li>
+                        </ul>                        
+                    </div>
+                  </div>
+                  
             <div class="buttons flex justify-end mt-8">
                 <button type="button" id="prevBtn" onclick="prevSection()"
                         class="bg-black text-white px-8 py-2 rounded mr-2 hidden">
@@ -367,7 +383,7 @@
                         class="bg-black text-white px-8 py-2 rounded">
                     Next
                 </button>
-                <button type="submit" id="submit" class="bg-gray-700 text-white px-4 py-2 rounded hidden">Submit</button>
+                <button type="submit" id="submit" class="bg-black text-white px-4 py-2 rounded hidden">Submit</button>
             </div>
         </form>
         
@@ -446,74 +462,170 @@
     }
 </script>
 
-    <script>
-        document.querySelector('.menu-icon').addEventListener('click', () => {
-            document.querySelector('.mobile-menu').classList.toggle('hidden');
-        });
-        let currentSection = 0;
-        showSection(currentSection);
+<script>
+    // Toggle Mobile Menu
+    document.querySelector('.menu-icon').addEventListener('click', () => {
+        document.querySelector('.mobile-menu').classList.toggle('hidden');
+    });
 
-        function showSection(n) {
-            const sections = document.getElementsByClassName("form-section");
-            sections[n].classList.add("active");
+    const passwordInput = document.getElementById("password");
+    const confirmInput = document.getElementById("confirmPassword");
 
-            if (n === 0) {
-                document.getElementById("prevBtn").style.display = "none";
+    const checklist = {
+        length: document.getElementById("length"),
+        uppercase: document.getElementById("uppercase"),
+        lowercase: document.getElementById("lowercase"),
+        number: document.getElementById("number"),
+        special: document.getElementById("special"),
+        match: document.getElementById("match"),
+    };
+
+    function updateChecklist() {
+        const password = passwordInput.value;
+        const confirmPassword = confirmInput.value;
+
+        const conditions = {
+            length: password.length >= 8,
+            uppercase: /[A-Z]/.test(password),
+            lowercase: /[a-z]/.test(password),
+            number: /\d/.test(password),
+            special: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+            match: password === confirmPassword && password !== ""
+        };
+
+        for (const key in conditions) {
+            checklist[key].classList.remove("text-gray-500", "text-red-600", "text-green-600");
+            if (conditions[key]) {
+                checklist[key].classList.add("text-green-600");
             } else {
-                document.getElementById("prevBtn").style.display = "inline";
-            }
-
-            if (n === (sections.length - 1)) {
-                document.getElementById("submit").style.display = "inline";
-                document.getElementById("prevBtn").style.display = "none";
-                document.getElementById("nextBtn").style.display = "none";
-            } else {
-                document.getElementById("submit").style.display = "none";
+                checklist[key].classList.add("text-gray-500");
             }
         }
+    }
 
-        function nextSection() {
-            const sections = document.getElementsByClassName("form-section");
-            if (validateSection(currentSection)) {
-                sections[currentSection].classList.remove("active");
-                currentSection++;
-                if (currentSection >= sections.length) {
-                    document.getElementById("multi-section-form").submit();
-                    return false;
-                }
-                showSection(currentSection);
-            }
+    passwordInput.addEventListener("input", updateChecklist);
+    confirmInput.addEventListener("input", updateChecklist);
+
+    let currentSection = 0;
+    showSection(currentSection);
+
+    function showSection(n) {
+        const sections = document.getElementsByClassName("form-section");
+
+        // Hide all sections first
+        for (let section of sections) {
+            section.classList.remove("active");
+            section.classList.add("hidden");
         }
 
-        function prevSection() {
-            const sections = document.getElementsByClassName("form-section");
+        sections[n].classList.add("active");
+        sections[n].classList.remove("hidden");
+
+        if (n === 0) {
+            document.getElementById("prevBtn").style.display = "none";
+        } else {
+            document.getElementById("prevBtn").style.display = "inline";
+        }
+
+        if (n === (sections.length - 1)) {
+            document.getElementById("submit").classList.remove("hidden");
+            document.getElementById("prevBtn").style.display = "inline";
+            document.getElementById("nextBtn").style.display = "none";
+
+            updateChecklist(); // optional: refresh checklist
+        } else {
+            document.getElementById("submit").classList.add("hidden");
+            document.getElementById("nextBtn").style.display = "inline";
+        }
+    }
+
+    function nextSection() {
+        const sections = document.getElementsByClassName("form-section");
+        if (validateSection(currentSection)) {
             sections[currentSection].classList.remove("active");
-            currentSection--;
+            sections[currentSection].classList.add("hidden");
+            currentSection++;
+            if (currentSection >= sections.length) {
+                return false;
+            }
             showSection(currentSection);
         }
+    }
 
-        function validateSection(n) {
-            const inputs = document.getElementsByClassName("form-section")[n].getElementsByTagName("input");
-            for (let i = 0; i < inputs.length; i++) {
-                if (inputs[i].hasAttribute("required") && !inputs[i].value) {
-                    alert("Please fill in all required fields.");
-                    return false;
-                }
+    function prevSection() {
+        const sections = document.getElementsByClassName("form-section");
+        sections[currentSection].classList.remove("active");
+        sections[currentSection].classList.add("hidden");
+        currentSection--;
+        showSection(currentSection);
+    }
+
+    function validateSection(n) {
+        const section = document.getElementsByClassName("form-section")[n];
+        const inputs = section.querySelectorAll("input, select, textarea");
+
+        for (let input of inputs) {
+            if (input.hasAttribute("required") && !input.value) {
+                alert("Please fill in all required fields.");
+                return false;
             }
-            if (n === 0) {
-                const idNumber = document.getElementById("idNumber").value;
-                if (idNumber.length !== 13) {
-                    alert("Please enter a valid South African ID Number.");
-                    return false;
-                    
-                }
-                
-            }
-            return true;
         }
 
-    </script>
-    
+        // SA ID validation on first section
+        if (n === 0) {
+            const idNumber = document.getElementById("idNumber").value;
+            if (idNumber.length !== 13) {
+                alert("Please enter a valid South African ID Number.");
+                return false;
+            }
+        }
+
+        // Password validation
+        const passwordField = section.querySelector("#password");
+        const confirmField = section.querySelector("#confirmPassword");
+
+        if (passwordField && confirmField) {
+            const password = passwordField.value;
+            const confirmPassword = confirmField.value;
+
+            const conditions = {
+                length: password.length >= 8,
+                uppercase: /[A-Z]/.test(password),
+                lowercase: /[a-z]/.test(password),
+                number: /\d/.test(password),
+                special: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+                match: password === confirmPassword && password !== ""
+            };
+
+            let isValid = true;
+
+            for (const key in conditions) {
+                checklist[key].classList.remove("text-gray-500", "text-green-600", "text-red-600");
+                if (conditions[key]) {
+                    checklist[key].classList.add("text-green-600");
+                } else {
+                    checklist[key].classList.add("text-red-600");
+                    isValid = false;
+                }
+            }
+
+            if (!isValid) {
+                alert("Password requirements not met. Please fix them.");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    // Final submission validation
+    document.getElementById("multi-section-form").addEventListener("submit", function (e) {
+        const lastSectionIndex = document.getElementsByClassName("form-section").length - 1;
+        if (!validateSection(lastSectionIndex)) {
+            e.preventDefault(); // Cancel submission
+        }
+    });
+</script>
 </body>
 </html>
 

@@ -31,9 +31,12 @@ app.use('/', adminRoutes);
 app.use('/', subscribeRoutes);
 app.use('/', contactRoutes);
 
-// 404 Error Page
+// Dynamic error page
 app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, 'views/error.html'));
+    res.status(404).render('error', {
+        title: '404 - Page Not Found',
+        message: null
+    });
 });
 
 // Start Server

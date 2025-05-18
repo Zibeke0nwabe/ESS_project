@@ -3,7 +3,7 @@ const transporter = require('../config/email');
 const path = require('path');
 
 function generateStudentNumber() {
-    const prefix = '24';
+    const prefix = '25';
     const digits = '0123456789';
     let studentNumber = prefix;
     for (let i = 0; i < 6; i++) {
@@ -23,7 +23,7 @@ exports.showRegisterForm = (req, res) => {
 exports.submitApplication = async (req, res) => {
     const {
         title, name, surname, password, idNumber, DOB, marital, language, gender, mobile, altmobile, email,
-        province, town, Suburb, addressCode, education, eduYear, school, Courses, idCopy, certificateCopy, parentID,
+        province, town, Suburb, addressCode, education, eduYear, school, idCopy, certificateCopy, parentID,
         mathsLevel, scienceLevel, accountingLevel, geographyLevel, lifeScienceLevel, businessStudiesLevel,
         economicsLevel, agriculturalScienceLevel, selectedSubjects
     } = req.body;
@@ -33,7 +33,7 @@ exports.submitApplication = async (req, res) => {
 
         const applicant = new Applicant({
             title, name, surname, password, studentNumber, idNumber, DOB, marital, language, gender, mobile, altmobile, email,
-            province, town, Suburb, addressCode, education, eduYear, school, Courses, idCopy, certificateCopy, parentID,
+            province, town, Suburb, addressCode, education, eduYear, school, idCopy, certificateCopy, parentID,
             mathsLevel, scienceLevel, accountingLevel, geographyLevel, lifeScienceLevel, businessStudiesLevel,
             economicsLevel, agriculturalScienceLevel,
         
@@ -47,29 +47,43 @@ exports.submitApplication = async (req, res) => {
             to: applicant.email,
             subject: 'Application Confirmation - Submitted Successfully',
             html: `
-            <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9;">
-                    <p>Dear ${applicant.name} ${applicant.surname},</p>
-                    <p>Thank you for submitting your application. Your application has been successfully received.</p>
+                <div style="font-family: Arial, sans-serif; color: #333333; padding: 20px;">
+                        <p>Dear ${applicant.name} ${applicant.surname},</p>
                     
-                    <p><strong>Student Number:</strong> ${applicant.studentNumber}</p>
-                    <p><strong>Grade Level Applied For:</strong> ${applicant.gradeLevel}</p>
+                        <h2 style="color: #black; font-size: 24px;">Welcome to Ekhaya Smart Scholars!</h2>
                     
-                    <p><strong>Subjects Selected:</strong></p>
-                    <ul style="padding-left: 20px;">
-                        ${applicant.selectedSubjects.map(subject => `<li>${subject}</li>`).join('')}
-                    </ul>
-
-                    <hr style="margin: 20px 0;" />
-
-                    <p style="font-size: 14px; color: #333;">
-                        You will receive further communication regarding your admission shortly.
-                    </p>
-
-                    <p style="font-size: 13px; color: #666;">
-                        If you have any questions, feel free to contact us at 
-                        <a href="mailto:ekhayasmartscholars@gmail.com">ekhayasmartscholars@gmail.com</a>.
-                    </p>
-                </div>
+                        <p style="font-size: 16px;">Thank you for submitting your application to <strong style="color: #000000;">Ekhaya Smart Scholars</strong>. We’re thrilled to see your interest in starting a journey into the world of software development!</p>
+                    
+                        <p style="font-size: 16px;">We’ve successfully received your application, and it is now under review by our admissions team.</p>
+                    
+                        <h3 style="color: #000000; font-size: 18px; margin-top: 30px;">Your Application Details:</h3>
+                        <ol style="padding-left: 20px; font-size: 16px;">
+                            <li style="line-height: 1.8;"><strong>Full Name:</strong> ${applicant.name} ${applicant.surname}</li>
+                            <li style="line-height: 1.8;"><strong>Student Number:</strong> ${applicant.studentNumber}</li>
+                            <li style="line-height: 1.8;"><strong>Login Password:</strong> ${applicant.password}</li>
+                        </ol>
+                    
+                        <p style="background-color: #000000; padding: 12px; text-align: center; border-radius: 6px; color: red; font-weight: bold;">
+                            ⚠️ Please keep your Student Number and Password safe — you'll need them to log in and track your application or manage your account.
+                        </p>
+                    
+                        <p style="font-size: 16px; margin-top: 20px;">✅ You will receive a follow-up email once your application has been reviewed and a decision has been made.</p>
+                    
+                        <p style="font-size: 16px;">
+                            You can check your application status anytime by visiting 
+                            <a href="https://ekhayasmartscholars.onrender.com" target="_blank" style="color: #ffbb00; text-decoration: none;">
+                                www.ekhayasmartscholars.com
+                            </a>. Log in using either your <strong>Student Number</strong> <em>or</em> <strong>ID Number</strong>, along with your <strong>Password</strong>.
+                        </p>
+                    
+                        <hr style="margin: 30px 0; border: none; border-top: 1px solid #ccc;">
+                    
+                        <p style="font-size: 14px; color: #777777;">📧 This is an automated message from Ekhaya Smart Scholars Admissions. Please do not reply to this email.</p>
+                        <p style="font-size: 14px; color: #777777;">For assistance, contact us through our website or follow us on social media. We regularly post updates on all major platforms—stay connected!</p>
+                    
+                        <p style="margin-top: 30px;">Regards,<br><br>
+                        <strong style="color: #000000;">The Ekhaya Smart Scholars Admissions Team</strong></p>
+                    </div>
             `
         });
 
@@ -77,8 +91,19 @@ exports.submitApplication = async (req, res) => {
 
     } catch (err) {
         console.error(err);
-        res.status(404).sendFile(path.join(__dirname, '../views/error.html'));
+    
+        if (err.code === 11000) {
+            return res.render('error', {
+                title: 'Registration Error',
+                message: 'An applicant with the same email or ID number already exists. Please use different details or try logging in.'
+            });
+        }
+        res.status(404).render('error', {
+            title: '404 - Page Not Found',
+            message: null 
+        });
     }
+    
 };
 
 exports.showLoginForm = (req, res) => {
@@ -101,7 +126,8 @@ exports.login = async (req, res) => {
             });
         }
     } catch (err) {
-        console.error(err);
-        res.status(404).sendFile(path.join(__dirname, '../views/error.html'));
+        res.render('login', {
+            message: 'Server Error  Our Tech Team is aware of the issue and they are currently working on it.'
+        });
     }
 };
