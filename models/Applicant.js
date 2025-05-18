@@ -11,7 +11,7 @@ const applicantSchema = new mongoose.Schema({
     language: { type: String },
     gender: { type: String },
     email: { type: String, required: true, unique: true },
-    mobile: { type: String, required: true },
+    mobile: { type: String, required: true, unique:true },
     altmobile: { type: String },
     province: { type: String },
     town: { type: String },
@@ -33,6 +33,9 @@ const applicantSchema = new mongoose.Schema({
     agriculturalScienceLevel: { type: String },
     selectedSubjects: [{ type: String }],         
     status: { type: String, default: 'Pending' },
+    resetCode: { type: String },
+    resetCodeExpiry: { type: Date }
+
 });
 
 module.exports = mongoose.model('Applicant', applicantSchema, 'ekhayaApplicants');

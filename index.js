@@ -17,8 +17,8 @@ app.set('view engine', 'ejs');
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URL)
-    .then(() => console.log('✅ MongoDB connected'))
-    .catch(err => console.error('❌ MongoDB connection failed:', err));
+    .then(() => console.log(' MongoDB connected'))
+    .catch(err => console.error(' MongoDB connection failed'));
 
 // Routes
 const applicantRoutes = require('./routes/applicantRoutes');

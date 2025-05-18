@@ -47,7 +47,7 @@ exports.subscribe = async (req, res) => {
                     </p>
     
                     <div style="margin: 30px 0; text-align: center;">
-                        <a href="https://www.ekhayasmartscholars.com" 
+                        <a href="https://ekhayasmartscholars.com" 
                             style="background-color: #4B0082; color: #ffffff; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: bold;">
                             Visit Our Website
                         </a>

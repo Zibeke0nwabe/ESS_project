@@ -16,7 +16,7 @@ exports.handleAdminLogin = async (req, res) => {
             res.render('adminLogin', { message: 'Invalid admin credentials' });
         }
     } catch (err) {
-        res.status(404).sendFile(path.join(__dirname, '../views/error.html'));
+      res.render('adminLogin', { message: 'Ekhaya Team is currently working on the system we are aware of the error please try again later' });
     }
 };
 
@@ -52,7 +52,7 @@ exports.makeDecision = async (req, res) => {
 
               </ul>          
               <div style="margin: 30px 0; text-align: center;">
-                <a href="https://ess.co.za/login" style="background-color: #4B0082; color: #ffffff; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: bold;">
+                <a href="https://ekhayasmartscholars.onrender.com/login" style="background-color: #4B0082; color: #ffffff; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: bold;">
                   👉 Login to Start Learning
                 </a>
               </div>
