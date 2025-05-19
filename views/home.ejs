@@ -116,6 +116,31 @@
         document.querySelector('.menu-icon').addEventListener('click', () => {
             document.querySelector('.mobile-menu').classList.toggle('hidden');
         });
+              //sending the email of a subscriber
+    const form = document.getElementById('subscribeForm');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+
+    try {
+        const res = await fetch('/subscribe', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email })
+        });
+
+        const data = await res.json();
+
+        alert(data.message); // Shows success or error message
+    } catch (err) {
+        alert('Something went wrong. Please try again later.');
+        console.error(err);
+    }
+});
     </script>
 
 </body>
