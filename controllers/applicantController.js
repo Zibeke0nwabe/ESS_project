@@ -123,6 +123,7 @@ exports.showForgotPasswordPage = (req, res) => {
 
 exports.sendOTP = async (req, res) => {
     const { email } = req.body;
+    
     try {
         const applicant = await Applicant.findOne({ email });
         if (!applicant) {
@@ -150,8 +151,10 @@ exports.sendOTP = async (req, res) => {
         });
 
         res.status(200).json({ message: 'Code sent.' });
+         console.log("EMAIL RECEIVED:", req.body.email)
     } catch (err) {
         res.status(500).json({ error: 'Something went wrong. Please try again.' });
+         console.log(err)
     }
 };
 

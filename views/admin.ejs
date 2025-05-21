@@ -143,26 +143,25 @@
           <div class="mt-4">
             <h4 class="font-semibold text-gray-800 mb-2">Supportive Documents:</h4>
             <% if (applicant.idCopy || applicant.certificateCopy || applicant.parentID) { %>
-              <ul class="list-disc list-inside text-sm text-blue-600 space-y-1">
-                <% if (applicant.idCopy) { %>
-                  <li>
-                    <a href="<%= applicant.idCopy %>" target="_blank" class="hover:underline">ID Copy</a>
-                    <a href="<%= applicant.idCopy %>" download class="ml-2 text-green-600 hover:underline">(Download)</a>
-                  </li>
-                <% } %>
-                <% if (applicant.certificateCopy) { %>
-                  <li>
-                    <a href="<%= applicant.certificateCopy %>" target="_blank" class="hover:underline">Certificate</a>
-                    <a href="<%= applicant.certificateCopy %>" download class="ml-2 text-green-600 hover:underline">(Download)</a>
-                  </li>
-                <% } %>
-                <% if (applicant.parentID) { %>
-                  <li>
-                    <a href="<%= applicant.parentID %>" target="_blank" class="hover:underline">Parent ID</a>
-                    <a href="<%= applicant.parentID %>" download class="ml-2 text-green-600 hover:underline">(Download)</a>
-                  </li>
-                <% } %>
-              </ul>
+            <ul class="list-disc list-inside text-sm text-blue-600 space-y-1">
+              <% if (applicant.idCopy) { %>
+                <li>
+                  <a href="<%= applicant.idCopy %>" target="_blank" download="idCopy">Download ID Copy</a>
+                </li>
+              <% } %>
+
+              <% if (applicant.certificateCopy) { %>
+                <li>
+                  <a href="<%= applicant.certificateCopy %>" target="_blank" download="certificateCopy">Download Certificate</a>
+                </li>
+              <% } %>
+
+              <% if (applicant.parentID) { %>
+                <li>
+                  <a href="<%= applicant.parentID %>" target="_blank" download="parentID">Download Parent ID</a>
+                </li>
+              <% } %>
+            </ul>
             <% } else { %>
               <p class="text-gray-500 text-sm italic">No documents uploaded.</p>
             <% } %>
@@ -187,10 +186,10 @@
               <h3 class="text-xl font-semibold mb-4">About Ekhaya Smart Scholars</h3>
               <p class="text-gray-400 text-sm">We are dedicated to empowering students and support them in every step of their academic journey. Each Letter in the word EKHAYA represents a core value that we uphold in our mission to helping students succeed.</p>
               <div class="mt-4">
-              <a href="#" class="text-blue-600 hover:text-white mr-4"><i class="fab fa-facebook-f md:text-2xl"></i></a>
-              <a href="#" class="text-blue-400 hover:text-white mr-4"><i class="fab fa-linkedin md:text-2xl"></i></a>
-              <a href="#" class="hover:text-white mr-4"><i class="fab fa-git md:text-2xl"></i></a>
-              <a href="#" class="text-red-600 hover:text-white mr-4"><i class="fab fa-youtube md:text-2xl"></i></a>
+              <a href="#" class="text-blue-600 hover:text-white mr-4"><i class="fab fa-facebook-f md:text-1xl"></i></a>
+              <a href="#" class="text-blue-400 hover:text-white mr-4"><i class="fab fa-linkedin md:text-1xl"></i></a>
+              <a href="#" class="hover:text-white mr-4"><i class="fab fa-git md:text-1xl"></i></a>
+              <a href="#" class="text-red-600 hover:text-white mr-4"><i class="fab fa-youtube md:text-1xl"></i></a>
               </div>
           </div>
           <div>
@@ -213,7 +212,6 @@
           <div>
               <h3 class="text-xl font-semibold mb-4">Developers</h3>
                 <img src="/images/esgela.jpg" alt="Esgela Logo" class="w-16 h-auto p-2">
-        
               <p class="text-gray-300 text-sm mb-2 mt-2">Proudly Designed by <a href="https://esgela.onrender.com" class="underline hover:text-white">Esgela.com</a> – a learning platform by Onwabe Zibeke.</p>
               <p class="text-gray-300 text-sm">Esgela empowers youth through technology education in Eastern Cape.</p>
           </div>
@@ -286,7 +284,7 @@ form.addEventListener('submit', async (e) => {
             const geography = card.dataset.geography;
 
             const matchesSearch = name.includes(searchValue) || studentNumber.includes(searchValue);
-            const matchesStatus = !statusValue || status === statusValue;
+            const matchesStatus = !statusValue || status.toLowerCase().trim() === statusValue.toLowerCase().trim();
             const matchesMaths = !mathsValue || maths === mathsValue;
             const matchesPhysics = !physicsValue || physics === physicsValue;
             const matchesAccounting = !accountingValue || accounting === accountingValue;
