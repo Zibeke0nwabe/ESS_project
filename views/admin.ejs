@@ -146,19 +146,19 @@
             <ul class="list-disc list-inside text-sm text-blue-600 space-y-1">
               <% if (applicant.idCopy) { %>
                 <li>
-                  <a href="<%= applicant.idCopy %>" target="_blank" download="idCopy">Download ID Copy</a>
+                  <a href="/uploads/<%= applicant.idCopy %>" target="_blank" download="idCopy">Download ID Copy</a>
                 </li>
               <% } %>
 
               <% if (applicant.certificateCopy) { %>
                 <li>
-                  <a href="<%= applicant.certificateCopy %>" target="_blank" download="certificateCopy">Download Certificate</a>
+                  <a href="/uploads/<%= applicant.certificateCopy %>" target="_blank" download="certificateCopy">Download Certificate</a>
                 </li>
               <% } %>
 
               <% if (applicant.parentID) { %>
                 <li>
-                  <a href="<%= applicant.parentID %>" target="_blank" download="parentID">Download Parent ID</a>
+                  <a href="/uploads/<%= applicant.parentID %>" target="_blank" download="parentID">Download Parent ID</a>
                 </li>
               <% } %>
             </ul>
@@ -254,12 +254,12 @@ form.addEventListener('submit', async (e) => {
             })
             .then(res => res.json())
             .then(data => {
-                alert(`✅ ${data.message}`);
+                alert(` ${data.message}`);
                 window.location.reload();
             })
             .catch(err => {
                 console.error(err);
-                alert('❌ Something went wrong. Please try again.');
+                alert(' Something went wrong. Please try again.');
             });
         }
     }

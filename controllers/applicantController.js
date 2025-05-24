@@ -23,23 +23,29 @@ exports.showRegisterForm = (req, res) => {
 exports.submitApplication = async (req, res) => {
     const {
         title, name, surname, password, idNumber, DOB, marital, language, gender, mobile, altmobile, email,
-        province, town, Suburb, addressCode, education, eduYear, school, idCopy, certificateCopy, parentID,
+        province, town, Suburb, addressCode, education, eduYear, school,
         mathsLevel, scienceLevel, accountingLevel, geographyLevel, lifeScienceLevel, businessStudiesLevel,
         economicsLevel, agriculturalScienceLevel, selectedSubjects
     } = req.body;
+
+    const idCopy = req.files['idCopy'] ? req.files['idCopy'][0].filename : null;
+    const certificateCopy = req.files['certificateCopy'] ? req.files['certificateCopy'][0].filename : null;
+    const parentID = req.files['parentID'] ? req.files['parentID'][0].filename : null;
 
     try {
         const studentNumber = generateStudentNumber();
 
         const applicant = new Applicant({
             title, name, surname, password, studentNumber, idNumber, DOB, marital, language, gender, mobile, altmobile, email,
-            province, town, Suburb, addressCode, education, eduYear, school, idCopy, certificateCopy, parentID,
+            province, town, Suburb, addressCode, education, eduYear, school,
+            idCopy, certificateCopy, parentID,
             mathsLevel, scienceLevel, accountingLevel, geographyLevel, lifeScienceLevel, businessStudiesLevel,
             economicsLevel, agriculturalScienceLevel,
             selectedSubjects: Array.isArray(selectedSubjects) ? selectedSubjects : [selectedSubjects]
         });
 
         await applicant.save();
+
 
         await transporter.sendMail({
             from: `"Ekhaya Smart Scholars Admissions" <${process.env.EMAIL_USER}>`,
@@ -116,99 +122,153 @@ exports.login = async (req, res) => {
         res.render('adminLogin', { message: 'Ekhaya Team is currently working on the system we are aware of the error please try again later' });
     }
 };
+// === Forgot Password Flow
 
 exports.showForgotPasswordPage = (req, res) => {
-    res.render('forgot-password');
+  res.render('forgot-password', { stage: 1, email: '', code: '', message: '' });
 };
 
 exports.sendOTP = async (req, res) => {
-    const { email } = req.body;
-    
-    try {
-        const applicant = await Applicant.findOne({ email });
-        if (!applicant) {
-            return res.status(400).json({ error: 'Email not found.' });
-        }
+  const { email } = req.body;
 
-        const otp = Math.floor(100000 + Math.random() * 900000).toString();
-        const expiry = new Date(Date.now() + 10 * 60 * 1000); // 10 mins
-
-        applicant.resetCode = otp;
-        applicant.resetCodeExpiry = expiry;
-        await applicant.save();
-
-        await transporter.sendMail({
-            from: `"Ekhaya Support" <${process.env.EMAIL_USER}>`,
-            to: email,
-            subject: 'Your Password Reset Code (Expires in 10 mins)',
-            html: `
-                <p>Hello ${applicant.name},</p>
-                <p>Your verification code is: <strong>${otp}</strong></p>
-                <p><b>This code will expire in 10 minutes.</b></p>
-                <p>If you did not request this, please ignore this email.</p>
-                <p>– Ekhaya Smart Scholars Support Team</p>
-            `
-        });
-
-        res.status(200).json({ message: 'Code sent.' });
-         console.log("EMAIL RECEIVED:", req.body.email)
-    } catch (err) {
-        res.status(500).json({ error: 'Something went wrong. Please try again.' });
-         console.log(err)
+  try {
+    const applicant = await Applicant.findOne({ email });
+    if (!applicant) {
+      return res.render('forgot-password', {
+        stage: 1,
+        email,
+        code: '',
+        message: 'Email not found.'
+      });
     }
+
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const expiry = new Date(Date.now() + 10 * 60 * 1000);
+
+    applicant.resetCode = otp;
+    applicant.resetCodeExpiry = expiry;
+    await applicant.save();
+
+    await transporter.sendMail({
+      from: `"Ekhaya Support" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: 'Your Password Reset Code (Expires in 10 mins)',
+      html: `
+        <p>Hello ${applicant.name},</p>
+        <p>Your verification code is: <strong>${otp}</strong></p>
+        <p><b>This code will expire in 10 minutes.</b></p>
+        <p>If you did not request this, please ignore this email.</p>
+        <p>– Ekhaya Smart Scholars Support Team</p>
+      `
+    });
+
+    return res.render('forgot-password', {
+      stage: 2,
+      email,
+      code: '',
+      message: 'Verification code sent to your email.'
+    });
+
+  } catch (err) {
+    return res.render('forgot-password', {
+      stage: 1,
+      email,
+      code: '',
+      message: 'Something went wrong. Please try again.'
+    });
+  }
 };
 
 exports.verifyOTP = async (req, res) => {
-    const { email, code } = req.body;
+  const { email, code } = req.body;
 
-    try {
-        const applicant = await Applicant.findOne({ email });
-        if (!applicant || !applicant.resetCode) {
-            return res.status(400).json({ error: 'Invalid or expired code.' });
-        }
-
-        if (applicant.resetCode !== code) {
-            return res.status(400).json({ error: 'Incorrect code.' });
-        }
-
-        if (new Date() > applicant.resetCodeExpiry) {
-            return res.status(400).json({ error: 'Code has expired.' });
-        }
-
-        res.status(200).json({ message: 'Code verified.' });
-    } catch (err) {
-        res.status(500).json({ error: 'Server error.' });
+  try {
+    const applicant = await Applicant.findOne({ email });
+    if (!applicant || !applicant.resetCode || applicant.resetCode !== code) {
+      return res.render('forgot-password', {
+        stage: 2,
+        email,
+        code: '',
+        message: 'Incorrect or expired code.'
+      });
     }
+
+    if (new Date() > applicant.resetCodeExpiry) {
+      return res.render('forgot-password', {
+        stage: 2,
+        email,
+        code: '',
+        message: 'Code has expired.'
+      });
+    }
+
+    return res.render('forgot-password', {
+      stage: 3,
+      email,
+      code,
+      message: 'Code verified. Enter your new password.'
+    });
+
+  } catch (err) {
+    return res.render('forgot-password', {
+      stage: 2,
+      email,
+      code: '',
+      message: 'Server error.'
+    });
+  }
 };
 
 exports.resetPassword = async (req, res) => {
-    const { email, code, newPassword, confirmPassword } = req.body;
+  const { email, code, newPassword, confirmPassword } = req.body;
 
-    // Password validation
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-    if (!passwordRegex.test(newPassword)) {
-        return res.status(400).json({ error: 'Password does not meet the criteria.' });
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+  if (!passwordRegex.test(newPassword)) {
+    return res.render('forgot-password', {
+      stage: 3,
+      email,
+      code,
+      message: 'Password must be at least 8 characters, include uppercase, lowercase, a number, and a special character.'
+    });
+  }
+
+  if (newPassword !== confirmPassword) {
+    return res.render('forgot-password', {
+      stage: 3,
+      email,
+      code,
+      message: 'Passwords do not match.'
+    });
+  }
+
+  try {
+    const applicant = await Applicant.findOne({ email });
+
+    if (!applicant || applicant.resetCode !== code || new Date() > applicant.resetCodeExpiry) {
+      return res.render('forgot-password', {
+        stage: 3,
+        email,
+        code,
+        message: 'Invalid or expired code.'
+      });
     }
 
-    if (newPassword !== confirmPassword) {
-        return res.status(400).json({ error: 'Passwords do not match.' });
-    }
+    applicant.password = newPassword;
+    applicant.resetCode = undefined;
+    applicant.resetCodeExpiry = undefined;
+    await applicant.save();
 
-    try {
-        const applicant = await Applicant.findOne({ email });
+    return res.render('login', {
+      message: 'Password reset successful. Please log in.',
+      messageType: 'success'
+    });
 
-        if (!applicant || applicant.resetCode !== code || new Date() > applicant.resetCodeExpiry) {
-            return res.status(400).json({ error: 'Invalid or expired code.' });
-        }
-
-        applicant.password = newPassword;
-        applicant.resetCode = undefined;
-        applicant.resetCodeExpiry = undefined;
-
-        await applicant.save();
-
-        res.status(200).json({ message: 'Password reset successful.' });
-    } catch (err) {
-        res.status(500).json({ error: 'Failed to reset password.' });
-    }
+  } catch (err) {
+    return res.render('forgot-password', {
+      stage: 3,
+      email,
+      code,
+      message: 'Server error. Try again.'
+    });
+  }
 };

@@ -14,15 +14,23 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.get('/uploads/:filename', (req, res) => {
+  const filePath = path.join(__dirname, 'uploads', req.params.filename);
+  res.download(filePath, err => {
+    if (err) {
+      return res.status(404).send('File not found');
+    }
+  });
+});
+
 
 // View Engine
 app.set('view engine', 'ejs');
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URL)
-    .then(() => console.log('✅ MongoDB connected'))
-    .catch(err => console.error('❌ MongoDB connection failed:', err));
+    .then(() => console.log(' MongoDB connected'))
+    .catch(err => console.error(' MongoDB connection failed:', err));
 
 // Routes
 const applicantRoutes = require('./routes/applicantRoutes');
