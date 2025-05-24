@@ -27,7 +27,11 @@
         <div class="flex items-center justify-between px-4 py-4 shadow-md">
             <!--logo-->
           <a href="/register" class="flex items-center">
-            <img src="/images/logo2.png" alt="Ekhaya Smart Scholars Logo" class="h-15 w-40 md:h-15">
+              <img 
+                src="/images/logo2.png" 
+                alt="Ekhaya Smart Scholars Logo" 
+                class="h-10 w-24 sm:h-12 sm:w-32 md:h-15 md:w-40 object-contain"
+            >
           </a>
           <!-- Mobile Menu Toggle -->
           <div class="lg:hidden">
@@ -583,15 +587,19 @@
     }
     
 </script>
-
 <script>
     // Toggle Mobile Menu
-    document.querySelector('.menu-icon').addEventListener('click', () => {
-        document.querySelector('.mobile-menu').classList.toggle('hidden');
+    document.querySelector('.menu-icon')?.addEventListener('click', () => {
+        document.querySelector('.mobile-menu')?.classList.toggle('hidden');
     });
 
     const passwordInput = document.getElementById("password");
     const confirmInput = document.getElementById("confirmPassword");
+    const idInput = document.getElementById("idNumber");
+    const dobInput = document.getElementById("DOB");
+
+    // Make DOB readonly
+    dobInput.setAttribute("readonly", true);
 
     const checklist = {
         length: document.getElementById("length"),
@@ -603,8 +611,8 @@
     };
 
     function updateChecklist() {
-        const password = passwordInput.value;
-        const confirmPassword = confirmInput.value;
+        const password = passwordInput?.value || "";
+        const confirmPassword = confirmInput?.value || "";
 
         const conditions = {
             length: password.length >= 8,
@@ -617,24 +625,48 @@
 
         for (const key in conditions) {
             checklist[key].classList.remove("text-gray-500", "text-red-600", "text-green-600");
-            if (conditions[key]) {
-                checklist[key].classList.add("text-green-600");
-            } else {
-                checklist[key].classList.add("text-gray-500");
-            }
+            checklist[key].classList.add(conditions[key] ? "text-green-600" : "text-gray-500");
         }
     }
 
-    passwordInput.addEventListener("input", updateChecklist);
-    confirmInput.addEventListener("input", updateChecklist);
+    passwordInput?.addEventListener("input", updateChecklist);
+    confirmInput?.addEventListener("input", updateChecklist);
 
+    // Auto-fill DOB from ID
+    idInput?.addEventListener("input", () => {
+        const id = idInput.value;
+
+        if (id.length >= 6) {
+            const yy = parseInt(id.substring(0, 2), 10);
+            const mm = parseInt(id.substring(2, 4), 10);
+            const dd = parseInt(id.substring(4, 6), 10);
+
+            const currentYear = new Date().getFullYear() % 100;
+            const century = yy <= currentYear ? 2000 : 1900;
+            const fullYear = century + yy;
+
+            // Validate month and day
+            if (mm >= 1 && mm <= 12 && dd >= 1 && dd <= 31) {
+                const paddedMonth = mm.toString().padStart(2, '0');
+                const paddedDay = dd.toString().padStart(2, '0');
+                const formattedDOB = `${fullYear}-${paddedMonth}-${paddedDay}`;
+
+                dobInput.value = formattedDOB;
+            } else {
+                dobInput.value = "";
+            }
+        } else {
+            dobInput.value = "";
+        }
+    });
+
+    // Section Handling
     let currentSection = 0;
     showSection(currentSection);
 
     function showSection(n) {
         const sections = document.getElementsByClassName("form-section");
 
-        // Hide all sections first
         for (let section of sections) {
             section.classList.remove("active");
             section.classList.add("hidden");
@@ -643,43 +675,30 @@
         sections[n].classList.add("active");
         sections[n].classList.remove("hidden");
 
-        if (n === 0) {
-            document.getElementById("prevBtn").style.display = "none";
-        } else {
-            document.getElementById("prevBtn").style.display = "inline";
-        }
+        document.getElementById("prevBtn").style.display = n === 0 ? "none" : "inline";
+        document.getElementById("nextBtn").style.display = n === sections.length - 1 ? "none" : "inline";
+        document.getElementById("submit").classList.toggle("hidden", n !== sections.length - 1);
 
-        if (n === (sections.length - 1)) {
-            document.getElementById("submit").classList.remove("hidden");
-            document.getElementById("prevBtn").style.display = "inline";
-            document.getElementById("nextBtn").style.display = "none";
-
-            updateChecklist(); // optional: refresh checklist
-        } else {
-            document.getElementById("submit").classList.add("hidden");
-            document.getElementById("nextBtn").style.display = "inline";
+        if (n === sections.length - 1) {
+            updateChecklist();
         }
     }
 
     function nextSection() {
         const sections = document.getElementsByClassName("form-section");
         if (validateSection(currentSection)) {
-            sections[currentSection].classList.remove("active");
-            sections[currentSection].classList.add("hidden");
             currentSection++;
-            if (currentSection >= sections.length) {
-                return false;
+            if (currentSection < sections.length) {
+                showSection(currentSection);
             }
-            showSection(currentSection);
         }
     }
 
     function prevSection() {
-        const sections = document.getElementsByClassName("form-section");
-        sections[currentSection].classList.remove("active");
-        sections[currentSection].classList.add("hidden");
-        currentSection--;
-        showSection(currentSection);
+        if (currentSection > 0) {
+            currentSection--;
+            showSection(currentSection);
+        }
     }
 
     function validateSection(n) {
@@ -693,16 +712,31 @@
             }
         }
 
-        // SA ID validation on first section
+        // SA ID validation
         if (n === 0) {
-            const idNumber = document.getElementById("idNumber").value;
+            const idNumber = idInput.value;
+            const dobValue = dobInput.value;
+
             if (idNumber.length !== 13) {
-                alert("Please enter a valid South African ID Number.");
+                alert("Please enter a valid 13-digit South African ID Number.");
+                return false;
+            }
+
+            const yy = parseInt(idNumber.substring(0, 2), 10);
+            const mm = parseInt(idNumber.substring(2, 4), 10);
+            const dd = parseInt(idNumber.substring(4, 6), 10);
+
+            const century = yy <= (new Date().getFullYear() % 100) ? 2000 : 1900;
+            const fullYear = century + yy;
+            const expectedDOB = `${fullYear}-${String(mm).padStart(2, '0')}-${String(dd).padStart(2, '0')}`;
+
+            if (dobValue !== expectedDOB) {
+                alert("Date of Birth does not match SA ID Number.");
                 return false;
             }
         }
 
-        // Password validation
+        // Password Validation
         const passwordField = section.querySelector("#password");
         const confirmField = section.querySelector("#confirmPassword");
 
@@ -740,14 +774,15 @@
         return true;
     }
 
-    // Final submission validation
+    // Final form submission check
     document.getElementById("multi-section-form").addEventListener("submit", function (e) {
         const lastSectionIndex = document.getElementsByClassName("form-section").length - 1;
         if (!validateSection(lastSectionIndex)) {
-            e.preventDefault(); // Cancel submission
+            e.preventDefault();
         }
     });
 </script>
+
 </body>
 </html>
 
