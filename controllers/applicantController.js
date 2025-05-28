@@ -52,33 +52,54 @@ exports.submitApplication = async (req, res) => {
             to: applicant.email,
             subject: 'Application Confirmation - Submitted Successfully',
             html: `
-                <div style="font-family: Arial, sans-serif; color: #333333; padding: 20px;">
-                    <p>Dear ${applicant.name} ${applicant.surname},</p>
-                    <h2 style="color: #black; font-size: 24px;">Welcome to Ekhaya Smart Scholars!</h2>
-                    <p style="font-size: 16px;">Thank you for submitting your application to <strong style="color: #000000;">Ekhaya Smart Scholars</strong>. We’re thrilled to see your interest in starting a journey into the world of software development!</p>
-                    <p style="font-size: 16px;">We’ve successfully received your application, and it is now under review by our admissions team.</p>
-                    <h3 style="color: #000000; font-size: 18px; margin-top: 30px;">Your Application Details:</h3>
-                    <ol style="padding-left: 20px; font-size: 16px;">
-                        <li style="line-height: 1.8;"><strong>Full Name:</strong> ${applicant.name} ${applicant.surname}</li>
-                        <li style="line-height: 1.8;"><strong>Student Number:</strong> ${applicant.studentNumber}</li>
-                        <li style="line-height: 1.8;"><strong>Login Password:</strong> ${applicant.password}</li>
-                    </ol>
-                    <p style="background-color: #000000; padding: 12px; text-align: center; border-radius: 6px; color: red; font-weight: bold;">
-                        ⚠️ Please keep your Student Number and Password safe — you'll need them to log in and track your application or manage your account.
-                    </p>
-                    <p style="font-size: 16px; margin-top: 20px;">✅ You will receive a follow-up email once your application has been reviewed and a decision has been made.</p>
-                    <p style="font-size: 16px;">
-                        You can check your application status anytime by visiting 
-                        <a href="https://ekhayasmartscholars.onrender.com" target="_blank" style="color: #ffbb00; text-decoration: none;">
-                            www.ekhayasmartscholars.com
-                        </a>. Log in using either your <strong>Student Number</strong> <em>or</em> <strong>ID Number</strong>, along with your <strong>Password</strong>.
-                    </p>
-                    <hr style="margin: 30px 0; border: none; border-top: 1px solid #ccc;">
-                    <p style="font-size: 14px; color: #777777;">📧 This is an automated message from Ekhaya Smart Scholars Admissions. Please do not reply to this email.</p>
-                    <p style="font-size: 14px; color: #777777;">For assistance, contact us through our website or follow us on social media. We regularly post updates on all major platforms—stay connected!</p>
-                    <p style="margin-top: 30px;">Regards,<br><br>
-                    <strong style="color: #000000;">The Ekhaya Smart Scholars Admissions Team</strong></p>
-                </div>
+            <div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 10px; padding: 30px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); font-family: Arial, sans-serif; color: #000026;">
+              <p style="margin-bottom: 10px;">Dear ${applicant.name} ${applicant.surname},</p>
+
+              <h2 style="color: #000026; font-size: 24px;">🎉 Welcome to Ekhaya Smart Scholars!</h2>
+
+              <p style="font-size: 16px; line-height: 1.6;">
+                Thank you for submitting your application to <strong>Ekhaya Smart Scholars</strong>. We're thrilled to see your interest in joining our academic community!
+              </p>
+
+              <p style="font-size: 16px; line-height: 1.6;">
+                We've successfully received your application, and it is now under review by our admissions team.
+              </p>
+
+              <h3 style="color: #000026; font-size: 18px; margin-top: 20px;">📋 Your Application Details:</h3>
+              <ul style="font-size: 16px; line-height: 1.8; color: #000026; padding-left: 20px;">
+                <li><strong>Full Name:</strong> ${applicant.name} ${applicant.surname}</li>
+                <li><strong>Student Number:</strong> ${applicant.studentNumber}</li>
+                <li><strong>Login Password:</strong> ${applicant.password}</li>
+              </ul>
+
+              <div style="background-color: #000026; padding: 14px 20px; margin: 20px 0; border-radius: 8px; color: #FF4136; font-weight: bold; text-align: center;">
+                ⚠️ Please keep your Student Number and Password safe — you'll need them to log in and track your application or manage your account.
+              </div>
+
+              <p style="font-size: 16px; line-height: 1.6;">
+                ✅ You will receive a follow-up email once your application has been reviewed and a decision has been made.
+              </p>
+
+              <p style="font-size: 16px; line-height: 1.6;">
+                You can check your application status anytime by visiting
+                <a href="https://ekhayasmartscholars.onrender.com" target="_blank" style="color: #4B0082; text-decoration: none;">
+                  www.ekhayasmartscholars.com
+                </a>. Log in using your <strong>Student Number</strong> or <strong>ID Number</strong> along with your <strong>Password</strong>.
+              </p>
+
+              <hr style="border: none; border-top: 1px solid #ccc; margin: 30px 0;" />
+
+              <p style="font-size: 14px; color: #000026; text-align: center;">
+                📧 This is an automated message from Ekhaya Smart Scholars Admissions. Please do not reply to this email.
+              </p>
+              <p style="font-size: 14px; color: #000026; text-align: center;">
+                For help, email us at <a href="mailto:ekhayasmartscholars@gmail.com" style="color: #E74C3C;">ekhayasmartscholars@gmail.com</a> or call +27 (72) 343-8377.
+              </p>
+
+              <p style="font-size: 13px; color: #000026; text-align: center; margin-top: 20px;">
+                © ${new Date().getFullYear()} Ekhaya Smart Scholars – Empowering your academic journey.
+              </p>
+            </div>
             `
         });
 
