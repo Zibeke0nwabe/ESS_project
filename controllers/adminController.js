@@ -40,7 +40,7 @@ exports.makeDecision = async (req, res) => {
                 Dear  ${applicant.name} ${applicant.surname}
               </p>
               <p style="font-size: 16px; line-height: 1.6; color: #000026;">
-                We are thrilled to inform you that your application to the <strong>Ekhaya Smart Scholars</strong> program has been <strong>Accepted</strong>. Congratulations on this significant achievement!
+                We are thrilled to inform you that your application to <strong>Ekhaya Smart Scholars</strong> has been <strong>Accepted</strong>. Congratulations on this significant achievement!
               </p>
           
               <h3 style="color: #000026; font-size: 18px; margin-top: 20px;">📋 Application Details:</h3>
