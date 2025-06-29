@@ -2,6 +2,15 @@ const Admin = require('../models/Admin');
 const Applicant = require('../models/Applicant');
 const transporter = require('../config/email');
 
+function generateStrongPassword(length = 10) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+{}:"<>?[]';
+  let password = '';
+  for (let i = 0; i < length; i++) {
+    password += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return password;
+}
+
 exports.showAdminLogin = (req, res) => {
     res.render('adminLogin', { message: '' });
 };
@@ -27,83 +36,74 @@ exports.makeDecision = async (req, res) => {
         if (!applicant) return res.status(404).json({ message: 'Applicant not found' });
 
         applicant.status = decision === 'accept' ? 'Accepted' : 'Rejected';
-        await applicant.save();
 
-        const subject = decision === 'accept'
-            ? ' You’ve Been Accepted to Ekhaya Smart Scholars'
-            : ' Application Update – Ekhaya Smart Scholars';
+        let generatedPortalPassword = '';
+        let htmlContent = '';
+        let subject = '';
 
-        const htmlContent = decision === 'accept'
-            ? `<div>
+        if (decision === 'accept') {
+            generatedPortalPassword = generateStrongPassword();
+            applicant.portalPassword = generatedPortalPassword;
+
+            subject = 'You’ve Been Accepted to Ekhaya Smart Scholars';
+            htmlContent = `
             <div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 10px; padding: 30px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
-              <p style=" margin-bottom: 10px;">
-                Dear  ${applicant.name} ${applicant.surname}
-              </p>
+              <p style="margin-bottom: 10px;">Dear ${applicant.name} ${applicant.surname},</p>
               <p style="font-size: 16px; line-height: 1.6; color: #000026;">
                 We are thrilled to inform you that your application to <strong>Ekhaya Smart Scholars</strong> has been <strong>Accepted</strong>. Congratulations on this significant achievement!
               </p>
-          
               <h3 style="color: #000026; font-size: 18px; margin-top: 20px;">📋 Application Details:</h3>
               <ul style="font-size: 16px; line-height: 1.6; color: #000026; padding-left: 20px;">
-                    <li><strong>Student Number:</strong> ${applicant.studentNumber}</li>
-                    <li><strong>Email:</strong> ${applicant.studentNumber}@ess.co.za</li>
-                    <li><strong>Phone:</strong> ${applicant.mobile}</li>
-                    <li><strong>ID Number:</strong> ${applicant.idNumber}</li>
-
+                  <li><strong>Student Number:</strong> ${applicant.studentNumber}</li>
+                  <li><strong>Email:</strong> ${applicant.studentNumber}@ess.co.za</li>
+                  <li><strong>Portal Password:</strong> ${generatedPortalPassword}</li>
               </ul>          
               <div style="margin: 30px 0; text-align: center;">
-                <a href="https://ekhayasmartscholars.onrender.com/login" style="background-color: #4B0082; color: #ffffff; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: bold;">
+                <a href="https://ess-portal.onrender.com" style="background-color: #4B0082; color: #ffffff; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: bold;">
                   👉 Login to Start Learning
                 </a>
               </div>
-          
               <p style="font-size: 16px; line-height: 1.6; color: #000026;">
-                At <strong>Ekhaya Smart Scholars</strong>, we are committed to empowering students like you with the tools and resources needed for academic success. Our program offers:
+                At <strong>Ekhaya Smart Scholars</strong>, we are committed to empowering students like you with the tools and resources needed for academic success.
               </p>
-          
               <ul style="font-size: 16px; line-height: 1.6; color: #000026; padding-left: 20px;">
-                <li> <strong>Expert Tutors:</strong> Learn from experienced educators dedicated to your success.</li>
-                <li> <strong>Comprehensive Study Materials:</strong> Access a wide range of resources to aid your learning.</li>
-                <li> <strong>Interactive Learning Environment:</strong> Engage in a dynamic and supportive online community.</li>
+                <li><strong>Expert Tutors:</strong> Learn from experienced educators.</li>
+                <li><strong>Study Materials:</strong> Access a wide range of resources.</li>
+                <li><strong>Interactive Environment:</strong> Engage in a supportive community.</li>
               </ul>
-          
-              <p style="font-size: 16px; line-height: 1.6; color: #000026;">
-                We are excited to support you in achieving your academic goals. Should you have any questions or need assistance, please do not hesitate to reach out.
-              </p>
-          
               <hr style="border: none; border-top: 1px solid #ccc; margin: 30px 0;" />
-          
               <p style="font-size: 14px; color: #000026; text-align: center;">
                 📧 Need help? Email us at <a href="mailto:ekhayasmartscholars@gmail.com" style="color: #E74C3C;">ekhayasmartscholars@gmail.com</a> or call +27 (72) 343-8377
               </p>
-          
               <p style="font-size: 13px; color: #000026; text-align: center; margin-top: 20px;">
                 © ${new Date().getFullYear()} Ekhaya Smart Scholars – Empowering your academic journey.
               </p>
             </div>
-          </div>
-          `
-            : `<div style="padding: 20px;">
-            <p>Dear ${applicant.name} ${applicant.surname},</p>
-            <p>We regret to inform you that your application has not been successful. Below are your application details:</p>
-            <ul>
-                <li><strong>Student Number:</strong> ${applicant.studentNumber}</li>
-                <li><strong>Phone:</strong> ${applicant.mobile}</li>
-                <li><strong>ID Number:</strong> ${applicant.idNumber}</li>
-            </ul>
-            <p>This decision was based on the highly competitive nature of the selection process. We encourage you to continue pursuing your academic aspirations and to apply again in the future.</p>
-            <p>If you would like feedback on your application or have any questions, please feel free to contact us.</p>
-            <p>We wish you all the best in your future endeavors.</p>
-            <hr style="border: none; border-top: 1px solid #ccc; margin: 30px 0;" />
-          
+            `;
+        } else {
+            subject = 'Application Update – Ekhaya Smart Scholars';
+            htmlContent = `
+            <div style="padding: 20px;">
+              <p>Dear ${applicant.name} ${applicant.surname},</p>
+              <p>We regret to inform you that your application has not been successful.</p>
+              <ul>
+                  <li><strong>Student Number:</strong> ${applicant.studentNumber}</li>
+                  <li><strong>Phone:</strong> ${applicant.mobile}</li>
+                  <li><strong>ID Number:</strong> ${applicant.idNumber}</li>
+              </ul>
+              <p>This decision was based on the highly competitive nature of the selection process. We encourage you to continue pursuing your academic goals and to apply again in the future.</p>
+              <hr style="border: none; border-top: 1px solid #ccc; margin: 30px 0;" />
               <p style="font-size: 14px; color: #000026; text-align: center;">
                 📧 Need help? Email us at <a href="mailto:ekhayasmartscholars@gmail.com" style="color: #E74C3C;">ekhayasmartscholars@gmail.com</a> or call +27 (72) 343-8377
               </p>
-          
               <p style="font-size: 13px; color: #000026; text-align: center; margin-top: 20px;">
                 © ${new Date().getFullYear()} Ekhaya Smart Scholars – Empowering your academic journey.
-              </p>`;
+              </p>
+            </div>`;
+        }
+        await applicant.save();
 
+        // Send the email
         await transporter.sendMail({
             from: `"Ekhaya Admissions" <${process.env.EMAIL_USER}>`,
             to: applicant.email,

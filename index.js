@@ -30,7 +30,7 @@ app.set('view engine', 'ejs');
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log(' MongoDB connected'))
-    .catch(err => console.error(' MongoDB connection failed:', err));
+    .catch(err => console.log(' MongoDB connection failed:'));
 
 // Routes
 const applicantRoutes = require('./routes/applicantRoutes');
@@ -56,4 +56,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
-

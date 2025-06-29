@@ -210,7 +210,7 @@ exports.verifyOTP = async (req, res) => {
         stage: 2,
         email,
         code: '',
-        message: 'Incorrect or expired code.'
+        message: 'The code is incorrect please verify it and try  again.'
       });
     }
 

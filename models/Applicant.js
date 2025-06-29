@@ -5,6 +5,7 @@ const applicantSchema = new mongoose.Schema({
     name: { type: String, required: true },
     surname: { type: String },
     password: { type: String, required: true },
+    portalPassword: { type: String },
     studentNumber: { type: String, unique: true },
     idNumber: { type: String, required: true, unique: true },
     DOB: { type: String, required: true },
