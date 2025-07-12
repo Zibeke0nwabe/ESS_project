@@ -1,5 +1,41 @@
-<script src="https://cdn.tailwindcss.com"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ESS Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 1s ease-in-out;
+    opacity: 1 !important;
+  }
+  @keyframes marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+}
+
+</style>
+
+<body class=" text-gray-800">
 <%- include('../components/topBanner') %>
 <%- include('../components/navbar') %>
 <section class="relative w-full">
@@ -13,4 +49,5 @@
   <p class="mb-6">ESS is led by a dedicated and experienced management team committed to academic excellence, student empowerment, and inclusive learning. We ensure that every learner gets the support and resources they need to thrive in an ever-changing world.</p>
   <img src="/images/management-team.jpg" alt="Management Team" class="w-full rounded-md">
 </section>
-
+</body>
+</html>

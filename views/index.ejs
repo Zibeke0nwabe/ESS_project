@@ -1,32 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ekhaya Smart Scholars | Home</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ESS Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
-<body>
-<%-include ('components/topBanner') %>
-<%-include ('components/navbar') %>
-<main id="home" class="mx-auto px-4 md:px-6 py-8 grid grid-cols-1 md:grid-cols-10 gap-6">
+<style>
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-<div class="md:col-span-8 relative h-[560px] bg-gray-100 rounded-xl overflow-hidden shadow-lg">
+  .animate-fadeIn {
+    animation: fadeIn 1s ease-in-out;
+    opacity: 1 !important;
+  }
+  @keyframes marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+}
+
+</style>
+
+<body class=" text-gray-800">
+
+  <!--topBanner partial -->
+<%- include('components/topBanner') %>
+<%- include('components/navbar') %>
+<!-- Main Content -->
+<main id="home" class="max-w-7xl mx-auto px-4 md:px-6 py-8 grid grid-cols-1 md:grid-cols-10 gap-6">
+
+<div class="md:col-span-8 relative h-[480px] bg-gray-100 rounded-xl overflow-hidden shadow-lg">
 
   <!-- Slides Wrapper -->
   <div id="carousel-slide" class="relative w-full h-full">
     <!-- Image Background -->
     <img id="carousel-image" src="" alt="Slide Image"
       class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 rounded-xl" />
+
     <!-- Overlay -->
     <div class="absolute inset-0 bg-black/50"></div>
+
     <!-- Slide Content -->
     <div class="absolute inset-0 flex flex-col justify-center px-8 md:px-16 text-white z-10">
       <h1 id="carousel-title" class="text-3xl md:text-4xl font-bold mb-2 animate-fadeIn"></h1>
       <p id="carousel-desc" class="text-sm md:text-lg max-w-xl text-gray-100 animate-fadeIn delay-150"></p>
     </div>
+
     <!-- Navigation Arrows -->
     <button onclick="prevSlide()" class="absolute left-5 top-1/2 transform -translate-y-1/2 bg-white/20 text-white hover:bg-white/30 p-3 rounded-full z-20 shadow-lg">
       <i class="fas fa-chevron-left"></i>
@@ -36,6 +69,7 @@
     </button>
   </div>
 </div>
+<!-- Quick Links Section (smaller and cleaner) -->
 <div class="hidden md:block md:col-span-2 p-2 md:p-0 ml-4">
   <h2 class="text-lg font-bold text-[#000026] mb-4 flex items-center space-x-2">
     <i class="fas fa-bolt text-[#000026]"></i>
@@ -74,6 +108,7 @@
       </a>
     </li>
   </ul>
+  <!-- Ad Section Below Quick Links -->
   <div class="mt-8 bg-[#f9f9f9] border border-gray-200 rounded-lg p-4 shadow-sm text-center">
     <p class="text-xs text-gray-400 uppercase mb-2 tracking-wide">Sponsored</p>
     <div class="flex items-center justify-center h-24 bg-white border border-dashed border-gray-300 rounded-md">
@@ -82,9 +117,53 @@
   </div>
 </div>
 </main>
-<%-include ('components/welcome') %>
-<%-include ('components/mission') %>
-<%-include ('components/cards') %>
+<%- include('components/welcome') %>
+<%- include('components/mission') %>
+<%- include('components/cards') %>
+<!-- ESS Video Preview Section -->
+<section id="events" class="py-16">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+
+      <!-- Heading -->
+      <h2 class="text-3xl md:text-4xl font-bold text-[#000026] mb-4">Welcome to Ekhaya Smart Scholars</h2>
+      <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-10">
+        We are dedicated to empowering students and supporting them every step of their academic journey.
+        Each letter in the word <strong>EKHAYA</strong> represents a core value we uphold in our mission to help students succeed.
+      </p>
+    <!-- Video Container -->
+    <div class="relative w-full aspect-video rounded-lg shadow-lg overflow-hidden">
+      
+      <!-- Actual Video -->
+      <video id="essVideo" class="w-full h-full object-cover hidden" controls>
+        <source src="/videos/ess2.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- Thumbnail Overlay -->
+      <div id="videoOverlay" onclick="playVideo()" class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-white cursor-pointer transition hover:bg-black/70">
+        <!-- Thumbnail Image -->
+        <img src="/images/ess1.png" alt="ESS Preview" class="absolute inset-0 w-full h-full object-cover -z-10" />
+
+        <!-- Text -->
+        <h3 class="text-2xl md:text-3xl font-bold mb-2 drop-shadow-md">Experience the ESS Journey</h3>
+        <p class="text-sm md:text-base mb-6">Click to watch our story in action</p>
+
+        <!-- Play Button -->
+        <i class="fas fa-play-circle text-6xl text-white hover:text-gray-300 transition"></i>
+      </div>
+    </div>
+    <div class="text-left mt-10 text-gray-700 space-y-4 text-sm md:text-base leading-relaxed">
+      <p>
+        At <strong>EKHAYA Smart Scholars</strong>, we believe in celebrating every student's progress and dedication. 
+        That’s why we issue <strong>End-of-Term Certificates</strong> to acknowledge their hard work and achievements.
+      </p>
+      <p>
+        Our mission goes beyond just teaching—it’s about <strong>transforming lives through education</strong>. 
+        We are committed to working hand in hand with schools to cultivate a culture of excellence, perseverance, and continuous improvement among learners.
+      </p>
+    </div>
+  </div>
+</section>
  <!-- Esgela Team Section -->
   <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 px-6 py-6">
 
@@ -138,35 +217,137 @@
       </div>
 
   </div>
-<%-include ('components/footer') %>
- <script>
-      //sending the email of a subscriber
-    const form = document.getElementById('subscribeForm');
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+<!-- Contact Us Section -->
+<section id="contact" class="relative text-white py-10 px-6 overflow-hidden min-h-[400px] bg-cover bg-center"
+         style="background-image: url('/images/hero.jpg');">
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm z-0 rounded-md"></div>
 
-        const email = document.getElementById('email').value;
+  <!-- Content -->
+  <div class="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-8 items-center">
 
-        try {
-            const res = await fetch('/subscribe', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email })
-            });
+    <!-- Left: Contact Info -->
+    <div class="space-y-6">
+      <h2 class="text-3xl font-bold">Contact Us</h2>
+      <p class="text-sm text-gray-200 max-w-md">
+        We are dedicated to empowering students and support them in every step of their academic journey.
+      </p>
 
-            const data = await res.json();
+      <div class="space-y-4 text-sm">
+        <div class="flex items-center gap-3">
+          <i class="fas fa-map-marker-alt text-white bg-[#ffffff22] p-2 rounded-full"></i>
+          <span>Luna Apartments, 477 Anton Lembede St, Durban Central, Durban</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <i class="fas fa-phone-alt text-white bg-[#ffffff22] p-2 rounded-full"></i>
+          <span>+27 (72) 343-8377</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <i class="fas fa-envelope text-white bg-[#ffffff22] p-2 rounded-full"></i>
+          <span>ekhayasmartscholars@gmail.com</span>
+        </div>
+      </div>
+    </div>
 
-            alert(data.message); // Shows success or error message
-        } catch (err) {
-            alert('Something went wrong. Please try again later.');
-            console.error(err);
-        }
-    });
+    <!-- Right: Transparent Form with Icons -->
+    <div class="p-6 rounded-xl w-full max-w-md mx-auto">
+      <h3 class="text-lg font-semibold mb-4">Send Message</h3>
+      <form action="/contact" method="POST" class="space-y-4 text-sm">
 
-  </script>
+        <!-- Full Name -->
+        <div class="relative">
+          <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300"></i>
+          <input type="text" name="name" placeholder="Full Name" required
+            class="w-full pl-10 pr-3 py-2 bg-transparent border border-gray-300 rounded text-white placeholder-gray-300 focus:ring-2 focus:ring-white focus:outline-none" />
+        </div>
+
+        <!-- Email -->
+        <div class="relative">
+          <i class="fas fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300"></i>
+          <input type="email" name="email" placeholder="Email" required
+            class="w-full pl-10 pr-3 py-2 bg-transparent border border-gray-300 rounded text-white placeholder-gray-300 focus:ring-2 focus:ring-white focus:outline-none" />
+        </div>
+
+        <!-- Message -->
+        <div class="relative">
+          <i class="fas fa-comment-dots absolute left-3 top-4 text-gray-300"></i>
+          <textarea name="message" rows="3" placeholder="Type your Message..." required
+            class="w-full pl-10 pr-3 pt-3 bg-transparent border border-gray-300 rounded text-white placeholder-gray-300 focus:ring-2 focus:ring-white focus:outline-none resize-none"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit"
+          class="w-full bg-white text-[#000026] py-2 rounded hover:bg-[#1a1a4c] hover:text-white transition font-medium">
+          Send
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+<!-- Footer -->
+<footer style="background: #000026;" class=" text-white py-8">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-xl font-semibold mb-4">About Ekhaya Smart Scholars</h3>
+                <p class="text-gray-400 text-sm">We are dedicated to empowering students and support them in every step of their academic journey. Each Letter in the word EKHAYA represents a core value that we uphold in our mission to helping students succeed.</p>
+                <div class="mt-4">
+                <a href="#" class="text-blue-600 hover:text-white mr-4"><i class="fab fa-facebook-f md:text-1xl"></i></a>
+                <a href="#" class="text-blue-400 hover:text-white mr-4"><i class="fab fa-linkedin md:text-1xl"></i></a>
+                <a href="#" class="hover:text-white mr-4"><i class="fab fa-git md:text-1xl"></i></a>
+                <a href="#" class="text-red-600 hover:text-white mr-4"><i class="fab fa-youtube md:text-1xl"></i></a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
+                <p class="text-gray-400 text-sm">Have questions or need support? Reach out to our team:</p>
+                <ul class="mt-4">
+                <li><i class="fas fa-envelope mr-2 text-sm"></i>ekhayasmartscholars@gmail.com</li>
+                <li><i class="fas fa-phone mr-2 text-sm"></i> +27 (72) 343-8377</li></ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Subscribe</h3>
+                <p class="text-gray-400 mb-4 text-sm">Subscribe to our newsletter for updates on new courses and promotions.</p>
+                <form id="subscribeForm">
+                  <input type="email" name="email" id="email" placeholder="Enter Your email"
+                      class="w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:border-black text-black" required />
+                  <button type="submit" style="background-image: url('/images/background.jpg')"
+                      class="btnSubmit bg-white text-black font-semibold rounded-md px-4 py-2 hover:bg-gray-800 focus:outline-none focus:bg-gray-800 transition duration-300 ease-in-out">Subscribe</button>
+              </form>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Developers</h3>
+                  <img src="/images/esgela.jpg" alt="Esgela Logo" class="w-16 h-auto p-2">
+          
+                <p class="text-gray-300 text-sm mb-2 mt-2">Proudly Designed by <a href="https://esgela.onrender.com" class="underline hover:text-white">Esgela.co.za</a> – a learning platform by Onwabe Zibeke.</p>
+                <p class="text-gray-300 text-sm">Esgela empowers youth through technology education in Eastern Cape.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Script to play video -->
+<script>
+  function playVideo() {
+    const video = document.getElementById("essVideo");
+    const overlay = document.getElementById("videoOverlay");
+    overlay.style.display = "none";
+    video.classList.remove("hidden");
+    video.play();
+  }
+</script>
+
+
+<!-- Toggle Script -->
+<script>
+  function toggleDepartments() {
+    const hiddenCards = document.querySelectorAll('#extra-dept');
+    const btn = document.getElementById('viewMoreBtn');
+    hiddenCards.forEach(card => card.classList.toggle('hidden'));
+    btn.textContent = btn.textContent === 'View More' ? 'View Less' : 'View More';
+  }
+</script>
+
 <script>
   const slides = [
     {
@@ -215,4 +396,7 @@
   setInterval(nextSlide, 8000);
 </script>
 
+
+
+</body>
 </html>
