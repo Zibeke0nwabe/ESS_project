@@ -5,64 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ESS Portal</title>
   <script src="https://cdn.tailwindcss.com"></script>
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <style>
   @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
 
   .animate-fadeIn {
     animation: fadeIn 1s ease-in-out;
     opacity: 1 !important;
   }
+
   @keyframes marquee {
-  0%   { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
-}
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
 
-.animate-marquee {
-  display: inline-block;
-  animation: marquee 15s linear infinite;
-}
-
+  .animate-marquee {
+    display: inline-block;
+    animation: marquee 15s linear infinite;
+  }
 </style>
 
-<body class=" text-gray-800">
+<body class="text-gray-800">
 <%- include('../components/topBanner') %>
 <%- include('../components/navbar') %>
+
+<!-- Hero Banner Section -->
 <section class="relative w-full">
-  <img src="/images/student-life-banner.jpg" alt="Student Life Banner" class="w-full h-96 object-cover">
+  <img src="/images/hero.jpg" alt="Student Life Banner" class="w-full h-96 object-cover">
   <div class="absolute top-0 left-0 w-full h-full bg-black/40 flex items-center justify-center">
     <h1 class="text-white text-4xl font-bold">Student Life at ESS</h1>
   </div>
 </section>
 
-<section class="max-w-7xl mx-auto py-12 px-6 text-gray-800">
-  <div class="mb-8">
-    <h2 class="text-2xl font-bold mb-4">Interactive Virtual Classes</h2>
-    <p class="mb-4">Engage in live discussions, quizzes, and group activities to deepen your understanding. Our virtual classrooms are equipped to provide real-time feedback and foster collaboration among peers and instructors.</p>
-    <img src="/images/live-classes.jpg" alt="Live Classes" class="w-full rounded-md">
+<!-- Main Content Section -->
+<section class="max-w-7xl mx-auto py-12 px-6 text-sm text-gray-800 space-y-12">
+
+  <!-- Interactive Virtual Classes -->
+  <div class="space-y-4">
+    <h2 class="text-2xl font-bold">Interactive Virtual Classes</h2>
+    <p>
+      Our virtual classrooms go beyond traditional online learning. Students participate in real-time classes where interaction is not optional—it’s encouraged. Sessions are led by experienced instructors who facilitate live discussions, group work, and collaborative coding exercises.
+    </p>
+    <p>
+      We use interactive tools like breakout rooms, digital whiteboards, quizzes, and shared coding environments. This helps simulate the energy and focus of in-person classes, giving students confidence and communication skills in addition to technical knowledge.
+    </p>
+    <img src="https://th.bing.com/th/id/OIP.9Swm7t4xsLUzVJzfAmV77AHaEA?w=318&h=180&c=7&r=0&o=5&pid=1.7" alt="Live Classes">
   </div>
 
-  <div class="mb-8">
-    <h2 class="text-2xl font-bold mb-4">Campus Culture</h2>
-    <p class="mb-4">At ESS, we celebrate progress, diversity, and dedication. From academic competitions to cultural days, students are encouraged to participate and grow both academically and personally.</p>
-    <img src="/images/campus-life.jpg" alt="Campus Life" class="w-full rounded-md">
+  <!-- Campus Culture -->
+  <div class="space-y-4">
+    <h2 class="text-2xl font-bold">Campus Culture</h2>
+    <p>
+      At ESS, we believe that education is not just about academics. It’s about building community, identity, and leadership. Our virtual campus includes student-run clubs, discussion forums, competitions, mentorship circles, and cultural celebrations.
+    </p>
+    <p>
+      Through initiatives like themed learning weeks, collaborative projects, and student showcases, we create an inclusive and diverse space where every learner feels seen and supported. Students are encouraged to contribute their ideas and lead activities, helping shape the learning culture itself.
+    </p>
+    <img src="https://th.bing.com/th/id/OIP.svmVaxeshIV1h3e69jsrVAHaE8?w=256&h=180&c=7&r=0&o=5&pid=1.7" alt="Campus Life">
   </div>
 
-  <div>
-    <h2 class="text-2xl font-bold mb-4">Supportive Learning Environment</h2>
-    <p>We offer structured guidance, mentorship programs, and tools to help students succeed at every step of their academic journey.</p>
-    <img src="/images/student-support.jpg" alt="Student Support" class="w-full rounded-md">
+  <!-- Supportive Learning Environment -->
+  <div class="space-y-4">
+    <h2 class="text-2xl font-bold">Supportive Learning Environment</h2>
+    <p>
+      Every student at ESS is matched with learning tools and mentorship that meets their specific needs. Whether you're preparing for your first job or switching careers, our team is here to support you with structured resources.
+    </p>
+    <p>
+      This includes one-on-one mentorship, weekly check-ins, study groups, mental health resources, and career support. We believe that education works best when it’s human-centered and accessible, especially for students in underrepresented communities.
+    </p>
   </div>
+
 </section>
 </body>
 </html>

@@ -75,7 +75,7 @@ app.get('/about/developers', (req, res) => {
 });
 
 app.get('/about/teacher', (req, res) => {
-  res.render('about/teacher');
+  res.render('about/teachers');
 });
 
 // 404 Error Page
