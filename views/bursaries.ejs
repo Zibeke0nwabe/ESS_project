@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ESS Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 1s ease-in-out;
+    opacity: 1 !important;
+  }
+  @keyframes marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+}
+
+</style>
+
+<body class=" text-gray-800">
+
+<!-- Top Banner -->
+<div class="bg-[#000026] text-white text-sm py-3 w-full">
+  <!-- Small Screens: Marquee -->
+  <div class="block md:hidden overflow-hidden whitespace-nowrap relative">
+    <div class="animate-marquee inline-block text-gray-200">
+      Upcoming Test Series | Admissions Open | New Departments Launched | Explore Scholarships | <i class="fas fa-map-marker-alt text-white"></i> Luna Apartments, 477 Anton Lembede St | <i class="fas fa-phone-alt text-white"></i> +27 (72) 343-8377 | <i class="fas fa-envelope text-white"></i> ekhayaSmartScholars@gmail.com
+    </div>
+  </div>
+
+  <!-- Medium and Up: Full Banner -->
+  <div class="hidden md:flex justify-between items-center flex-wrap gap-y-2 px-4">
+    <!-- Left: Announcements -->
+    <span class="text-gray-200">
+      Upcoming Test Series | Admissions Open | New Departments Launched | Explore Scholarships 
+    </span>
+
+    <!-- Right: Contact Details -->
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-gray-200 text-xs">
+      <span class="flex items-center gap-1">
+        <i class="fas fa-map-marker-alt text-white"></i>
+        Luna Apartments, 477 Anton Lembede St
+      </span>
+      <span class="flex items-center gap-1">
+        <i class="fas fa-phone-alt text-white"></i>
+        +27 (72) 343-8377
+      </span>
+      <span class="flex items-center gap-1">
+        <i class="fas fa-envelope text-white"></i>
+        ekhayaSmartScholars@gmail.com
+      </span>
+    </div>
+  </div>
+</div>
+
+  <!-- Navbar -->
+  <nav class="bg-white text-gray-800 shadow-md">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+          <img src="/images/Logo.png" alt="School Logo" class="h-16 w-auto" />
+        </div>
+
+        <!-- Links -->
+        <div class="hidden md:flex space-x-6 items-center text-sm font-medium">
+          <a href="/" class="hover:text-[#000026] transition">Home</a>
+          <a href="/universities" class="hover:text-[#000026] transition">Universities</a> 
+          <a href="/news" class="hover:text-[#000026] transition">ESS News</a>
+          <a href="/bursaries" class="hover:text-[#000026] transition">Bursaries</a>
+          <a href="/management" class="hover:text-[#000026] transition">Our Management</a>
+          <a href="/live-classes" class="hover:text-[#000026] transition">Live Classes</a>
+        </div>
+
+        <!-- Search + Login -->
+        <div class="hidden md:flex items-center space-x-4">
+          <label for="search-desktop" class="sr-only">Search</label>
+          <div class="relative">
+            <input
+              id="search-desktop"
+              type="search"
+              placeholder="Search..."
+              class="pl-4 pr-10 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-[#000026]"
+            />
+            <svg class="w-4 h-4 absolute right-3 top-2.5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+            </svg>
+          </div>
+          <a href="/login" class="text-sm font-medium px-4 py-2 bg-[#000026] text-white rounded-md hover:bg-[#1a1a4c] transition">
+            <i class="fas fa-sign-in-alt mr-1"></i> Login
+          </a>
+        </div>
+
+        <!-- Mobile Button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu" class="focus:outline-none">
+            <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden px-4 py-4 bg-white border-t text-sm space-y-3" role="menu" aria-label="Mobile menu">
+      <a href="/" class="block text-gray-700 hover:text-[#000026]" role="menuitem">Home</a>
+      <a href="/universities" class="block text-gray-700 hover:text-[#000026]" role="menuitem">Universities</a>
+      <a href="/news" class="block text-gray-700 hover:text-[#000026]" role="menuitem">ESS News</a>
+      <a href="#" class="block text-gray-700 hover:text-[#000026]" role="menuitem">Events</a>
+      <a href="#" class="block text-gray-700 hover:text-[#000026]" role="menuitem">Contact</a>
+      <a href="/login" class="block text-gray-700 hover:text-[#000026]" role="menuitem">Login</a>
+      <div class="relative mt-2">
+        <label for="search-mobile" class="sr-only">Search</label>
+        <input
+          id="search-mobile"
+          type="search"
+          placeholder="Search..."
+          class="w-full pl-4 pr-10 py-2 border rounded-md focus:ring-[#000026] focus:outline-none"
+        />
+        <svg class="w-4 h-4 absolute right-3 top-3 text-gray-500" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+        </svg>
+      </div>
+    </div>
+
+    <script>
+      const mobileBtn = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      mobileBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.toggle('hidden');
+        mobileBtn.setAttribute('aria-expanded', !isHidden);
+      });
+    </script>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-8">
+
+<!-- Filter Sidebar -->
+<aside class="hidden md:block md:w-48 p-4 sticky top-20 self-start">
+  <h2 class="text-xl font-semibold mb-4 text-[#000026]">Filter Bursaries</h2>
+  <div class="space-y-2 max-h-[70vh] pr-2 overflow-hidden">
+    <!-- Checkboxes -->
+    <label class="flex items-center cursor-pointer">
+      <input type="checkbox" class="mr-2 text-[#000026]" /> Accounting
+    </label>
+    <label class="flex items-center cursor-pointer">
+      <input type="checkbox" class="mr-2 text-[#000026]" /> Biology
+    </label>
+    <label class="flex items-center cursor-pointer">
+      <input type="checkbox" class="mr-2 text-[#000026]" /> Business Management
+    </label>
+    <label class="flex items-center cursor-pointer">
+      <input type="checkbox" class="mr-2 text-[#000026]" /> Chemical Engineering
+    </label>
+    <label class="flex items-center cursor-pointer">
+      <input type="checkbox" class="mr-2 text-[#000026]" /> Civil Engineering
+    </label>
+    <label class="flex items-center cursor-pointer">
+      <input type="checkbox" class="mr-2 text-[#000026]" /> Computer Science
+    </label>
+    <label class="flex items-center cursor-pointer">
+      <input type="checkbox" class="mr-2 text-[#000026]" /> Environmental Science
+    </label>
+    <label class="flex items-center cursor-pointer">
+      <input type="checkbox" class="mr-2 text-[#000026]" /> Law
+    </label>
+    <label class="flex items-center cursor-pointer">
+      <input type="checkbox" class="mr-2 text-[#000026]" /> Medicine
+    </label>
+    <label class="flex items-center cursor-pointer">
+      <input type="checkbox" class="mr-2 text-[#000026]" /> Psychology
+    </label>
+    <label class="flex items-center cursor-pointer">
+      <input type="checkbox" class="mr-2 text-[#000026]" /> Sociology
+    </label>
+  </div>
+</aside>
+
+
+    <!-- Bursaries Grid -->
+    <main class="flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+
+      <!-- Each bursary card -->
+      <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition relative flex flex-col">
+        <img
+          src="data:image/webp;base64,UklGRiIlAABXRUJQVlA4IBYlAABQkwCdASodAbQAPp1Cm0qlo6IkqDT9WLATiWNrdciuKxezU52Mq3+xPcWY7wN+J8v18j1L/4b0e+lNznu6j+tb/MvVQ86+rsuY+MTpX+o6M2W/ta1LO/vPL/ceAf7B/S+g09D5iegdfr/l+bH2u9gDyi/6vjVfcv+r7CH9A/zn/p/xPvIf8Hl7/b+jl9kf7r+y9+vIFxnPD5D/oSOLdHV/AiggORxNDzG8CqJHnWVCzx8SVANhSh/8gjWQV0F22Uzs96WqDd5/CCsOO8lLZIFjVsUiYKY9K6jMuodtZyNPu3osagMfjf1wvLQf9A1TWnp6dc2k928E7UAlRJ762X/I4KhMeGhMFP140G33G6joUYMzZL/uvpN4Qnig8+hZ2dU5Hq5JeW2fO74Q+yJe5cawnHlKe29XilGOkmZ5w8SodXBOEPcyMKiM97qlTzPgNOb7Y5+JzG5rKRBPPnJB3068PX8LywnmfXTFGMnfXPP4zJcEWy6fI5747CvFEZGyezKmfaADvDjy6CKULbeahzVRzsB7GNZPZxKkZPBF5Ez7kbG+wHd7Gr0p8uvLcj6Oi9DfVA5r8ifLDjfKepH+rJTI7pvG2d+Rupn7RtfJ9HATmpH+jZfDwV+W+zP9EUZv72aCMsLd1uodSdoBiSHHn0Q5C3pN3bSrf4/M0Crb+4B6E7giOzc+YdNTo3GgBUFK+wvdRPfWeIGunQ2nMur4Ulo63cRahjO8zPbdyw1AZpyODp5/tTW03hN5gFhMRREAWtaQxRfBDhQ7dV225p7UjU6/geSg3ybInn2+qKtdJPdEB5OPWOK3TRP7oB9g1H52wQZ5i5MQAdmVrm00sB2m9+LEmM779gAfhyOGRhV27VVm5yJY+czmgw/OkuHNp0agVgBbIfVOjKWMgRdmwBfax1gjiMnaDrP1yQLgO2z4ZI2yODYMZ+36sepRwCVwgcNJ+LrPxIEyn/E2q9dEH+ipBA3fjo1NoE/SKwe3NiMo6UjYRpdd+HEgKuABwZPf1RjmGfS6+NW3eic481vO0zJJLq18llARBf4n/lZz1KzEDh00XrI6c4e7HuDkwliqwaWLRr8M5plUf7GSXVu7sZg5kypPyG8vkKKS2NlOk00RdmRJiKOdN5CrjenzG3bl8Pz1K0MjZNN6ya834Gi6P6aJ+p4Gu4D+ohjbqX2nLbaqhJDXIpGct8DxfHrsPXlPCMwWzSMD+5BbHbuBWexPciMfaG4QG9PT8OJ40vGtKaHjw1yMmxLhVeGpXCCQs0vUpK2x6BQ41RSRHKLkyL6giXtVVKH0R6Yft5svcipeX1siL64T8IFehQUU/d/NwTb7u0wByN5DstN35MR/mfCKnWxVwekNx1eORV+QmZ4z64Jxd7JpOMxbGlgBzXCD8sy2zrEfnApHLAl9zenrNkEOzSpR/XpJhJZyZX/FYY1MA+bESdnGHpPt9b7B4seZNKlot7CY5ZrZTHojxpO5z8JRkgbEx9WsaCW3JLTgUOYrrWl/bkhI1G7I/GngKmnk3St7hgdLjEnveaugN/RrSoZM2EqsLTcG7S3DnqJzKv6eW/EeZhDlpe4eAAD4YtVIskDCxwoSThOk6dK6CmyVlnSdRQJNyt0cNV8HRzuuJ9DO4TCzH5SRXEZLupH01IDaIf2/+JvTH3hEEovj1jS+ho8+VsXv+vTHO3bfyI+dzsZNp04H5zBEepXP9KGvPsP5diXb59w6xt1bIUIxEivWn10wfe/81s3OibsKXfx4jP0ab0ldekAzO3OhteYWzA8B/GSki34g1ptjbTYYygkcJHr7YxaQWCrneuFR5mmPsyr+nc/upG9QdZR2iqH8i6LcBDCXqkwj9Wd0Js9iSRnYrCuf/NopdCcaxdZQMhOWh41MPmm4FJS+QmyjD9TVPx5RisyrQwXbUPC+bhEAg8SGGKO4eJPKec6xwb8KIGsSPeuMNUDvL6Gho3kPntu79lWJjB8BQkPIpkdrJ719blbWP6h+nU1HFhGfIogytShylL4Ybk6gF/bfsGPAvfMeLRu3ML46rRg6D7Mh9yoebqjonSPyzf6YlImZ241qJF1bJAVHSXcu3bSSHreQ5lLeB84YVwc2OdPethmA8MumFulRrY9RE5FBMPWYDuG2MxSRKgamf5b39e6o5ghZg2buoeJOgfvGux3avihIWQq0lb/ZCuTBXuUFOBOjnLCSOeQ6hfoeJyWssizSzkUoQJ3aRkSry6MLXwTYGJi7OvfIys9b/sBjzWGeY4zhuSukTyDB+WSmShI01WFKPw27T8D1PjrHJmuS5Ep20hOAcziAB/zj6p74aM8IZ9p8rbfaeu4YD4lYvYP/dQSLEALnI2Q/m7Nll/oPdPKWR7I643D42rfMmFw35IwySePENhlHarZukt7JBywT/nyTuMjqJXNy7qHQaPLu+t6DAgiUhhDmE7UDRnHfZepFzidCQn0ECXIc5bzHF09sf185HIBp44cUC/Bzxu9P4W9ZYoY8KcB6nT9iiCUrjMe75JQh0YFpqFFfZnbvIN/X5C9bvie0Rly0EFaWptItOax89eeunBU7ojSnXwHWJVYjSpQAi9exSCwNaFk3NmesVTsK1aF+IFgHJk9A+8Edq6w6uJLSmAL/NIxiJsKv41pF/tm9KO+vU8hlC7cqZjyZqb+6NezcGr3PoJLdnzIF4MCG9pIcB4YMNaTcV2bRuQ31E+9EKmSRcF79ZVTsXgpEtKZ29xjMNF8Y1GhkOJqQrJNBo2Zwip0YodrpFtzLdEWN46EDwsnOYGDAKmXvsYrnKKcpi2nTsacGZd9J7lVCiCQKK0g+xTxHzrU0qSFFbppgqO9UBcLQjRxWfAGbgqvkqx7zd1tmZtx23S2/gGhO4KYyn95IDpppOxl2tkL+FeQwXa9YUPG1NTChqsVdxNVcyxRxmUcbRNh0p1QwsDiK48v+sI6/zQR/r0LAJLMJiRsER/L+LlhnnkopvOhaA1Kbq+QKsloN2Ig7iGz9tf45HiR7ToTpkp4NNl/+ihgvmXbllwA9ma7MPvJeDq7Y0jMBmDfguxb9Sq29UNVD+0bSXECHAJAS6AmzKT2zfGb/99xQaVm03Kmtv+hlnkn8JYhALWoC80H20Coiv204/toH/zlqFlUxv4SfbXOCO/obyqgkPA9AvdoqLftoiPOgzBh80PyLnb5KZqoy/RQCgFQuuKQf1A8PPyg5ajfsME2I6golr31qt0taZlsz056caEvHPDCwJX/3LJGaUxqtgJvB2c47Ym2t/b8B28UOkb3tS42Ww0bjpXTqN4eiocEGUQIVgJx2rkli8jvfAfqX0HZ7gmg03j0ha6aRgrvmngvEzgi5jYL0xUg0qO7APD4uAvaAHynBb0fE7MFSYfmBUAzcD4JvtgF7A5WZC4nmlMVydIRtYJu08Mw4LNiARatO6NiZgCvfBzpwgWdZQ/hrHWv3hDqrZq60yFXbCtHBmXXwrOjNVbpQnLlDakRZnx+1b/cpnBU6xsP5V/M3Eb84cpdQSjL0xwqSDc8dF2JB5u8oNSYqZKQuKGfw3Lturlb68eX4G3OwXi5NZ2ujmpPJEqnoElMu5m8UC5Qvc+gju3PqH8EcT5vsIUv/WizgeDlCDDwVnmewdcDJXoGF/iQDXx4LrKKeJT12Hi3tUUu+Sj49w1WrsUnkIguv+COfgKgx9mkIQgxE3lWpJZuVpKrxc9y6plILr0o/PwQVKSqxPKn5EQRneSOShlpvTqA5WbEADjbqblYgQS2kBGFoHm4ko94FryGkkUcJSOeaIA15TI0/RwoVDfWNLFaAcL8piagzhuHAbEKQzPL/JM5XRoTH29aIE+aQTgswaswLV6kgx9HlRV+06/l38EXdOQKz10XdFcLecRH3WT35hbA2S3dWyRroNIw5H2a4VaxjF9J0TeqM7cR1Z2Um7UMLcpc9HnQGe106C/8jnKG1AgRz6l6sxw1zin8h+5kvECDf65SgbGvC4FKR/xBU/e+vRxV8azT6gPf8SUo3QlAnTpZha07JQShD1wU3xA7tGMpjtRLxPAqd+gQ4YWlf60h78vXA5OyHf8yXyFeP43PBOOo8MDuwAn9AvsKSpV1gxXQu5KKRM4dS4YDgTSqBZDmUnuCCvUiZlnnXabTztrxywHdMmrRN+TuP965WAKiMFyx/1s2HwQ5sMkju+y8zZUzOXRmuYiom5otJo3W+PUASGpr0sjjP3E1rIwuQ+qJuEQ2oSOD0hr8XB3nCIVQlpaOP4Y+wFCXOAH3ThFnF710twVmncMYCupevps/cAyR7da2tq9uThRo/wtV7X1zh7FnflLyZDjAMM+EK1K9wVzSkVS1FtW6NP6wLv68ai67nYAVAuuiZcbsBwsHwu4Y6/gb13Ape5QYIMKGxaRezkWysKc5B83/w0x3vLun5Y9RoDuKZtZ07Il5GZutVdTq8AAG5kPP+0N2J7nbwwFNh0gbUfe3OlfRCgrmIKRvwlDvyQ5UnKD0/WoXsFLKKJkEu+XMA8WmtxKhA8cIorix9DEAiLaApZJ9ULcb0Q+Jz6IrxL8+cXzF7idY1je+zzJ/W2K/Y/QoJokXEIunf7akLOxgb5puBcilI5j2wCY/BoTHMxYdg999Pk07j+7TPxyJ/OfIEo+WZveCaEHPDMM8Xz7GLXbjdLwmIrriXj19iAIhbJa70PfwCj4vr/Oe04jc76plkBUaohbLYgmcT6c130JtDeYZPxyAWLtonD1wVQTWXVAko+J9PyATROI62Lvjkktg2+CIX9xUclGdP0E2Vb+alcVrExQhAUnOWScYh59S9RAyx9Ti3je7TJ0xsuCsni+Z2dvDIVlmVjq+XCLmDBDxgCmwIj2/DI6EiQpxylA872Nu8/B8OZLJD0uFD7nJQs4wyX3rdOSuhL8zHh4hCK7K0H9qMI4K5+AFIiSTjvAmiyfuc/xZfafYILIIhz8j70n09OBUS1/Pmju2HESgEKgG3mqmYFRJdEQ8duDHe+cLTQU1ubOPRnwXRX3N/kt0S1k0oArFA+Zo7lH4+PbfElcxqsiOkVHWnf2DXNiUlANnYOpy6h6Io83li2+erdHq1oFN12VLLl4A2uEB6ozgmtnFXfEKhdaUUW5ztzZpfI1kZPD+3FYL7WlQ6gkTUyVGTRqxyE55wzTIvklOg3CU3PbTz6IRH9OYxbATbSNeJLLLEHDv45UwnVMdD/d4h4BtXW5RtJWQtB/yE/yyhI9lo96xhPnkolkxX4gQkfD0VNea5dDnXI9j/dMl3k6ktU4mk+txvqkfEJ6/FOU4bMw+79nqAN/5uCmQwWE/BhATz5lXQQ8tUzrb9np9AnYcKPzWLyHM29/H8cWoo66at/pVMQkjPwYORBS+vBxPNu5pf5WkYOH/hSxf53F+vHnd9nJfoYuealo1Am/Z+1uWDYlrQUT2Tx3kAocJ0smoPvOWLIb1ll0lvwb8ZV4Va9OHH5Zz9b+TCLMwavdEItEelDAJfxD/fpIvbzHfnhdmriPAtkunXXE1GsxI6S415EJkqhi3kMpXTHywbKIBOXv9vmD6Bz4Drn5lVJedmLB23Zi8lvY8gViCqZQxBMAM2mxz76QhhREf4a8SgAVoHuBtQhRvVpoGteYetfS7idRwPLYmyb2ucfCR9RGgz8MY624FvEixzKRgWBsR1FrglGSfcMESAZXrDe+VaJsCXstHHGgfpDpzWo+X+UkxCRICzu+p3YO/GcR2pEVBKNBQe0CkHujyjfv1uqQDf7u7lk031hB5ETC6buWarqnQPddXdxpAf5KqReewlpHEXgJ1n2bgOiZzJAgLOn3wNjpnVzzwcSvpZIAHTCAILNXNzvknhJTGuAC+LsOQtUkiLqwLpawsDgANOdMBLMfasGDa+tXyDsbCKUL0fb9+Gae57+Z4sPt/mdW2MCYkm7qTDAlI/UJ74q3dFsZbC0ASVcgEtyd3gMxPMz99DLAZaK7gkYlpsVHn3sw+5VSdtF+g9a+JLw+McSdjAD3Act4MinB3dR1EEGfcvDLOHVBUNPO0zS4BXNrFlFDIttBtdpX5/Gsjpp1z1TdFCLCTuraH6JPUfiMdN80PqUqknshVz8XJ7rMVtPtuYfexZIubUQqvyDNikENiI7P1zxetYt9tparw1ZPMER0HgLqACLoh8E9s6RqAMAoYHirkzM4HxEqcGUfERPzqIZdsuMXKXvesKRTJoEEUWfBbiVYKi+v4t85i5r/edTi3iA+pFPImCTlCRb9zpdmVL0CXuISVEhXCNtNfIL5Jnmr3ykCw/EWhuvjsMPhx7b8adI8nTFk0DcRXOWo3j8ORRXvG0EXgdUpozdUKRKZCo0VGSpOlqI28s6VJLSoOKa+mQo6oZ0mFbPEQZjqM1fy3zNyq7uJWUWySf6p4sAvEzjXKVevXGLDUYuLEE18HgxqqfDLDB7UrskPN/EdIzCML5swrZlZLftjHiDaS3YVxB5kFiDbNzsUg8eVdHZdtixmCn8Uz72q9Dm6nNrB+4ZvjCJMwUpClxKEqpSNc1dW49zJhRezUpKTcyoIsoQdq5XeD0v9QQ3OGZ3bv2naWdruC3TrdQPfDlUbfaSk9+QEtOmJJ40o4MHFiDblFS9GqpE/4vkjAVS9yS0O8dvMJ1//jWWNfsubCG2x04CW4CPsLfc38XtgB9iFoRwBovOGB1q04Ynpe3lGychbR89wlEkIRkR5wpfCYgUprl1v8FyC/F3h+CI6V6rPyuHcVAO11WX93slpwWgTnJ/0D0fVf1sNtaI0a8Cf5c3hgoXvfXouRgMMbJ+L2FZnE4rDTem7BHAo7iB7aG7tg63IN/7NO6Hnvt+I9rHDSi9GBxq5xviMY/8NXiuCu66lXw0R8Y+h8ihNBecrv1dVOq/+76roeuep/GZdY/nT5enVdvoGIs6qoMsL+gCNhIUXTXR8OPlBVxijcHqLG7853ECCHg7+mTJ1oJc7FWFALZ2HmU2k5aQYB8/W1uzwxGCRtzJSrW4ffdX2zHqs3XskouCyFI6ohAjTdHX7DxzHU4UXroroZf330OU824xp+iBfzT4FO3tTFtqtcM/fY4tAmB6lSlsdElUYK0pAjpUc0qe7/PWxqPCn4Bgs5XcvoZcItqUfZzmJq6czVbvZrvoCMvac3gYubldEgLqKhX+3oqH0LMKT1Xlnw57ut7q28E8+crCeWPosaAxB0mwjVusNSK+2uEwkvqvr1bxo5BlKEpQOxcclQ8RdgEmdp2V16GIXs4OkXxue9289m4jhSbZ/W9hma2iszZFhL3fFO+BfE51sl5K0t5WTjs7RuFCIta0wNGPVS4l0s8cGdZKinn1ufP4LRiRQQB5Ad22N3f/sIb2YdOZFFmF2zEhZsSrBBikkVh3qOn5vmm+4Du9Pl3jj7vdJxJhKRYm8CBuf/uyICH5mZPDczfUmpPuWUKZrnGYg3rmrNMOP6uYR0VrwA0spzG4fEoj7Mjo500+MhR5IBYMKPLnw54WeOB4ckq2Akq2U3Eeb6qeOC/UEEILiM0qUuaWfaPOqqN1ltdphQzxxJZlpq4dUB4V8r7PwHgANWx0XkToBujuJtZaLp9RUNUVyKOIGWYhlamHksuocVpJgqUGfGJpigqJ8ZEa7/0LjFSBGiJStU6Hc9sbWl0kmDeXJj/Tz8H1qcMnlROOhmb/hf5h/scZ9I55HvTDtTzrT6A9Ja9sI0F/0dUAv2JvtYqTzi3CVVM7tg6+E//+DSFsHYq0pUVPSFLdQ11Kc1mCwh9v5gsgSxNl/6Q1alk5JxcwH4r04JiMwBrWIBOqXysBZ28onXnqT/+daKwZ/AGJnQt6jlKX6zf3zNNUoDcQpXMqJc3fpbEaralfjzFDkxhUtDObnMfPSOjAym1r/kQH/WHJVBtQM4G9MgisWAm9EeZueDwpYlUOkSsqoNUukU1eifJkKSU1NDVs6jLNI9gwDavplObdrxlYlo1kKdbVb1eIAyyd1K+3njCDvjxcxgIZ59pWB75oejIzvawwcOFpyJ4YBUAiG0YWnyXtZW8hXIUsHWf9JsPIX2HyYf5EjztkYZsCInSwdrXA/itA5u9CsB/WeF6vKptOqpOA8XYRvbWe83OnHvxzdDnMYn4qErURoJvyqnM0avs5nOOsHPyF7V010JUgqBexqcPV30km8UzCvbcwQiV+ZpHSL6joTRXtMUVgGGsISwJLJjlrm9fzMQcpOJvgOL9uvxHEgZYDKJOBZpY+GXnc5M8nYirHCYEuM9oTF0cTiTYbAgPF/BjsELBW1airjZo3o88iZJA0H5Mbf6zPeChdXNGcLXmtXn9dyWZa9RgBds+flxHJ34mkzKmAustJc2hOU9m41lnLfshK386WI6nwGjZPB61t6kY+2y9aUgCuZyMMdXcioDgYs0Q3GY49pveIS0rHXEfYsIIexhYX2lQ2wbNCzYvzXbkAPwzEpo5wlBmaBe/6fAMa5pPIJLIadAzlbcxQBewzsKpmDQVbiQYXJK/NBmLyi354i3cKeEj65sCmVs5oIf+WAVroHtTdIpsO29SJ2brDovl0S81xPvVm7Io2Jl0mSKUhXAjBBGa7NcVVMaADSAXdNJ2//0+xjXM+u08vBpijwQeqYgJq4XG5FY9aBypOCNwqunxJ6wWKuURhxVaNNa49iIRMyzCoacVRI7d6uOjxrJn8vZ2z/dTdMxjiLVRpfJmBuB9iyZZMaKowSuldpOXE+1UgD4O/yPxORCbdoaa0a5YF9o36xcAByiLIReDMJf4cJBQD076q62qJthyvAiCe3K59iqE+7KIVZT4cUVB+PvycCvDOojdMxeTKqxvdkwxs69SoVY5MJC+QLl1QM3BWc+q0ZzdPTsZ+hjRYQJj6u6mcpU4Ez8K706z3XcmLjRahSw1HaCyJn688g8Wv5WTCoJX3ONlcDurcXWz7dLp8Vhzw+DZVEtdkxPP7utDIUt1yHyT8YowxQBvn8hGT5VyYGtuUjfjZuNkUNIkdPeZ96LwBrYXBb++NDBm+U91ccNSKer+ejArMhgRHFFDAsr94n+Twq9r23dCoHAZJL6p3KVPyuyhRfUopV8PpGoz2/1mmxFFfC6ydJqiO3uPHy6KVkFjekGui9bML0mSdlOSVFg0PVe0gKavcRBVY4qsz6YYWOhcup6xt4dyewfZvV+bx7a6omHC26ulStaNBcScUQogSUgAuk5tjkHEkiT0SulX7r/wziTk1Tvc7VcThkxUIBkpMlUuFTNzsoi9pbI8XZCuH1UcEdun5sB9vw/uo15/m+tdzdmeB3jpT4XjBJtQFK/dDzNXsmRxeik4/kWatixSdH5VjHeehGfgiaYRdp1ynDgmts4wec66A7s+izex2s5Jj+Fyl/3rHSdg9rz1xb2UF30SYUExuJ4PxTRqzuKcS6tR2Z7NdPUYaUrAuNalQDO2kpyHOjRF18MGeRJlprAx1u0tzu7dEqSix0TRx0YWSzDDKlXAIJ8j7VulHCIysXB2g57pe1ySeWwLYUzafCZ6oBFYzeylCYqQLPpTZqpgAAWewiGdbNEMGEWxp/BKcO9XyItK77mNTrCZlPpN4TGlX6Ewhctx8FA1onwrL2zqrpSQApl6G68RG0X3YovmZqNHXz3fuoCfZUG21l0nOLxgv0NAqpERLSDDe71YUx04yJC1G7+DCpIbp8OCb+SHTqaUfWFPYvK0H5fhxoxGy4z81qLm8GYiB4YMzC9TDxJ8CfU+RpOWijjgIiQXA+ZjlR+dT8INUqAnzN1Ku91RMuLjQdNn4vLovb6pFK9/Wx2DgrCqoHWzjl0C8Iz1P5kou6NEGzwVNkYxcJ4XalmDGrDapXdJ+/pMOBdGsszHXG/IFAUfYj4FJSR76aMOQn9hzFiU4wTY6pXbj6Pu/5z6O8ZmcgQT5sNJHwEI9Kjy5kVawcjqW5QbPgyWZahgcq0Fdn8hLmAMPaGxRyqf157UXcrvK5yEiX0NIeZBwHInR8NKkkWTqRfy5n58YOJ16/ZvJsO6uBD7T7dm0VXikm6+OE43Z2KOCZCwN0+HMYya5qgkcvlojOx2NJPA6Vb4ce0gXULLvhnXgDd93hTaTZXporzk+rR9MUBiGYoPi5Rngy5VhYiZd7U2qC9kLZog/ZGOvlyGD5YFXHVM32o00Kz7JY/OFeTUaY972vMluKzVC23U8M/1V+C3D1MZIEgmdcQ1u7FWpadh3AhsJOzx3UdNe71pAQE21oRMt1IRmgQp3gavz/sLGQUshCw4SjAKniUS+SLXmrgscS68+CRhngT9AWTeONhyJFpcXKTPDFhSwdRGTHwdnf/nIWVtkCpz/3sCmZM0AQM1/rpzV5Gfwp2E+Xu9dBt3D7Kd1Co1djLfjGi54EkO/d/MdQe5wrHvzkL8QbiwBnHBE8W+LD7XnbrDaU/TqM8r2lHbLLCEEpkP2cYba7CbjdPc8PfIXBkFF55NH24ySGvgNKSorX3iffnFhHbZhFMCWcst396SYqdPs5Xcq2kn5FR17avfMvjcpFvxAfZoQ/L1BVNpraQewI5ab7+TXLIj3TCnQjLn0CTl1KVcXrexrr9bJdvJg9F4cBtvbieL9HF+Ojgp4RvuDGua6hQPp/UQS7WCf+KZVIpIx2fQbTj0vjFGTYCJpfe7j+LeOKkX1zIi6nehvh4NHlVy9Bo70QMVrBLUex9Iw7mDLScQRFLBPj3IKnpioLR9fl3zF1Ehlpy5GIlBK+AN+gaYAeie/JpE5lQjp0DH+KQE6UlPgQ+Tx8eWqrgQ2cmNJR00idqbcmPendpvXez/PkIz+pxT0yCvBo8RS3AnIKGoBoPCLQtH1UNNb31A1+so3xT36ukX+1I1hB+sGLX3ynbFUnS3xbjzZ05mcqJJo/YI92ZSID5/0TCpkbH+6ogJa125xn32x6EdjTLL6V1ZHi2FYDORchf8Omg1HTHfZbKeO/OcolFOHpv+rFxUI49cHrJhgguKz2jjCST5EcushncGlQjaTkRUbJAnycW52JB+vSpJqRu7GjJI2ICvCeqE0/VHGGTVyK6Zm7SW/dLOf4qDZkCLu87YPsndIqwCdXr+yR2T/PV9QeUh+VI4urYoxtJHvdjBRN8XYv9Dek9DbFERHTrwPZcxxfnkO9PEhNNgCGLG+6pynl+KmQzl82s7WP1xhIWHOZWPadz3HvttQuF3TJ2uagkujsikMiUC3gyf8UDTQasgz4LjGrOW+ajDTKNQpfrLb2IOOFKg8g6fDfdrPM+6iO8B+HY0AiyywNou77gaGZZwVUsJK052MxQmPlQRRwDPkj3I5rSQKpwMjVSAgvREJptRsiQ4XZCw5wNnAN+eg1hCyg8D31EoFcS5yGRZ3y6n9HvDIsm3/quMPKs5TkQy5byH84MDidCcksPpsMNhIBwx4AIjCz9AGI9/9NpUP7fQKZ7yY0INjehMhNIvl3C+qPNkbDa0NPYUFIVkksJijWMEabSRq8MqopHq1vtXHBce7kPO6B9N3X83QEABMubWGHhAryM1io0R/3uVShIrSLpQ+SV0FKKyXpkgSZP8GPqfRGBxLJTS/qCZpHrSSj3IDyxYwjLA4oSIZG4rTDrax3ytDYJ3rN6cah2nW7VjP/8razRMYP1omWMdVgESRQomBd35hMqIji5mN8uTnoQiqbh6EPFlXOr64T8FjCLUf4Wvvc8DxqOn4Uw+puwwYqKUsqCkAwSeM/rn6IleLxoWkYd/xQ8TKgA/xblqtP7IgbH5dB90iYMjhfNwxF4DBeRp5ue9Hlq+mrTjI9tiIGxA0YSaotuWAM1h8XmxP0X5i0zSnb6oo90gtAWNsyomUWYV8c4eQgKKtZeVzVebvor/BQzsOWi0+pIs9QfyXzJb8BdgOP9X8uvi8cX+iGbo7MSq8ng/Dcap4pzJ8vfny7C66Cx3LPWYrD4JLl131xgM1Xrd58yWuX3VDfazoFq//ahPM+ud/mx/bR9G50tZ1UNHKrmm7g6WTBZFhNspuGXelhFWaztZGNkZUQP6ZbeM+PMdurxVkbv8/sttqtyYPVA6q6jJKfygsejQzRrTTmHU9w0cCeYXnWykgw6Rhz5XNnhEdrWuhPqteLbQ3bMIa99h1saY9z9AN0PSyQe1RYSBJM9Fr6QZGrFybAtTJe5yjOJPkwrnZxBfFK/VMkpoYozqkO93U1QT1VxuAZPCmXh+hb6SKrlCY+m1yYPEuHu/GU06+R41WlN3YbtYJRBL+54SCfGL0lfYHAFPBp1R5qC59chVvjgrtmwx/QYO74WgUpwFIgDj62oyqQ7SEHrn1SvANH/CiXlwRmD4jzmtTQT8SG+OofLr66v/MWFRE1vTZLwKslBetTu7IgBYHEFDiQcbg6NWCSc5YZ232/1rXkXZueUxriKbXkaDkF2s18A257WtlBRbKmvolqzJtfksXm+g4D8xvR6yCwR/KeauJ9KFQuD59vZXJ7F/f9/Nb7bVfMS4KxkTTdNCxOC9aMI27WkuzgE/YwB+hoFSGyQBAqXYEhBWM4Snb4rzqmaXiaEY+5vtn2fJDMWztliYm0E1l4TYuvNOum7F2V4Atws3GGTBvnhT/Q6vxP72qh6c8UpuNDHpkrrM91/J2wnVzp3mk5WvhFtPfzsdHlBZq6xL3538DLN2rK5rT2YhaBFr9+EAJ67gx0Z3CiDmc9dr8gzjGX0duCRBSEOAAA=="
+          alt="University of Stellenbosch Bursary"
+          class="w-full object-cover h-36"
+          loading="lazy"
+        />
+        <div class="p-4 flex-1 flex flex-col">
+          <h3 class="font-semibold text-lg text-[#000026] mb-2">University of Stellenbosch Bursary</h3>
+          <p class="text-gray-600 flex-grow">Scholarship open to all students meeting requirements.</p>
+          <a
+            href="/bursary/1"
+            class="mt-4 inline-block bg-[#000026] text-white px-4 py-2 rounded hover:bg-[#1a1a4c] transition text-center"
+            >Apply Now</a
+          >
+        </div>
+      </article>
+
+      <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition relative flex flex-col">
+        <img
+          src="https://th.bing.com/th/id/OIP.3cvqrxK09pPGrkrrTRs4sQHaFS?w=221&h=180&c=7&r=0&o=7&pid=1.7&rm=3"
+          alt="University of Cape Town Bursary"
+          class="w-full object-cover h-36"
+          loading="lazy"
+        />
+        <div class="p-4 flex-1 flex flex-col">
+          <h3 class="font-semibold text-lg text-[#000026] mb-2">University of Cape Town Bursary</h3>
+          <p class="text-gray-600 flex-grow">Opportunity for prospective students with financial need.</p>
+          <a href="/bursary/2" class="mt-4 inline-block bg-[#000026] text-white px-4 py-2 rounded hover:bg-[#1a1a4c] transition text-center">Apply Now</a>
+        </div>
+      </article>
+
+      <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition relative flex flex-col">
+        <img
+          src="https://th.bing.com/th/id/OIP.D6ELLjo6mn4OtxPtg7k6lQHaEA?w=326&h=180&c=7&r=0&o=7&pid=1.7&rm=3"
+          alt="University of Pretoria Bursary"
+          class="w-full object-cover h-36"
+          loading="lazy"
+        />
+        <div class="p-4 flex-1 flex flex-col">
+          <h3 class="font-semibold text-lg text-[#000026] mb-2">University of Pretoria Bursary</h3>
+          <p class="text-gray-600 flex-grow">Bursary for academically outstanding students.</p>
+          <a href="/bursary/3" class="mt-4 inline-block bg-[#000026] text-white px-4 py-2 rounded hover:bg-[#1a1a4c] transition text-center">Apply Now</a>
+        </div>
+      </article>
+
+      <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition relative flex flex-col">
+        <img
+          src="data:image/webp;base64,UklGRoYUAABXRUJQVlA4IHoUAADQWgCdASopAZEAPp1GnEqlo6MiKNQLiLATiWUAzIzovHtGWY/TbuNOdp3VWFd+K/oI97+33r9aC7VPrp+y9bP9t4K8Aj2F/seEBAN+f/1r/henb8z5wfx3+U9gD9Z/+F5UXhsUBP59/jf+17Qv9r/7v9f6DPpf2Ef109Mr2L/u57Jf7LGqThl9UBKffVlVw7O9gOci7D6U98FTXHN5yrdtxnldoONljZr5YkvuGRvzBs+o+X8d+gRdd8ktkzZXxqEqqaeJ+qCItsELbHUDYE2DAdGtJnnyaCn5iQTvBOQu+GBw91E/192cj0ZpeeT/40+NIq67G4jlulztSwMBOLUtidcDWtrwrJZ9TKJC7RQI1nvmiePzaxRZ6B3+JjRcYb0iQRXIjqZTomgvxan2VchkME6kDiMX18Roxslf7ggyzWJfzOCaznEx6MFBLIVPcwZGsYJRHiAhbsnUMbdsrnqBuudj9WQtr70imMqDokWg9VnalITSqK6szoLU7ffGJyyA8SeEV47gij84AB2EGHV/8bzFB29rB+QUb9t0XlXy+FrZ1Oq4+gzelWjbdqWs3tc3rVHtGZccq+D////JIIweQ0dxYsB+cYys7TxL4gHmsengd9c8QxFQwz6RGA7IIyIRlu5F5YxHXeM3rIEFC+UB1vC5R4qSm51qF7UJRli3hDb4+J70ijB1mq7ACC10XLH6zQ9AbrsVpuV+p+PbL1C5JJplusRXgEXJudKfpp2MCXTXHZMo72eTzKdYKOWXjPQGj64sXyvoBrU2QeHwlgqsaGRBpCdQHlKsCMpRFA4W5NZs6fquBffuQ11SSK7/IMtIQzmew15GFVTBXH3fxGM7bHwNaSydyMcAlZWfBUFmks8qbYpc7gt4PbqOnT153xAQVB6M9TPYtj60RuOPqpzbjHWcWMiO4E23lPVZkwG9rldOg3inzVPEenTTN70LXGyFl81l0dyhGY70tAK1caAA/vuD5oY+oAv+Hu05bfs6W8u3VoGFRJuO0p4sE++UBkOR4gLT/t5aLb9W/r7p7N3dtgBV3Yfrunfqx2vEdtUIrTolHdDmBwFe6VXWIpssmAckIFVHMHRZ01fC/atgf8Dnne9fXglmSUM/mEgI6iDeE5Rd93Pi4bJNRVfAT8gaNVSVYX/VPUQZ0j7fRiBFVyNnMRxZw2XQeO3wm4PhRSIx15NONRZGsXJIFQo4yizlCxgc2WTAFZT+I8RlnL5TdvJCMk9GZ9LMNZd8lqsbyCH5qEFV+cfWdWiO/n/kBeHr6AFlRda/alPGR/pS0CZ+q87bm/cKUoUqYpAe9R4+uZokNAyaHX2Nfa0q1fNws9+HT5DPwlF8+YRSC6R0QMQvRz2mw/9QD4r9qQ5sU6n8+1n9iFNn6QRS7cwjZHJ01Bha5FjS+CQh+RwO2T4G6BFlTa1xrfKy5ggLhRfs9PoIGZ+lhPuuK4pxSxhOYHuN7bX736aUDszjv21Pdh97S8q/Irrvcq7i1g4TvNRTGAbDNNAFtfum24KiJcLWMZil8UfrUuKnzVGiIBxTFHZXs/cbUBZKZgTy/8bhQsf7g8Y5oeMvlX0r50CZN4yhCwPDbY6FuIuFSBs3pdkk5FFrL/jDVhsi+/Rd+29GCqthZ8WJ1shTGEb4eb3VlkxlYmn8n9t0VQKmoLIRv/Gu2HcytT31AJhq3VWscKDMdlvJr06vVlNC1zKEYWTVuqhMGu1Nw1wYfU24uWAW8VqPNx0Mj2oHMa6GkdCRtLmxPqVk79copVUavsOJXUE8uIkCDZEHp8YCJ/S3SuhdR7VDBr5CrsR8Zu/rzfcOGz+950CNPqBuJR6P25efD8JvjmTsKJP73oZzqvjhphMnHL7AqAInCHz8IGesuWQzsqzBXu7tegdYSL4Dw31jUt8Qg9ITIce7JUBV53VgneeyYMOjyCpuO6g73k92mLnD5rl2gWvxxjOeAEh3ZY8ymjE//ndsvTXri8F3n+SuSzWJct7VyidXm07f4orYXHdv19xvb6gWe78ZaEXGj/XRaw+NW9aotAVRcfVzY8mjhVxjLx091lkxvb1f21X6XgyB6emuUlKrZlV4GdmdKV4QRnKAQC6i2sRZORprxXFnFAMXxobvzZUU5Qp74Mje/Fy9kKOw8KBkByFbqcvwGgrACKzVkCaYquUNa4iHNd33wtRPlLVUI9n8W30MDXb5tP75eWKeZWTN8+3YrsbBTV3e5DQ3HkAz/Uz3jTn8jCy3BLF/85lf7xo40Rp90wFgC3lEF8NDvIZn59GkdFc77LsBzWlhGYzn3ZwVGCQbCid00opwHbP5A7z4Qp/IVHbQaPiggiPLDwtNBDFFJgT0kBecAbMAtf80xaLc8McHE7gvW4MDhNQXTnqHWG+2v29RVTSVHIgKnPhvamtPbd5kzneDGcUZ3sCzYfqEV3YDZV4jzMv0UsKPZCLQMOQrz3zbjKkgRBGVRZa6UPCQiQMNQQoaHp58dTaKBblctxY4TRwScgvea/N9V3FP3/lUlc01bMSDzKtkYSeIRB/WQKFn1v15KWfYEa+FNc49dvy4gbX4x66kS9hkXPnuCpPUsUYk+VrBgEAV0YpcRWPRHpaj13ZLnKBkTQsf/BKu80YHNLfMjNLgcyk0A2JYpDhZLQ//5MY6DbsIVCG+tnwL1AsgUSZoi93XkFKcyl5kCrRQ1t/8r1e1zWrTz1ApJ0aRZOPH6US13UfFMyYM8oJFQZbAcPnJpbpdvJSj6Gk6lU5HKih4CWJ0pTREPRlq5B9+WyuiNtuGRp8z5UcTTsSgVtZnGXN6tGYLNRGk04eYfiUZohogVGrONjCnuDKqK1WHeOYoLeamuBai8YAGkgn6W+BQgnS6GGWw3Wv/URRc76GPxaw58lZQfuGZk6HiEJuNOQstMjhgSqMDKU9H3pCuebQ+G1WzI3A4S7y/hQWlZ7v6LoRToI9ztnwh86BGzmCgjh0bDkZoXyWLu80Ut+MA41uN4R24crK+/Al6m0eXpl4V3dB+9zCigAMgycVoe78tKFPh7CF0BvCHzQO91ydVMoOSU+2BKaOt/r2c0aqvobsa8wGT+IfvbuedUiUCu6blFXMaaCJlfroKwGAWS8wBee68LWDdB8TI14aWzXrk9aVdMasyyV9IW3f7WBN2K6FbwS7srJtKhA3JEf+pHJP6L1E9Ya0GXGzVeH4xIQif/rdVG2Teyk+Z7lbjrkEDPuQH9o/gcIyks/2vY9eDySW4wqbBAPvUaVQldXQIfo8qnjdOVmh9si8zJcgpJve4KsGZBJSR2x17XF/dfXdE23eYd/i9SoGU3Birg9D6bhI8nnT3MOOHvCrLL0PtOtHT2BdLHDpaCulx2N/JG9qPUhK/KRyVX+3vyOpduq/YLib7p1vn8meK7JNS4tuA8beLDBX0GpyAFf/5sKt//jAGj9kOWAmRaoaS9z88rzVSwA95YhM828jx9v3UwhNUbb7kSGGF0OcOX2GVfxGIH/JBNBa3EDtXoIh3nkZbOpnZ50cPjFd4o1PBqYsPdwpjhu2iqjg/oGUSrgilbonyQLw2ecGSBum5QGM0IlVTqoUha25bAlyVlg6rbF9nRk9OgNJ/hQqZ2mcPRWmtDV6crwCsps4LyK96ulJJGDHuyrUXByxlYrBBgr3tNsYPDlvYgjynw1HKACVZkIJx/in0OJl+fcW3ldoXWhNHUo4MZtZbduayyGe5dqplUEfejoiQQ4UPsmML0GhQa450QaA76RsCZJt/iKZE0EdrGVAGeNYIAhRY3Eon+TGa+Zi/pCG8pG9xg7cbmCsyb4pr0Dfym5W/EFSgCv6I8HhgQR5Yu1cZSgf4mwwYlukxgLWsbNU0XpW4RZ/EoLvrS+dUgQ9lm//5i1BC0v5zIXFU+rma0zOT2cPvOQSJwpozJb2gkX5tgU96CQG4OqybNcdwxiTjguOxF+5gt72J3+AqGj8CNf5hoMGkRQJYgyanVCXon4+yVr+LTwt+0x8Cir0Kz88mPNZQpH4dGPHr8e600qIft94wkwd1i/5BMB1iboe24/FfnjforzLEitptZkGDBUGcpQd9gPj4abYzNQFa+rLuYr2DEbzLF3JyFTGHBeD1P97YRmsmWYR53HPAWPRm5TwK3+MroGVoQlMAENmMmA+4uoQooQmEI0OkX2uooOHi8T4n8E5tMOFxHdXK+SgweHAgUh6qpnCCH+iqOlGIgWiKqMCtSivOQDgHEZAcrsfxSdaq0OKYgKLTketEsSwMkgE/Hkaj0WPlurDE4thB0TH4vZW7PvXiBGkEboQYxDbqGlWoU2jwurzBOYi7kZMfssuVpj0HClITSXG1VF2hIWkAJyuuipQtc0zthF+G3O6xWm44uJ+u/x91eGvJfx8W8GLJKh3NytxxVTzFc4RV218Y11wjngIJOnMYgE5pcmvRIcUUigqsm8BUYUHgX7qbT+PBiNEUhoUIiqhS/i/2005/IHcscmL5v8iFJQmphYZKhfrCYarUB3WigUsZ5PgwiQU9cBCwsElXIsR2NLnZQ8MnjIFTVpFZJSOFp44jkJlTsrNC5hSGv9pXawSc/4AHT+fifNzTo4mj9H2tRXD3Rn+yrKFngRNS82amzCeGiPnyRdafmiZFcus3l+ZdGK9mIx9Vt9Mwt+601dDOtH4bgMwfyinPLHoa1U2xysPRINCvinTqyTZi3shDFm+DGMZ6ZDXinGEskzUGTGpH1+Dwm8r+L7sSN6bjW+QmeNz9jbps86x3hMRDeO0RXwMppiHud5KxakGuBKuIIpIm9Gkre0tGFp5KBY95LxurRIBZCLakwxJl5yXWoHbgeVZAp3dLwn3mEMKUO4umMCpEUfIW7UqT2VQ47K9cOD1qkA7iw0rGRWmddcMtuXf4WBIkKsBvpgJ2V964DzDGo8/rrorSnGGHWlGqHBMFjGjnl73J3Xcg0t1SKC9E9q6zN6Fzav1YZu7A8RRGrTrBnkz/YPuCNZeE+vzyP4gQ23TnTKeHQyMgYGZnxz49rhQR4CHN34HNgmD1dA7DT6ka2Dcl3POl+0ijURBNYE5/poWT+2egRd3UmC3mBjHiOArA07vu0udJQDU+rY+Zm8FjmYjSsrpDuKPKyYEGtMGWn5r1GMCSKDGqPwBJnoKl76hR48PLdDeSmoSOvG4Ho159/STJVPXGThuDDHIh9IzmBbWjFg3hKBsovWHjM6Iqu5Rq8tUFPwDd2ThhH2udvtHC1khVUrKcN4SyFPCWv551ZlqjsrTkjoMitZ2+vXYDtE/slyUBGhQeM6+JbrjZm0k6vaOCHXtia2awt+yWZD4sD8v0cbGfDFNAP89EKKDB86P7vWZzvDgxpsvEJjamm9NT6kCzyletZIBmpqleATMUQW3stMPJRrKPHGayPENWLpsyUgBc3Aa0UScegWPUEi3YNbx/PP0wAiNDFI9kQQXZES1ZWTMJ8CVlT6nICzdR2FH3+seKdG0At4WAXDeAJhJXs3aWCT3CDj9uxfF/8RTAZLsAIxjwrvyn7zgkQ0aRsnbeLl5ERI8mk/yp3kttKKz/GczlJRVGYKonR9lDnhYsqgzkxAvVFBWrIGxHNYeLXRhAOyTH5e9JfM1jwojmhtrL9rPNzka7tP/OK2BWvtaZAURujehltfgc5Ui3HJXIQttPEmOmTTTWAHhH/5DT/eAsgXuGq/6PZHuWFPdivH4+dvZpyF1cR/n/NQV+pfpotgxUH9gfx2lpitauT7pJ3i0EPTkZKBBw77FYWXHS2zbO+IOd0slLxnFFVS/CKzJMp/C5dZV4gNU70EmatO0ZELrIJy0pE61Z3/cUVlxN4YNFqAqwDf8f+CruZXoJOfMkFi5pHgvqk8EzYZCuxKu8udEaPOBn7LXLPgk9iMYUdu8N0ESGWlH8Iwr/zwxQh9uRY4/+DFJ0dqyUrsxHGx8WmIXDp++cMvT7EMBaEyNb8iWWNDujGryKF2cWOflyeR+CfdmWYwQvX/a05levN1avanp/w58sOhuEQ1+WOSvJH3t+x/Rm6Pq4WSkONBRg/jvc7NlCa/B1h4fWLf9/H9IqwOvmFUMBs/T3ogv+D+++O6ED/FlB9Dma/EFL+OEDaDBuFB8IMR/XCiK7ynO/5eUSDNyKkWqyWpTmybSNOunI99BpB0DYKDzg6NMZCg1g5AmFLlgqUpi+OLZ+46+DexyNJAOdXe8Z1rcu9yeq4INTD/qMHH8GL3uNh6WoP1lolzCmDBBoTGx0l1i8BDLjxFhzQHJ7xtZjI/LxH/Szf4fkkB+Y7fCrQkgGRwB1z1hYaQWJu26Mtg6J5MZybjndwFgTD1845OOl8DMN0ZTU64CmdbOLUDD8tnibIFh6UJVNl0/wgxQWD6okFrM0cK8/RqQHZL5VvVEsFJHkYuSWd/xlZVoX6ObllXzPdf6m81EG8ug6/68gQTqbEwoZv/93BmmsoYTFI/HIW3InQ7p3yMEDV0OSg7HKg0D4j/QFtUG7qEK9EuOWdg3MxiUEkamH1UDAGg5AAB4vubIDyB1ZMxfcSRHkgFzooaefZB2ftJSE5Xpo9mAAB4OTfC1hkSlLx3wNrzric5+fDh8PdSunqkMbFNbhx71jop9l/5uodMhLKxxNqiIcdVxaSWegzGOZogG+lcaSoGGrfgHkOktUdxbHdaxU6iSt+VwRhWyb4QtbwhF4jBb79ELsN5YocJxewsV/8g6hJFkajUdDvbzWvHSnPd8aUeNRsa6zVZMpqfWAH/ewBzeR93XPY3r6JfUkejh/3ur0BlwVfWknt9WUkYr/HlbxJ5bxt36EoE8UjWx4t47LvHw7rg923zK+xdWZy6oLEJMeu7aSZr7NIYACtzk97dojYhD22NS9/WaGy6z270F19B+X0KcoC0D2hHqRQDLxeosb2TKJcIYVbvqunqN0Z+0/p9pkRJ2Cj1oIfhkQvYP/IU2xWaCK6N7d2MYUXsYdeHUOhhzS7xHlRYka2BdoL/Zf7VpWn7hgAAAAABUAAAAA"
+          alt="University of Johannesburg Bursary"
+          class="w-full object-cover h-36"
+          loading="lazy"
+        />
+        <div class="p-4 flex-1 flex flex-col">
+          <h3 class="font-semibold text-lg text-[#000026] mb-2">University of Johannesburg Bursary</h3>
+          <p class="text-gray-600 flex-grow">Support for students in need of financial assistance.</p>
+          <a href="/bursary/4" class="mt-4 inline-block bg-[#000026] text-white px-4 py-2 rounded hover:bg-[#1a1a4c] transition text-center">Apply Now</a>
+        </div>
+      </article>
+<!-- Existing bursary cards -->
+
+<article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition relative flex flex-col">
+  <img
+    src="https://th.bing.com/th/id/OIP.MXaYqX9rVoE37iPajXOObQHaHa?w=168&h=180&c=7&r=0&o=7&pid=1.7&rm=3"
+    alt="University of KwaZulu-Natal Bursary"
+    class="w-full object-cover h-36"
+    loading="lazy"
+  />
+  <div class="p-4 flex-1 flex flex-col">
+    <h3 class="font-semibold text-lg text-[#000026] mb-2">University of KwaZulu-Natal Bursary</h3>
+    <p class="text-gray-600 flex-grow">Financial aid for deserving students in KwaZulu-Natal.</p>
+    <a href="/bursary/5" class="mt-4 inline-block bg-[#000026] text-white px-4 py-2 rounded hover:bg-[#1a1a4c] transition text-center">Apply Now</a>
+  </div>
+</article>
+
+<article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition relative flex flex-col">
+  <img
+    src="https://th.bing.com/th/id/OIP.1NOBuU2v0nt9ZdnBmtGV0AHaCM?w=341&h=103&c=7&r=0&o=7&pid=1.7&rm=3"
+    alt="North-West University Bursary"
+    class="w-full object-cover h-36"
+    loading="lazy"
+  />
+  <div class="p-4 flex-1 flex flex-col">
+    <h3 class="font-semibold text-lg text-[#000026] mb-2">North-West University Bursary</h3>
+    <p class="text-gray-600 flex-grow">Support for high-achieving students from the North West region.</p>
+    <a href="/bursary/6" class="mt-4 inline-block bg-[#000026] text-white px-4 py-2 rounded hover:bg-[#1a1a4c] transition text-center">Apply Now</a>
+  </div>
+</article>
+
+<article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition relative flex flex-col">
+  <img
+    src="https://th.bing.com/th/id/OIP.I0BrC8p9dtXaxJlnibKEMQAAAA?w=185&h=100&c=7&r=0&o=7&pid=1.7&rm=3"
+    alt="Rhodes University Bursary"
+    class="w-full object-cover h-36"
+    loading="lazy"
+  />
+  <div class="p-4 flex-1 flex flex-col">
+    <h3 class="font-semibold text-lg text-[#000026] mb-2">Rhodes University Bursary</h3>
+    <p class="text-gray-600 flex-grow">Bursary opportunities for students interested in Humanities.</p>
+    <a href="/bursary/7" class="mt-4 inline-block bg-[#000026] text-white px-4 py-2 rounded hover:bg-[#1a1a4c] transition text-center">Apply Now</a>
+  </div>
+</article>
+
+<article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition relative flex flex-col">
+  <img
+    src="data:image/webp;base64,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"
+    alt="Nelson Mandela University Bursary"
+    class="w-full object-cover h-36"
+    loading="lazy"
+  />
+  <div class="p-4 flex-1 flex flex-col">
+    <h3 class="font-semibold text-lg text-[#000026] mb-2">Nelson Mandela University Bursary</h3>
+    <p class="text-gray-600 flex-grow">Bursaries available for STEM students at Nelson Mandela University.</p>
+    <a href="/bursary/8" class="mt-4 inline-block bg-[#000026] text-white px-4 py-2 rounded hover:bg-[#1a1a4c] transition text-center">Apply Now</a>
+  </div>
+</article>
+<article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition relative flex flex-col">
+  <img
+    src="https://th.bing.com/th/id/OIP.gzO6Q6r9_euxORmI0MIOzAHaFP?w=269&h=190&c=7&r=0&o=7&pid=1.7&rm=3"
+    alt="National Student Financial Aid Scheme"
+    class="w-full object-cover h-36"
+    loading="lazy"
+  />
+  <div class="p-4 flex-1 flex flex-col">
+    <h3 class="font-semibold text-lg text-[#000026] mb-2">National Student Financial Aid Scheme</h3>
+    <p class="text-gray-600 flex-grow">NSFAS beneficiaries are not required to pay any fees for student accommodation.</p>
+    <a href="/bursary/8" class="mt-4 inline-block bg-[#000026] text-white px-4 py-2 rounded hover:bg-[#1a1a4c] transition text-center">Apply Now</a>
+  </div>
+</article>
+
+
+    </main>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<!-- Navbar -->
+<nav class="bg-white text-gray-800 shadow-md">
+  <div class="mx-auto px-4">
+    <div class="flex justify-between items-center h-16">
+
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <img src="/images/loginLogo.png" alt="School Logo" class="h-16 w-38">
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-6 items-center text-sm font-medium">
+
+        <a href="/" class="hover:text-[#000026] transition">
+          <i class="fas fa-home mr-1"></i> Home
+        </a>
+
+        <!-- About Dropdown -->
+        <div class="relative">
+          <button onclick="toggleDropdown('aboutDropdown')" class="hover:text-[#000026] transition inline-flex items-center space-x-1">
+           <i class="fas fa-info-circle"></i>
+            <span>About</span>
+            <i class="fas fa-chevron-down text-xs"></i>
+          </button>
+          <div id="aboutDropdown" class="absolute hidden bg-white border text-sm rounded-md mt-2 shadow-md py-2 w-48 z-50">
+            <a href="/about/students" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-user-graduate mr-2"></i> Student Life</a>
+            <a href="/about/teacher" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-chalkboard-teacher mr-2"></i> Teacher</a>
+            <a href="/about/management" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-users-cog mr-2"></i> Management</a>
+            <a href="/about/developers" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-code mr-2"></i> Developers</a>
+          </div>
+        </div>
+
+        <!-- Contact Dropdown -->
+        <div class="relative">
+          <button onclick="toggleDropdown('contactDropdown')" class="hover:text-[#000026] transition inline-flex items-center space-x-1">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+            <i class="fas fa-chevron-down text-xs"></i>
+          </button>
+          <div id="contactDropdown" class="absolute hidden bg-white border text-sm rounded-md mt-2 shadow-md py-2 w-48 z-50">
+            <a href="/contact/developers" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-code mr-2"></i> Developers</a>
+            <a href="/contact/management" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-users-cog mr-2"></i> Management</a>
+            <a href="/contact/teacher" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-chalkboard-teacher mr-2"></i> Teacher</a>
+          </div>
+        </div>
+
+        <a href="#events" class="hover:text-[#000026] transition">
+          <i class="fas fa-calendar-alt mr-1"></i> Events
+        </a>
+      </div>
+
+      <!-- Search + Buttons -->
+      <div class="hidden md:flex items-center space-x-4">
+        <!-- Search -->
+        <div class="relative">
+          <input type="text" placeholder="Search..." class="pl-4 pr-10 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-[#000026]" />
+          <svg class="w-4 h-4 absolute right-3 top-2.5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+          </svg>
+        </div>
+
+        <!-- Login + Apply Buttons -->
+        <div class="btn-container mt-1 flex space-x-2">
+        <!-- Login Button -->
+        <a href="/login" class="btn_home status px-4 py-2 text-sm rounded-md border-2 flex items-center space-x-2"
+            style="background: white; border-color: #000026; color: #000026;">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Login</span>
+        </a>
+
+        <!-- Apply Button -->
+        <a href="/register" class="btn_home home px-4 py-2 text-sm rounded-md flex items-center space-x-2"
+            style="background: #000026; color: white;">
+            <span>Apply Now</span>
+        </a>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <div class="md:hidden flex items-center">
+        <button id="mobile-menu-button" class="focus:outline-none">
+          <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown -->
+  <div id="mobile-menu" class="hidden md:hidden px-4 py-4 bg-white border-t text-sm space-y-3">
+    <a href="/" class="block text-gray-700 hover:text-[#000026]"><i class="fas fa-home mr-1"></i> Home</a>
+
+    <div>
+      <p class="text-gray-500 font-semibold">About</p>
+      <a href="/about/students" class="block pl-4 text-gray-700 hover:text-[#000026]">Student Life</a>
+      <a href="/about/teacher" class="block pl-4 text-gray-700 hover:text-[#000026]">Teacher</a>
+      <a href="/about/management" class="block pl-4 text-gray-700 hover:text-[#000026]">Management</a>
+      <a href="/about/developers" class="block pl-4 text-gray-700 hover:text-[#000026]">Developers</a>
+    </div>
+
+    <div>
+      <p class="text-gray-500 font-semibold">Contact</p>
+      <a href="/contact/developers" class="block pl-4 text-gray-700 hover:text-[#000026]">Developers</a>
+      <a href="/contact/management" class="block pl-4 text-gray-700 hover:text-[#000026]">Management</a>
+      <a href="/contact/teacher" class="block pl-4 text-gray-700 hover:text-[#000026]">Teacher</a>
+    </div>
+
+    <a href="#events" class="block text-gray-700 hover:text-[#000026]"><i class="fas fa-calendar-alt mr-1"></i> Events</a>
+    <a href="/register" class="block text-gray-700 hover:text-[#000026]">Apply Now</a>
+    <a href="/login" class="block text-gray-700 hover:text-[#000026]">Check Status</a>
+  </div>
+
+  <!-- Dropdown JavaScript -->
+  <script>
+    function toggleDropdown(id) {
+      const dropdown = document.getElementById(id);
+      dropdown.classList.toggle('hidden');
+      const dropdowns = ['aboutDropdown', 'contactDropdown'];
+      dropdowns.forEach(d => {
+        if (d !== id) {
+          document.getElementById(d).classList.add('hidden');
+        }
+      });
+    }
+
+    // Toggle mobile menu
+    document.getElementById('mobile-menu-button').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // Close dropdowns on outside click
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.relative')) {
+        document.getElementById('aboutDropdown')?.classList.add('hidden');
+        document.getElementById('contactDropdown')?.classList.add('hidden');
+      }
+    });
+  </script>
+</nav>

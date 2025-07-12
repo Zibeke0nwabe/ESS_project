@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ESS Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 1s ease-in-out;
+    opacity: 1 !important;
+  }
+  @keyframes marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+}
+
+</style>
+
+<body class=" text-gray-800">
+
+<!-- Top Banner -->
+<div class="bg-[#000026] text-white text-sm  py-3 w-full">
+  <!-- Small Screens: Marquee -->
+  <div class="block md:hidden overflow-hidden whitespace-nowrap relative">
+    <div class="animate-marquee inline-block text-gray-200">
+      Upcoming Test Series | Admissions Open | New Departments Launched | Explore Scholarships | <i class="fas fa-map-marker-alt text-white"></i> Luna Apartments, 477 Anton Lembede St | <i class="fas fa-phone-alt text-white"></i> +27 (72) 343-8377 | <i class="fas fa-envelope text-white"></i> ekhayaSmartScholars@gmail.com
+    </div>
+  </div>
+
+  <!-- Medium and Up: Full Banner -->
+  <div class="hidden md:flex justify-between items-center flex-wrap gap-y-2 px-4">
+    <!-- Left: Announcements -->
+    <span class="text-gray-200">
+      Upcoming Test Series | Admissions Open | New Departments Launched | Explore Scholarships 
+    </span>
+
+    <!-- Right: Contact Details -->
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-gray-200 text-xs">
+      <span class="flex items-center gap-1">
+        <i class="fas fa-map-marker-alt text-white"></i>
+        Luna Apartments, 477 Anton Lembede St
+      </span>
+      <span class="flex items-center gap-1">
+        <i class="fas fa-phone-alt text-white"></i>
+        +27 (72) 343-8377
+      </span>
+      <span class="flex items-center gap-1">
+        <i class="fas fa-envelope text-white"></i>
+        ekhayaSmartScholars@gmail.com
+      </span>
+    </div>
+  </div>
+</div>
+
+  <!-- Navbar -->
+  <nav class="bg-white text-gray-800 shadow-md">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+          <img src="/images/Logo.png" alt="School Logo" class="h-16 w-auto" />
+        </div>
+
+        <!-- Links -->
+        <div class="hidden md:flex space-x-6 items-center text-sm font-medium">
+          <a href="/" class="hover:text-[#000026] transition">Home</a>
+          <a href="/universities" class="hover:text-[#000026] transition">Universities</a> 
+          <a href="/news" class="hover:text-[#000026] transition">ESS News</a>
+          <a href="/bursaries" class="hover:text-[#000026] transition">Bursaries</a>
+          <a href="/management" class="hover:text-[#000026] transition">Our Management</a>
+          <a href="/live-classes" class="hover:text-[#000026] transition">Live Classes</a>
+        </div>
+
+        <!-- Search + Login -->
+        <div class="hidden md:flex items-center space-x-4">
+          <label for="search-desktop" class="sr-only">Search</label>
+          <div class="relative">
+            <input
+              id="search-desktop"
+              type="search"
+              placeholder="Search..."
+              class="pl-4 pr-10 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-[#000026]"
+            />
+            <svg class="w-4 h-4 absolute right-3 top-2.5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+            </svg>
+          </div>
+          <a href="/login" class="text-sm font-medium px-4 py-2 bg-[#000026] text-white rounded-md hover:bg-[#1a1a4c] transition">
+            <i class="fas fa-sign-in-alt mr-1"></i> Login
+          </a>
+        </div>
+
+        <!-- Mobile Button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu" class="focus:outline-none">
+            <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden px-4 py-4 bg-white border-t text-sm space-y-3" role="menu" aria-label="Mobile menu">
+      <a href="/" class="block text-gray-700 hover:text-[#000026]" role="menuitem">Home</a>
+      <a href="/universities" class="block text-gray-700 hover:text-[#000026]" role="menuitem">Universities</a>
+      <a href="/news" class="block text-gray-700 hover:text-[#000026]" role="menuitem">ESS News</a>
+      <a href="#" class="block text-gray-700 hover:text-[#000026]" role="menuitem">Events</a>
+      <a href="#" class="block text-gray-700 hover:text-[#000026]" role="menuitem">Contact</a>
+      <a href="/login" class="block text-gray-700 hover:text-[#000026]" role="menuitem">Login</a>
+      <div class="relative mt-2">
+        <label for="search-mobile" class="sr-only">Search</label>
+        <input
+          id="search-mobile"
+          type="search"
+          placeholder="Search..."
+          class="w-full pl-4 pr-10 py-2 border rounded-md focus:ring-[#000026] focus:outline-none"
+        />
+        <svg class="w-4 h-4 absolute right-3 top-3 text-gray-500" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+        </svg>
+      </div>
+    </div>
+
+    <script>
+      const mobileBtn = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      mobileBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.toggle('hidden');
+        mobileBtn.setAttribute('aria-expanded', !isHidden);
+      });
+    </script>
+  </nav>
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold text-[#000026] mb-8 text-center">Meet Our Executive Management</h1>
+
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+      <!-- Martin Shozi -->
+      <div class="bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition duration-300 animate-fadeIn">
+        <img src="/images/user2.jpg" alt="Martin Shozi" class="w-full h-64 object-cover" />
+        <div class="p-4">
+          <h3 class="text-xl font-semibold text-[#000026]">Mr Martin Shozi</h3>
+          <p class="text-gray-600 mb-2">Senior Operations Manager</p>
+          <p class="text-sm text-gray-500">Dedicated to operational excellence and smooth running of daily activities.</p>
+        </div>
+      </div>
+
+      <!-- Mzamo Nyawo -->
+      <div class="bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition duration-300 animate-fadeIn">
+        <img src="/images/user3.jpg" alt="Mzamo Nyawo" class="w-full h-64 object-cover" />
+        <div class="p-4">
+          <h3 class="text-xl font-semibold text-[#000026]">Mr Mzamo Nyawo</h3>
+          <p class="text-gray-600 mb-2">Marketing Director</p>
+          <p class="text-sm text-gray-500">Leads marketing strategy to grow ESS’s community and engagement.</p>
+        </div>
+      </div>
+
+      <!-- Retabile Mohlomi -->
+      <div class="bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition duration-300 animate-fadeIn">
+        <img src="/images/user1 (1).jpg" alt="Retabile Mohlomi" class="w-full h-64 object-cover" />
+        <div class="p-4">
+          <h3 class="text-xl font-semibold text-[#000026]">Miss Retabile Mohlomi</h3>
+          <p class="text-gray-600 mb-2">Secretary</p>
+          <p class="text-sm text-gray-500">Organizes and coordinates meetings and documentation for ESS management.</p>
+        </div>
+      </div>
+
+      <!-- Manqoba Shezi -->
+      <div class="bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition duration-300 animate-fadeIn">
+        <img src="/images/user8.jpg" alt="Manqoba Shezi" class="w-full h-64 object-cover" />
+        <div class="p-4">
+          <h3 class="text-xl font-semibold text-[#000026]">Dr Manqoba Shezi</h3>
+          <p class="text-gray-600 mb-2">Academic Advisor</p>
+          <p class="text-sm text-gray-500">Provides guidance and academic support for students.</p>
+        </div>
+      </div>
+
+      <!-- Lithalobomi Mabaso -->
+      <div class="bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition duration-300 animate-fadeIn">
+        <img src="/images/user5.jpg" alt="Lithalobomi Mabaso" class="w-full h-64 object-cover" />
+        <div class="p-4">
+          <h3 class="text-xl font-semibold text-[#000026]">Mr Lithalobomi Mabaso</h3>
+          <p class="text-gray-600 mb-2">Head of Department</p>
+          <p class="text-sm text-gray-500">Leads academic departments to ensure quality education delivery.</p>
+        </div>
+      </div>
+      <!-- Nhlakanipho Mkhize -->
+      <div class="bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition duration-300 animate-fadeIn">
+        <img src="/images/user6.jpg" alt="Nhlakanipho Mkhize" class="w-full h-64 object-cover" />
+        <div class="p-4">
+          <h3 class="text-xl font-semibold text-[#000026]">Mr Nhlakanipho Mkhize</h3>
+          <p class="text-gray-600 mb-2">Personnel Officer</p>
+          <p class="text-sm text-gray-500">Manages human resources and staff welfare.</p>
+        </div>
+      </div>
+      <!-- Esgela Team -->
+      <div class="bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition duration-300 animate-fadeIn">
+        <img src="/images/esgela.jpg" alt="esgela" class="w-full h-64 object-contain" />
+        <div class="p-4">
+          <h3 class="text-xl font-semibold text-[#000026]">Esgela Team</h3>
+          <p class="text-gray-600 mb-2">IT Support & Software Development</p>
+          <p class="text-sm text-gray-500">Manages IT related issues and ensuring a smooth Operations.</p>
+        </div>
+      </div>
+      <!-- Esgela Team -->
+      <div class="bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition duration-300 animate-fadeIn">
+        <img src="/images/ess1.png" alt="Nhlakanipho Mkhize" class="w-full h-64 object-cover" />
+        <div class="p-4">
+          <h3 class="text-xl font-semibold text-[#000026]">Person 8</h3>
+          <p class="text-gray-600 mb-2">Job Title</p>
+          <p class="text-sm text-gray-500">Description of person 8's activities and role at Ekhaya</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

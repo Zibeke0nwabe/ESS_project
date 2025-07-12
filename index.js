@@ -43,6 +43,41 @@ app.use('/', adminRoutes);
 app.use('/', subscribeRoutes);
 app.use('/', contactRoutes);
 
+//No login needed to this routes
+app.get('/universities', (req, res) => {
+  res.render('universities'); 
+});
+app.get('/news', (req, res) => {
+  res.render('news');
+});
+
+app.get('/bursaries', (req, res) => {
+  res.render('bursaries');
+});
+
+app.get('/management', (req, res) => {
+  res.render('management');
+});
+
+app.get('/live-classes', (req, res) => {
+  res.render('live-classes');
+});
+app.get('/about/students', (req, res) => {
+  res.render('about/students');
+});
+
+app.get('/about/management', (req, res) => {
+  res.render('about/management');
+});
+
+app.get('/about/developers', (req, res) => {
+  res.render('about/developers');
+});
+
+app.get('/about/teacher', (req, res) => {
+  res.render('about/teacher');
+});
+
 // 404 Error Page
 app.use((req, res) => {
     res.status(404).render('error', {

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ESS Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 1s ease-in-out;
+    opacity: 1 !important;
+  }
+  @keyframes marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+}
+
+</style>
+
+<body class=" text-gray-800">
+
+<!-- Top Banner -->
+<div class="bg-[#000026] text-white text-sm  py-3 w-full">
+  <!-- Small Screens: Marquee -->
+  <div class="block md:hidden overflow-hidden whitespace-nowrap relative">
+    <div class="animate-marquee inline-block text-gray-200">
+      Upcoming Test Series | Admissions Open | New Departments Launched | Explore Scholarships | <i class="fas fa-map-marker-alt text-white"></i> Luna Apartments, 477 Anton Lembede St | <i class="fas fa-phone-alt text-white"></i> +27 (72) 343-8377 | <i class="fas fa-envelope text-white"></i> ekhayaSmartScholars@gmail.com
+    </div>
+  </div>
+
+  <!-- Medium and Up: Full Banner -->
+  <div class="hidden md:flex justify-between items-center flex-wrap gap-y-2 px-4">
+    <!-- Left: Announcements -->
+    <span class="text-gray-200">
+      Upcoming Test Series | Admissions Open | New Departments Launched | Explore Scholarships 
+    </span>
+
+    <!-- Right: Contact Details -->
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-gray-200 text-xs">
+      <span class="flex items-center gap-1">
+        <i class="fas fa-map-marker-alt text-white"></i>
+        Luna Apartments, 477 Anton Lembede St
+      </span>
+      <span class="flex items-center gap-1">
+        <i class="fas fa-phone-alt text-white"></i>
+        +27 (72) 343-8377
+      </span>
+      <span class="flex items-center gap-1">
+        <i class="fas fa-envelope text-white"></i>
+        ekhayaSmartScholars@gmail.com
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar -->
+<nav class="bg-white text-gray-800 shadow-md">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex justify-between items-center h-16">
+
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <img src="/images/Logo.png" alt="School Logo" class="h-16 w-38">
+      </div>
+
+      <!-- Links -->
+      <div class="hidden md:flex space-x-6 items-center text-sm font-medium">
+        <a href="/" class="hover:text-[#000026] transition">Home</a>
+        <a href="/universities" class="hover:text-[#000026] transition">Universities</a> 
+        <a href="/news" class="hover:text-[#000026] transition">ESS News</a>
+        <a href="/bursaries" class="hover:text-[#000026] transition">Bursaries</a>
+        <a href="/management" class="hover:text-[#000026] transition">Our Management</a>
+        <a href="/live-classes" class="hover:text-[#000026] transition">Live Classes</a>
+      </div>
+
+      <!-- Search + Login -->
+      <div class="hidden md:flex items-center space-x-4">
+        <div class="relative">
+          <input type="text" placeholder="Search..." class="pl-4 pr-10 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-[#000026]" />
+          <svg class="w-4 h-4 absolute right-3 top-2.5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+          </svg>
+        </div>
+        <a href="/login" class="text-sm font-medium px-4 py-2 bg-[#000026] text-white rounded-md hover:bg-[#1a1a4c] transition"> 
+          <i class="fas fa-sign-in-alt"></i>
+          Login
+        </a>
+      </div>
+
+      <!-- Mobile Button -->
+      <div class="md:hidden flex items-center">
+        <button id="mobile-menu-button" class="focus:outline-none">
+          <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown -->
+  <div id="mobile-menu" class="hidden md:hidden px-4 py-4 bg-white border-t text-sm space-y-3">
+    <a href="/" class="block text-gray-700 hover:text-[#000026]">Home</a>
+    <a href="/universities" class="block text-gray-700 hover:text-[#000026]">Universities</a>
+    <a href="/news" class="block text-gray-700 hover:text-[#000026]">ESS News</a>
+    <a href="#" class="block text-gray-700 hover:text-[#000026]">Events</a>
+    <a href="#" class="block text-gray-700 hover:text-[#000026]">Contact</a>
+    <a href="/login" class="block text-gray-700 hover:text-[#000026]">Login</a>
+    <div class="relative mt-2">
+      <input type="text" placeholder="Search..." class="w-full pl-4 pr-10 py-2 border rounded-md focus:ring-[#000026] focus:outline-none" />
+      <svg class="w-4 h-4 absolute right-3 top-3 text-gray-500" fill="none" stroke="currentColor" stroke-width="2"
+        viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+      </svg>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('mobile-menu-button').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+  </script>
+</nav>
+<!-- Hero Section -->
+<section class="bg-[#000026] text-white min-h-[340px] flex flex-col justify-center items-center text-center px-4 m-3 rounded-md">
+  <h1 class="text-4xl md:text-5xl font-bold mb-4">Explore South African Universities</h1>
+  <p class="text-lg max-w-xl">Find, compare and apply to top universities across South Africa. Download prospectuses and start your journey today.</p>
+</section>
+
+<!-- Main Content -->
+<div class="max-w-7xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-8">
+
+<!-- Filter Sidebar -->
+<aside class="hidden md:block md:w-1/4">
+  <h2 class="text-xl font-semibold mb-4">Filter by</h2>
+  
+  <!-- Province Filter -->
+  <div class="mb-6">
+    <h3 class="font-medium mb-2">Location (Province)</h3>
+    <div class="space-y-2">
+      <label class="flex items-center">
+        <input type="checkbox" class="mr-2 text-[#000026]"> Gauteng
+      </label>
+      <label class="flex items-center">
+        <input type="checkbox" class="mr-2 text-[#000026]"> Western Cape
+      </label>
+      <label class="flex items-center">
+        <input type="checkbox" class="mr-2 text-[#000026]"> KwaZulu-Natal
+      </label>
+      <label class="flex items-center">
+        <input type="checkbox" class="mr-2 text-[#000026]"> Eastern Cape
+      </label>
+    </div>
+  </div>
+  <div class="mb-6">
+    <h3 class="font-medium mb-2">University Type</h3>
+    <label class="flex items-center">
+      <input type="checkbox" class="mr-2 text-[#000026]"> Public
+    </label>
+    <label class="flex items-center">
+      <input type="checkbox" class="mr-2 text-[#000026]"> Private
+    </label>
+  </div>
+</aside>
+
+  <!-- University Cards -->
+  <section class="md:w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!--UJ-->
+    <div class="border rounded-lg shadow-sm overflow-hidden hover:shadow-md transition">
+      <img src="data:image/webp;base64,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" alt="University of Johannesburg" class="w-full h-40 object-cover">
+      <div class="p-4">
+        <h3 class="text-lg font-semibold text-[#000026] mb-1">University of Johannesburg</h3>
+        <p class="text-sm text-gray-600 mb-2">A dynamic institution with campuses across Johannesburg, known for its innovative technology, cutting-edge business programs, and vibrant student community.</p>
+        <p class="text-xs text-gray-500 mb-4"><i class="fas fa-map-marker-alt mr-1"></i> Johannesburg, Gauteng</p>
+        <div class="flex justify-between items-center mt-4">
+          <a href="/apply/uj" class="bg-[#000026] text-white text-xs px-3 py-2 rounded hover:bg-[#1a1a4c] transition">Apply Now</a>
+          <a href="/downloads/uj-prospectus.pdf" download class="text-[#000026] text-xs flex items-center hover:underline">
+            <i class="fas fa-download mr-1"></i> Prospectus
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- DUT -->
+    <div class="border rounded-lg shadow-sm overflow-hidden hover:shadow-md transition">
+    <img src="https://th.bing.com/th/id/OIP.V5v6m1DwvC-8-RaRs41DfQHaEc?w=273&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Durban University of Technology" class="w-full h-40 object-cover">
+    <div class="p-4">
+        <h3 class="text-lg font-semibold text-[#000026] mb-1">Durban University of Technology</h3>
+        <p class="text-sm text-gray-600 mb-2">A prominent multi‑campus university in KwaZulu‑Natal, known for its applied sciences, engineering, and creative programs.</p>
+        <p class="text-xs text-gray-500 mb-4"><i class="fas fa-map-marker-alt mr-1"></i> Durban & Pietermaritzburg, KwaZulu‑Natal</p>
+        <div class="flex justify-between items-center mt-4">
+        <a href="/apply/dut" class="bg-[#000026] text-white text-xs px-3 py-2 rounded hover:bg-[#1a1a4c] transition">Apply Now</a>
+        <a href="/downloads/dut-prospectus.pdf" download class="text-[#000026] text-xs flex items-center hover:underline">
+            <i class="fas fa-download mr-1"></i> Prospectus
+        </a>
+        </div>
+    </div>
+    </div>
+    <!-- WSU -->
+    <div class="border rounded-lg shadow-sm overflow-hidden hover:shadow-md transition">
+    <img src="https://th.bing.com/th/id/OIP.3FhqK7PAaxIRTfKrI4tsbQHaCu?w=345&h=128&c=7&r=0&o=7&pid=1.7&rm=3" alt="Walter Sisulu University Logo" class="w-full h-36 object-contain bg-white p-4">
+    <div class="p-4">
+        <h3 class="text-lg font-semibold text-[#000026] mb-1">Walter Sisulu University</h3>
+        <p class="text-sm text-gray-600 mb-2">A multi‑campus university based in the Eastern Cape, excelling in health sciences, education, agriculture, and management programs, fostering research-driven, community-focused, and transformative learning.</p>
+        <p class="text-xs text-gray-500 mb-4"><i class="fas fa-map-marker-alt mr-1"></i> Mthatha & other Eastern Cape campuses</p>
+
+        <div class="flex justify-between items-center mt-4">
+        <a href="/apply/wsu" class="bg-[#000026] text-white text-xs px-3 py-2 rounded hover:bg-[#1a1a4c] transition">Apply Now</a>
+        <a href="/downloads/wsu-prospectus.pdf" download class="text-[#000026] text-xs flex items-center hover:underline">
+            <i class="fas fa-download mr-1"></i> Prospectus
+        </a>
+        </div>
+    </div>
+    </div>
+    <!-- Nelson Mandela University -->
+    <div class="border rounded-lg shadow-sm overflow-hidden hover:shadow-md transition">
+    <img src="data:image/webp;base64,UklGRiIFAABXRUJQVlA4IBYFAACQJQCdASrzALQAPp1Oo00lpCMiIjToiLATiWlu4XSVOAlh3ea8ir8Afzns+/pfQIeK/ajOMfWv839j/qB307xL+Z7oTUD/VeTL8g+4DmJ+nP96/KP4H/0D/Bcbt4p/gPcA/ln8x/5v2wfSX/F/9H/Decr80/w3/f9wT+Xf1z/qdff9yPZD/YcNgIlrGPEaSMeI0kY8RpIx4jSRjxGkjHiNJGPEaSMdaM3FeJNRiU8lWkatL1Ku11xaH4mMCkiETRufhiSBBnQgn//5xMM/CVdBnD6SzM2mXsSa6KDAEGdA1gklwmfCPGmWbziKynME7jWvVDFzb668RpHcrdieNAsnguCPPTsQxN5CLBSPeLfXH+lcG8vMP4Lj/SuDeV6GkjHiNJGPEaSMeI0kY8RpIx4jSRjxGWAA/v9OQAAAShdwOfMGf3CmkH4cU8Ce9/dsZ/ZHFk2JLL6W7BgqiLYPPuDouhGR+7+QfDCFotHf9P7o59bqGa2HbSb8XtSJ8oVXhRyyJpeuCMoVPfPX7ssbQ3f9r7xO/n1/Yu7btEtpeC7b6Lt0SqMfa2SlzawwiD2P1wYrFnj9sx9lb0ollad3vXFeU5h4uyn41I0DTU5B9i49t0HZ6g1CesW3Mwh5Mw+8LDCOZIIFO4gQePakJHkIBUhel8P/Bf3P8TMhyH3j2nCYGJ39XnukU9TPHWGZkHzgrdu4lS6MIvylmpzPdYik5fLfToEvOC9suey+Y34CmSQeMCOyYTnj/MI/koh4bEJHtPiQMGAhkKOGQfvGOMMOOWCeKehauEb9wU24rybaa03JGicpEGyNRIjxa6HkMykgi5BQ+alIMJOWeDOCCTxLIN+iuPP7fJJzhMNETrhmMG0h04P+AxH+oib+zTIBTt1+vM608TaIxE2OhVE3K6N2UiD6c31H3ApuCagID3Is8YGxtv6HrWrz6PmvQDhx+P52q+RBazNXZcp8rfDixcKu7E8gUNyyFVOG7B8EJ93RjzGfCf553J4oCwQhYf5n/jWbUXn3TbZdA9NxOC52PfAGeAVb00E9c6/3JZWJx6q2xJJa3c73s9PoM9zmSZnbjIhj0JskkTKDRsMCFLCYbbYoluDoTjoo9DZ4QW6MBfOHiHx01/ac/8enxgOM1OaBDcmYufb7ip8QUTd/zEncSwui3RdXuEjO/CuH05ZCr/m32XCOERk1nV1eVmQ/xhcKAsuHYY79Ne8CoWpMyHM4Z5zcGQOk5//vYyNY33tdfRNxrQFL70qw/zQ7o4cOdaArNRc1zLgJqG4PrMRtGZ75beqOtfo5Tz68/yUNVif6pNJJfW2oJvfmt7Mr7G2F963KCT+Ct6tdaCBdjjuMMmGlzE6G2spn33/HHiIhhh0dhxuPwRpKa2EGYC0IwwIUjjICDL8Am4szwESsqFOyrOQPwwQE/QBg1bnZUHNx86Aa6TBVtLxaXg8lofyvRWIzOUqgzSizA+erdrZUQJ69g6zlorou2Fd8KjhBHVWMqzr85sg5N/yHWOricS1KRfQh+NJaxr8p+FfECQ9pxhHvPm3mc+Po1dlHhhtwQhJt7GWFXzgd3o3Hxvds2AgFcId3hMy1vuR5qOTsMAeonFzJX+oI3tLaf8680mWmp0VwPIYsT4iGZ0S74NVeforrPTgBTeeLkSH9pWveZvOx6pvqERe09xLqO6NOeqdduDB5yzO+fW7xf/Nn/02GFQiHGE49v/yAIOgX8lIUAAAAAAA=" alt="Nelson Mandela University Campus" class="w-full h-40 object-contain">
+    <div class="p-4">
+        <h3 class="text-lg font-semibold text-[#000026] mb-1">Nelson Mandela University</h3>
+        <p class="text-sm text-gray-600 mb-2">A dynamic, comprehensive university in the Eastern Cape, renowned for its innovative education, world-class engineering, impactful health sciences, and sustainable environmental programs.</p>
+        <p class="text-xs text-gray-500 mb-4"><i class="fas fa-map-marker-alt mr-1"></i> Gqeberha (Port Elizabeth), Eastern Cape</p>
+        <div class="flex justify-between items-center mt-4">
+        <a href="/apply/mandela" class="bg-[#000026] text-white text-xs px-3 py-2 rounded hover:bg-[#1a1a4c] transition">Apply Now</a>
+        <a href="/downloads/mandela-prospectus.pdf" download class="text-[#000026] text-xs flex items-center hover:underline">
+            <i class="fas fa-download mr-1"></i> Prospectus
+        </a>
+        </div>
+    </div>
+    </div>
+    <!-- UKZN -->
+    <div class="border rounded-lg shadow-sm overflow-hidden hover:shadow-md transition">
+    <img src="data:image/webp;base64,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" alt="University of KwaZulu-Natal Logo" 
+    class="w-full h-40 object-contain bg-white p-4">
+    <div class="p-4">
+        <h3 class="text-lg font-semibold text-[#000026] mb-1">University of KwaZulu‑Natal</h3>
+        <p class="text-sm text-gray-600 mb-2">A major public research university established in 2004, with five campuses across KwaZulu‑Natal province, offering innovative, inclusive, and globally-recognized education.</p>
+        <p class="text-xs text-gray-500 mb-4"><i class="fas fa-map-marker-alt mr-1"></i> Durban, Pietermaritzburg, Westville & Pinetown, KwaZulu‑Natal</p>
+        <div class="flex justify-between items-center mt-4">
+        <a href="/apply/ukzn" class="bg-[#000026] text-white text-xs px-3 py-2 rounded hover:bg-[#1a1a4c] transition">Apply Now</a>
+        <a href="/downloads/ukzn-prospectus.pdf" download class="text-[#000026] text-xs flex items-center hover:underline">
+            <i class="fas fa-download mr-1"></i> Prospectus
+        </a>
+        </div>
+    </div>
+    </div>
+    <!-- Wits -->
+    <div class="border rounded-lg shadow-sm overflow-hidden hover:shadow-md transition">
+    <img src="https://th.bing.com/th/id/OIP.gaiTPaWMVm-dlRui3fH_pwHaFj?w=227&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Wits Campus" class="w-full h-40 object-contain">
+    <div class="p-4">
+        <h3 class="text-lg font-semibold text-[#000026] mb-1"> Witwatersrand University</h3>
+        <p class="text-sm text-gray-600 mb-2">Founded in 1922, Wits is a top-tier research university based in central Johannesburg, with five campuses like Braamfontein’s East & West, Parktown’s Medical & Education</p>
+        <p class="text-xs text-gray-500 mb-4"><i class="fas fa-map-marker-alt mr-1"></i> Braamfontein, Parktown & rural sites, Gauteng</p>
+        <div class="flex justify-between items-center mt-4">
+        <a href="/apply/wits" class="bg-[#000026] text-white text-xs px-3 py-2 rounded hover:bg-[#1a1a4c] transition">Apply Now</a>
+        <a href="/downloads/wits-prospectus.pdf" download class="text-[#000026] text-xs flex items-center hover:underline">
+            <i class="fas fa-download mr-1"></i> Prospectus
+        </a>
+    </div>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>
