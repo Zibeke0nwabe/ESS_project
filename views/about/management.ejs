@@ -2,52 +2,194 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ESS Portal</title>
   <script src="https://cdn.tailwindcss.com"></script>
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+  <style>
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fadeIn {
+      animation: fadeIn 1s ease-in-out;
+      opacity: 1 !important;
+    }
+    .carousel-container {
+      position: relative;
+      overflow: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .carousel-item {
+      min-width: 100%;
+      flex-shrink: 0;
+    }
+  </style>
 </head>
-<style>
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
+<body class="text-gray-800 bg-white">
+
+  <%- include('../components/topBanner') %>
+  <%- include('../components/navbar') %>
+
+  <!-- Carousel Section -->
+  <section class="carousel-container max-w-7xl mx-auto mt-8 rounded-md shadow-lg relative">
+    <div id="carouselTrack" class="carousel-track">
+
+      <div class="carousel-item relative">
+        <img src="/images/martinshozi.jpg" alt="Management Leadership" class="w-full h-96 object-cover rounded-md" />
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center p-6">
+          <h2 class="text-white text-3xl font-bold mb-2">Strategic Leadership</h2>
+          <p class="text-white max-w-xl">
+            Our leadership team sets the strategic direction, ensuring the organization fulfills its mission effectively and sustainably.
+          </p>
+        </div>
+      </div>
+
+      <div class="carousel-item relative">
+        <img src="/images/ess1.png" alt="Human Resources" class="w-full h-96 object-cover rounded-md" />
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center p-6">
+          <h2 class="text-white text-3xl font-bold mb-2">Operational Management</h2>
+          <p class="text-white max-w-xl">
+            Focused on driving day-to-day operations, the management team fosters collaboration and efficient service delivery.
+          </p>
+        </div>
+      </div>
+
+      <div class="carousel-item relative">
+        <img src="/images/1.jpg" alt="Marketing & Development" class="w-full h-96 object-cover rounded-md" />
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center p-6">
+          <h2 class="text-white text-3xl font-bold mb-2">Marketing & Development</h2>
+          <p class="text-white max-w-xl">
+            The team promotes our mission and expands outreach efforts to build strong community and educational partnerships.
+          </p>
+        </div>
+      </div>
+
+      <div class="carousel-item relative">
+        <img src="/images/picture.jpg" alt="Academic Oversight" class="w-full h-96 object-cover rounded-md" />
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center p-6">
+          <h2 class="text-white text-3xl font-bold mb-2">Academic Oversight</h2>
+          <p class="text-white max-w-xl">
+            Ensuring quality education, the academic management team supervises learning programs and supports tutor development.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carousel buttons -->
+    <button
+      id="prevBtn"
+      class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 text-white rounded-full p-2 focus:outline-none"
+      aria-label="Previous Slide"
+    >
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button
+      id="nextBtn"
+      class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 text-white rounded-full p-2 focus:outline-none"
+      aria-label="Next Slide"
+    >
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </section>
+
+  <!-- Management Cards Section -->
+  <section class="max-w-7xl mx-auto py-12 px-6">
+    <h2 class="text-4xl font-bold mb-10 text-center">Meet Our Management Team</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+      <!-- Card 1 -->
+      <article class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
+        <img src="/images/user2.jpg" alt="Mr Martin Shozi" class="w-full h-56 object-cover" />
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Mr Martin Shozi</h3>
+          <p class="text-gray-600 text-sm">
+            Visionary founder dedicated to improving access to quality education for disadvantaged learners.
+          </p>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
+        <img src="/images/user6.jpg" alt="Mr Brian Mkhize" class="w-full h-56 object-cover" />
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Mr Brian Mkhize</h3>
+          <p class="text-gray-600 text-sm">
+            Personnel Officer managing HR functions to keep the organization efficient and motivated.
+          </p>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
+        <img src="/images/user3.jpg" alt="Mr Mzamo Nyawo" class="w-full h-56 object-cover" />
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Mr Mzamo Nyawo</h3>
+          <p class="text-gray-600 text-sm">
+            Marketing Manager who leads marketing and outreach to grow ESS's impact.
+          </p>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
+        <img src="/images/user5.jpg" alt="Mr Lithalobomi Mabaso" class="w-full h-56 object-cover" />
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Mr Lithalobomi Mabaso</h3>
+          <p class="text-gray-600 text-sm">
+            Head of Department ensuring academic excellence and tutor supervision.
+          </p>
+        </div>
+      </article>
+
+      <!-- Card 5 - Dr Shezi -->
+      <article class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
+        <img src="/images/manqoba.jpg" alt="Dr. Shezi" class="w-full h-56 object-cover" />
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Dr. Shezi</h3>
+          <p class="text-gray-600 text-sm">
+            Academic Advisor, Dr. Shezi plays a strategic role in supporting both learners and educators.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Carousel Script -->
+  <script>
+    const track = document.getElementById('carouselTrack');
+    const slides = Array.from(track.children);
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      const slideWidth = slides[0].getBoundingClientRect().width;
+      track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
     }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 
-  .animate-fadeIn {
-    animation: fadeIn 1s ease-in-out;
-    opacity: 1 !important;
-  }
-  @keyframes marquee {
-  0%   { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
-}
+    prevBtn.addEventListener('click', () => {
+      currentIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
+      updateCarousel();
+    });
 
-.animate-marquee {
-  display: inline-block;
-  animation: marquee 15s linear infinite;
-}
+    nextBtn.addEventListener('click', () => {
+      currentIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
+      updateCarousel();
+    });
 
-</style>
-
-<body class=" text-gray-800">
-<%- include('../components/topBanner') %>
-<%- include('../components/navbar') %>
-<section class="relative w-full">
-  <img src="/images/hero.jpg" alt="Management Banner" class="w-full h-96 object-cover">
-  <div class="absolute top-0 left-0 w-full h-full bg-black/40 flex items-center justify-center">
-    <h1 class="text-white text-4xl font-bold">Our Management</h1>
-  </div>
-</section>
-
-<section class="max-w-7xl mx-auto py-12 px-6 text-gray-800">
-  <p class="mb-6">ESS is led by a dedicated and experienced management team committed to academic excellence, student empowerment, and inclusive learning. We ensure that every learner gets the support and resources they need to thrive in an ever-changing world.</p>
-  <img src="/images/management-team.jpg" alt="Management Team" class="w-full rounded-md">
-</section>
+    updateCarousel();
+    setInterval(() => nextBtn.click(), 7000);
+  </script>
 </body>
 </html>

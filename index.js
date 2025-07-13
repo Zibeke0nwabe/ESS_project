@@ -73,12 +73,15 @@ app.get('/about/management', (req, res) => {
 app.get('/about/developers', (req, res) => {
   res.render('about/developers');
 });
+app.get('/contact/developers', (req, res) => {
+  res.render('contact/developers');
+});
 
 app.get('/about/teacher', (req, res) => {
   res.render('about/teachers');
 });
 
-// 404 Error Page
+
 app.use((req, res) => {
     res.status(404).render('error', {
         title: '404 - Page Not Found',

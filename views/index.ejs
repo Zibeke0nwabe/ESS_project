@@ -361,7 +361,7 @@
       desc: "Engage in live discussions, quizzes, and group activities to deepen understanding."
     },
     {
-      img: "https://th.bing.com/th/id/OIP.gT9wIbVmPsPkuFgsSSAW0QHaEO?rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3",
+      img: "/images/student2.JPG",
       title: "Track Your Progress",
       desc: "View your learning stats, complete modules, and earn achievements as you grow."
     }
@@ -374,7 +374,7 @@
 
   function showSlide(index) {
     imageEl.classList.remove('animate-fadeIn');
-    void imageEl.offsetWidth; // force reflow to restart animation
+    void imageEl.offsetWidth;
 
     imageEl.src = slides[index].img;
     imageEl.classList.add('opacity-100', 'animate-fadeIn');
