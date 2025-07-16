@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About ESS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function toggleMore() {
+      const more = document.getElementById("moreText");
+      const btn = document.getElementById("toggleBtn");
+      more.classList.toggle("hidden");
+      btn.innerText = more.classList.contains("hidden") ? "View More" : "View Less";
+    }
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <%- include('../components/topBanner') %>
+  <%- include('../components/navbar') %>
+
+  <section class="relative flex flex-col md:flex-row items-center overflow-hidden h-[450px] md:h-[430px]">
+
+    <div style="background: #000026;" class="md:w-3/5 w-full text-white py-20 px-10 rounded-md h-full flex items-center">
+      <h1 class="text-5xl font-bold">About ESS</h1>
+    </div>
+    <div class="absolute right-8 top-1/2 transform -translate-y-1/2 hidden md:block">
+      <img src="/images/martinshozi.jpg" alt="Martin Shozi" class="h-[420px] w-auto object-cover rounded-lg shadow-2xl" />
+    </div>
+  </section>
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 bg-white">
+    
+    <div>
+      <img src="/images/user2.jpg" alt="Martin Shozi" class="rounded mb-4 w-full max-h-[350px] object-contain" />
+      
+      <h2 class="text-2xl font-semibold mb-4">Ekhaya Smart Scholars</h2>
+      <p class="text-sm text-gray-500 leading-relaxed">
+        Mr Martin Shozi is the visionary founder of Ekhaya Smart Scholars, an organization dedicated to improving access to quality education for disadvantaged learners in rural and township communities...
+      </p>
+      <div id="moreText" class="hidden mt-4 space-y-3 text-sm text-gray-500 leading-relaxed">
+        <p>He pursued a Bachelor of Architecture at the Durban University of Technology (DUT)...</p>
+        <p>His own academic path was not without obstacles, but he used his experiences as a catalyst for change...</p>
+        <p>ESS provides tutoring for high school learners and working adults who want to rewrite matric, both online and physically.</p>
+        <p>Subjects include Mathematics, Physical Sciences, Accounting, and more — taught by tutors who understand the learners' contexts.</p>
+        <p>Martin’s long-term vision is to scale ESS across KZN and eventually the entire country with strong local partnerships.</p>
+      </div>
+      <button id="toggleBtn" onclick="toggleMore()" class="mt-4 px-4 py-2 bg-blue-900 text-white rounded hover:bg-blue-700">
+        View More
+      </button>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <img src="/images/picture.JPG" class="rounded shadow" alt="ESS Event 1" />
+      <img src="/images/manqoba.JPG" class="rounded shadow" alt="ESS Event 2" />
+      <img src="/images/hero.jpg" class="rounded shadow" alt="ESS Event 3" />
+      <img src="/images/ess1.png" class="rounded shadow" alt="ESS Event 4" />
+      <img src="/images/hero.jpg" class="col-span-2 rounded shadow" alt="ESS Event 5" />
+    </div>
+  </section>
+</body>
+</html>

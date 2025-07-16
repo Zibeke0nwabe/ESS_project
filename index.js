@@ -71,8 +71,14 @@ app.get('/about/students', (req, res) => {
 app.get('/about/management', (req, res) => {
   res.render('about/management');
 });
+app.get('/contact/management', (req, res) => {
+  res.render('contact/management');
+});
 app.get('/about/developers', (req, res) => {
   res.render('about/developers');
+});
+app.get('/about/aboutUs', (req, res) => {
+  res.render('about/aboutUs');
 });
 app.get('/contact/developers', (req, res) => {
   res.render('contact/developers');
