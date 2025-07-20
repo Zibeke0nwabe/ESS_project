@@ -5,25 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About ESS</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body class="bg-gray-100 text-gray-800">
   <%- include('../components/topBanner') %>
   <%- include('../components/navbar') %>
-
-<section class="relative flex flex-row items-center overflow-hidden h-[250px] sm:h-[300px] md:h-[430px]">
-  <!-- Left: Background section -->
-  <div class="w-3/5 text-white p-6 sm:p-8 md:p-10 h-full flex flex-col justify-center"
-       style="background: #000026; clip-path: polygon(0 0, 85% 0, 70% 100%, 0% 100%);">
-    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+<section class="relative flex flex-row items-center overflow-hidden h-[260px] sm:h-[320px] md:h-[430px]">
+  <div class="w-1/2 text-white p-4 sm:p-6 md:p-10 h-full flex flex-col justify-center"
+       style="background: #000026; clip-path: polygon(0 0, 100% 0, 70% 100%, 0% 100%);">
+    <h1 class="text-lg sm:text-2xl md:text-5xl font-bold leading-tight">
       Martin Shozi
     </h1>
-    <p class="mt-2 text-base sm:text-lg md:text-xl font-medium text-gray-200">
+    <p class="mt-1 text-xs sm:text-sm md:text-xl font-medium text-gray-200">
       Chief Executive Officer (CEO)
     </p>
   </div>
-
-  <!-- Right: Image section -->
-  <div class="w-2/5 h-full">
+  <div class="w-1/2 h-full">
     <img 
       src="/images/user2.jpg" 
       alt="Martin Shozi" 
@@ -31,104 +28,93 @@
     />
   </div>
 </section>
-
-<section class="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 bg-white font-sans">
-
-  <!-- Left: Video + Message Section -->
-  <div class="border-[6px] border-gray-200 rounded-sm shadow-md p-6 bg-white">
-    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-      A message from Martin
-    </h2>
-
-    <!-- Video Container -->
-    <div class="relative w-full aspect-video rounded-sm shadow-lg overflow-hidden">
-      <!-- Actual Video -->
-      <video id="essVideo" class="w-full h-full object-cover hidden" controls>
-        <source src="/videos/ess.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-
-      <!-- Thumbnail Image -->
-      <img src="/images/martinVideo.jpg"
-        alt="Martin Shozi"
-        class="absolute inset-0 w-full h-full object-cover z-0" />
-
-      <!-- Overlay -->
-      <div id="videoOverlay"
-        onclick="playVideo()"
-        class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-white cursor-pointer transition hover:bg-black/70 z-10">
-        <h3 class="text-2xl md:text-3xl font-bold mb-2 drop-shadow-lg">MARTIN SHOZI</h3>
-        <p class="text-sm md:text-base mb-6 drop-shadow-md">Founder · Ekhaya Smart Scholars</p>
-        <i class="fas fa-play-circle text-6xl text-white hover:text-gray-300 transition"></i>
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 bg-white font-sans">
+    <div class="border-[6px] border-gray-200 rounded-sm shadow-md p-6 bg-white">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+        A message from Martin
+      </h2>
+      <div class="relative w-full aspect-video rounded-sm shadow-lg overflow-hidden">
+        <video id="essVideo"
+          class="absolute inset-0 w-full h-full object-cover z-0"
+          poster="/images/martinVideo.jpg"
+          controls>
+          <source src="/videos/ess.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div id="videoOverlay"
+          onclick="playVideo()"
+          class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-white cursor-pointer transition hover:bg-black/70 z-10">
+          <h3 class="text-2xl md:text-3xl font-bold mb-2 drop-shadow-lg">MARTIN SHOZI</h3>
+          <p class="text-sm md:text-base mb-6 drop-shadow-md">Founder · Ekhaya Smart Scholars</p>
+          <i class="fas fa-play-circle text-6xl text-white hover:text-gray-300 transition"></i>
+        </div>
       </div>
-    </div>
-
-    <!-- Description -->
-    <p class="text-base text-gray-700 leading-relaxed mt-6">
-      Mr Martin Shozi, is the visionary founder of Ekhaya Smart Scholars, an organization dedicated to improving access 
+    <p class="text-sm text-gray-700 leading-relaxed mt-6">
+      Mr Martin Shozi is the visionary founder of Ekhaya Smart Scholars, an organization dedicated to improving access 
       to quality education for disadvantaged learners in rural and township communities. 
     </p>
-
-    <div id="moreText" class="hidden mt-4 space-y-3 text-base text-gray-700 leading-relaxed">
-      <p>      He pursued a Bachelor of Architecture (BA) degree under the Faculty of Engineering at the 
-      Durban University of Technology (DUT). His journey in education has been shaped by perseverance, 
-      empathy, and a deep desire to break generational barriers that hinder academic success for many young South Africans. </p>
-      <p>Growing up, Mr Martin experienced first-hand the challenges faced by learners who have the potential to succeed but are held back by a lack of academic support and educational resources. These were not just his challenges, he observed the same patterns in his peers throughout primary school, high school, and even at university level. The absence of basic tools has consistently resulted in poor performance and high dropout rates.</p>
-      <p>His own academic path was not without obstacles, but instead of giving up, Martin used these experiences as a catalyst for change. He realized that many learners who fail or drop out are not unintelligent, they simply lack the proper environment and support system to thrive. With this understanding, he saw an opportunity to bridge this gap and make education more accessible to learners in underserved areas.</p>
-      <p>It was from this realization that Ekhaya Smart Scholars was born. The organization was founded on the belief that every learner deserves a second chance, regardless of their background. Mr Shozi established the organization to create platforms where struggling students, particularly those who failed matric or did not perform well can receive structured academic support to rewrite and pass their exams.</p>
-      <p>The primary mission of Ekhaya Smart Scholars is to provide both online and physical tutoring classes that cater to the unique needs of rural learners. The hybrid model ensures that students who are far from urban centres can still access lessons virtually, while those who prefer in-person learning can attend physical sessions in nearby centres. This flexibility is one of the organization’s greatest strengths.</p>
+    <div id="moreText" class="hidden mt-4 space-y-4 text-sm text-gray-700 leading-relaxed">
+      <div class="flex flex-col sm:flex-row items-center gap-4">
+        <img src="/images/martin.jpg" alt="Martin Shozi" class="w-36 h-full shadow-md rounded-md object-contain" />
+        <h4 class="text-lg sm:text-xl font-bold text-gray-800 text-center sm:text-left">
+          Leadership Through Experience
+        </h4>
+      </div>
+      <p>He pursued a Bachelor of Architecture (BA) degree under the Faculty of Engineering at the Durban University of Technology (DUT)...</p>
+      <p>Growing up, Mr Martin experienced first-hand the challenges faced by learners who had the potential to succeed but were held back by a lack of academic support and resources.</p>
+      <p>His journey has been marked by resilience and empathy — using his experiences as a catalyst for change rather than obstacles.</p>
+      <p>It was from this realization that Ekhaya Smart Scholars was born, based on the belief that every learner deserves a second chance.</p>
+      <p>The mission is to provide both online and physical tutoring tailored to underserved communities. Flexibility is one of its greatest strengths.</p>
     </div>
+          <button id="toggleBtn"
+        onclick="toggleMore()"
+        class="mt-6 px-6 py-2 bg-blue-900 text-white font-semibold rounded-md hover:bg-blue-700 transition">
+        View More
+      </button>
+    </div>
+    <div class="space-y-8">
+      <div class="border-[6px] border-gray-200 p-6 rounded-sm shadow-md bg-green-100">
+        <h3 class="text-xl md:text-2xl font-bold text-center mb-3">Contact Martin</h3>
+        <p class="text-base text-center text-gray-800 mb-4">
+          Click below to share your feedback directly with Martin Shozi via WhatsApp.
+        </p>
+        <div class="flex justify-center">
+          <a href="https://wa.me/27614641899" target="_blank" rel="noopener noreferrer">
+            <button class="flex items-center gap-2 bg-blue-900 text-white px-6 py-2 rounded-md font-semibold hover:bg-blue-700 transition">
+              <i class="fas fa-comment-dots"></i> Contact Me
+            </button>
+          </a>
+        </div>
+      </div>
 
-    <button id="toggleBtn"
-      onclick="toggleMore()"
-      class="mt-6 px-6 py-2 bg-blue-900 text-white font-semibold rounded-md hover:bg-blue-700 transition">
-      View More
-    </button>
-  </div>
-  <div class="space-y-8">
-    <div class="border-[6px] border-gray-200 p-6 rounded-sm shadow-md bg-green-100">
-      <h3 class="text-xl md:text-2xl font-bold text-center mb-3">Contact Martin</h3>
-      <p class="text-base text-center text-gray-800 mb-4">
-        Click here to share your feedback directly to Martin Shozi's WhatsApp.
-      </p>
-      <div class="flex justify-center">
-        <button class="flex items-center gap-2 bg-blue-900 text-white px-6 py-2 rounded-md font-semibold hover:bg-blue-700 transition">
-          <i class="fas fa-comment-dots"></i> Contact Me
-        </button>
+      <div class="border-[6px] border-gray-200 p-6 rounded-sm shadow-md">
+        <h3 class="text-xl md:text-2xl font-bold mb-4 text-gray-900">Martin’s Post</h3>
+        <img src="/images/picture.JPG" alt="ESS Event" class="w-full rounded-md shadow-md mb-3" />
+        <p class="text-sm text-gray-700">
+          Community upliftment event hosted by ESS in partnership with educators. The journey to impact starts here.
+        </p>
       </div>
     </div>
-
-    <div class="border-[6px] border-gray-200 p-6 rounded-sm shadow-md">
-      <h3 class="text-xl md:text-2xl font-bold mb-4 text-gray-900">Martin’s Post</h3>
-      <img src="/images/picture.JPG" alt="ESS Event" class="w-full rounded-md shadow-md mb-3" />
-      <p class="text-base text-gray-700">
-        Community upliftment event hosted by ESS in partnership with educators. The journey to impact starts here.
-      </p>
-    </div>
-  </div>
-</section>
-<script>
-  function playVideo() {
-    const video = document.getElementById("essVideo");
-    const overlay = document.getElementById("videoOverlay");
-    const thumbnail = document.querySelector("img[alt='Martin Shozi']");
-    overlay.style.display = "none";
-    thumbnail.style.display = "none";
-    video.classList.remove("hidden");
-    video.play();
-  }
-
-  function toggleMore() {
-    const moreText = document.getElementById('moreText');
-    const btn = document.getElementById('toggleBtn');
-    if (moreText.classList.contains('hidden')) {
-      moreText.classList.remove('hidden');
-      btn.textContent = 'View Less';
-    } else {
-      moreText.classList.add('hidden');
-      btn.textContent = 'View More';
+  </section>
+  <script>
+    function playVideo() {
+      const video = document.getElementById("essVideo");
+      const overlay = document.getElementById("videoOverlay");
+      overlay.classList.add("hidden");
+      video.play();
     }
-  }
-</script>
+
+    function toggleMore() {
+      const moreText = document.getElementById('moreText');
+      const btn = document.getElementById('toggleBtn');
+      if (moreText.classList.contains('hidden')) {
+        moreText.classList.remove('hidden');
+        btn.textContent = 'View Less';
+      } else {
+        moreText.classList.add('hidden');
+        btn.textContent = 'View More';
+      }
+    }
+  </script>
 </body>
 </html>

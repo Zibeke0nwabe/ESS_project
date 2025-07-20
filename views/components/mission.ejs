@@ -1,6 +1,5 @@
 <section id="mission" style="background: #000026;" class="py-12 m-4 rounded-md">
   <div class="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-
     <div class="text-white space-y-6">
       <h2 class="text-3xl font-bold">Our Mission</h2>
       <div class="w-20 h-1 bg-white mb-4"></div>
@@ -11,13 +10,25 @@
         Through our tailored approach, we ensure that every learner feels supported and motivated. Together, we can bridge gaps, unlock potential, and uplift communities.
       </p>
     </div>
-    <div>
-      <img 
-        src="https://th.bing.com/th/id/OIP.5koZKBGDU1RzHf6HBXlX3AEsDH?w=257&h=180&c=7&r=0&o=5&pid=1.7" 
-        alt="Mission Image" 
-        class="w-full h-64 object-cover rounded-lg shadow-lg"
+    <div class="relative w-full h-64 rounded-sm overflow-hidden">
+      <img
+        id="mission-carousel-image"
+        src="/images/image (1).jpg"
+        alt="Mission Image"
+        class="w-full h-full object-cover transition-opacity duration-700 opacity-100 "
       />
+      <div class="absolute inset-0 flex items-center justify-between px-4">
+        <button onclick="prevMissionSlide()"
+          class="text-white text-2xl font-bold bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 z-10">
+          &lt;
+        </button>
+        <button onclick="nextMissionSlide()"
+          class="text-white text-2xl font-bold bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 z-10">
+          &gt;
+        </button>
+      </div>
     </div>
+
   </div>
 </section>
 <section id="vision" class="bg-white py-12 m-4 rounded-md">
@@ -39,6 +50,40 @@
         We aim to redefine education by integrating mentorship, technology, and inclusive learning — ensuring no student is left behind due to background or circumstance.
       </p>
     </div>
-
   </div>
 </section>
+<script>
+  const missionSlides = [
+    "/images/image (1).jpg",
+    "/images/martinshozi.jpg",
+    "/images/manqoba.JPG"
+  ];
+
+  let missionSlideIndex = 0;
+  const missionImageEl = document.getElementById('mission-carousel-image');
+
+  function showMissionSlide(index) {
+    if (!missionImageEl) return;
+
+    missionImageEl.classList.remove('opacity-100');
+    missionImageEl.classList.add('opacity-0');
+
+    setTimeout(() => {
+      missionImageEl.src = missionSlides[index];
+      missionImageEl.classList.remove('opacity-0');
+      missionImageEl.classList.add('opacity-100');
+    }, 300);
+  }
+
+  function nextMissionSlide() {
+    missionSlideIndex = (missionSlideIndex + 1) % missionSlides.length;
+    showMissionSlide(missionSlideIndex);
+  }
+
+  function prevMissionSlide() {
+    missionSlideIndex = (missionSlideIndex - 1 + missionSlides.length) % missionSlides.length;
+    showMissionSlide(missionSlideIndex);
+  }
+  showMissionSlide(missionSlideIndex);
+  setInterval(nextMissionSlide, 3000);
+</script>
