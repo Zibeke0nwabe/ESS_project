@@ -175,14 +175,18 @@
       <div class="relative w-full max-w-3xl mx-auto aspect-[16/7] max-h-[360px] rounded-lg shadow-lg overflow-hidden">
 
         <!-- Actual Video -->
-        <video id="essVideo" class="w-full h-full object-cover hidden" controls>
-          <source src="/videos/ess.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-
+          <div id="essVideo" class="w-full h-full object-cover hidden">
+            <iframe 
+              class="w-full h-full"
+              src="https://www.youtube.com/embed/3EofyZohGSA?autoplay=1"
+              frameborder="0"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
         <!-- Overlay with Play Button -->
         <div id="videoOverlay" onclick="playVideo()" class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-white cursor-pointer transition hover:bg-black/70">
-          <img src="/videos/ess1.png" alt="Live Class Preview" class="absolute inset-0 w-full h-full object-cover -z-10" />
+          <img src="/images/ess1.png" alt="Live Class Preview" class="absolute inset-0 w-full h-full object-cover -z-10" />
           <h3 class="text-xl md:text-2xl font-bold mb-1 drop-shadow-md">Step Inside Our Live Classrooms</h3>
           <p class="text-sm md:text-base mb-4">Click to preview how we teach</p>
           <i class="fas fa-play-circle text-5xl text-white hover:text-gray-300 transition"></i>
@@ -214,11 +218,10 @@
   <!-- Video Toggle Script -->
   <script>
     function playVideo() {
-      const video = document.getElementById('essVideo');
+      const videoContainer = document.getElementById('essVideo');
       const overlay = document.getElementById('videoOverlay');
       overlay.style.display = 'none';
-      video.classList.remove('hidden');
-      video.play();
+      videoContainer.classList.remove('hidden');
     }
   </script>
 
